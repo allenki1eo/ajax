@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { clsx } from "clsx";
+import { BarChart3, Boxes, Home, PackagePlus, Receipt, Settings, ShoppingCart } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 
 interface NavItem {
@@ -11,11 +12,21 @@ interface NavItem {
   icon: LucideIcon;
 }
 
-export function NavLinks({ items, mobile = false }: { items: NavItem[]; mobile?: boolean }) {
+const nav: NavItem[] = [
+  { href: "/", label: "Dashboard", icon: Home },
+  { href: "/products", label: "Products", icon: Boxes },
+  { href: "/sales", label: "Sales", icon: ShoppingCart },
+  { href: "/purchases", label: "Purchases", icon: PackagePlus },
+  { href: "/inventory", label: "Inventory", icon: Receipt },
+  { href: "/reports", label: "Reports", icon: BarChart3 },
+  { href: "/settings", label: "Settings", icon: Settings },
+];
+
+export function NavLinks({ mobile = false }: { mobile?: boolean }) {
   const pathname = usePathname();
   return (
     <>
-      {items.map((item) => {
+      {nav.map((item) => {
         const isActive = item.href === "/" ? pathname === "/" : pathname.startsWith(item.href);
         return (
           <Link

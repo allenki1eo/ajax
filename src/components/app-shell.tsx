@@ -1,21 +1,11 @@
 import Link from "next/link";
 import { logoutAction } from "@/app/actions";
 import { requireUser } from "@/lib/auth";
-import { BarChart3, Boxes, Home, LogOut, Menu, PackagePlus, Receipt, Settings, ShoppingCart } from "lucide-react";
+import { Boxes, LogOut, Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { Badge } from "@/components/ui/badge";
 import { NavLinks } from "@/components/nav-links";
-
-const nav = [
-  { href: "/", label: "Dashboard", icon: Home },
-  { href: "/products", label: "Products", icon: Boxes },
-  { href: "/sales", label: "Sales", icon: ShoppingCart },
-  { href: "/purchases", label: "Purchases", icon: PackagePlus },
-  { href: "/inventory", label: "Inventory", icon: Receipt },
-  { href: "/reports", label: "Reports", icon: BarChart3 },
-  { href: "/settings", label: "Settings", icon: Settings },
-];
 
 export async function AppShell({ children }: { children: React.ReactNode }) {
   const user = await requireUser();
@@ -37,7 +27,7 @@ export async function AppShell({ children }: { children: React.ReactNode }) {
                   <SheetTitle className="text-foreground">Navigation</SheetTitle>
                 </SheetHeader>
                 <nav className="grid gap-0.5">
-                  <NavLinks items={nav} mobile />
+                  <NavLinks mobile />
                 </nav>
               </SheetContent>
             </Sheet>
@@ -68,7 +58,7 @@ export async function AppShell({ children }: { children: React.ReactNode }) {
       <div className="mx-auto grid max-w-7xl grid-cols-1 gap-6 px-4 py-6 sm:px-6 lg:grid-cols-[14rem_1fr]">
         <aside className="hidden lg:block">
           <nav className="sticky top-20 rounded-lg border bg-card p-2 shadow-sm">
-            <NavLinks items={nav} />
+            <NavLinks />
           </nav>
         </aside>
         <main>{children}</main>
