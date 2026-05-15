@@ -17,9 +17,6 @@ export default async function LoginPage() {
           <p className="mt-2 text-sm text-muted-foreground">Sign in to manage stock, sales, and purchasing.</p>
         </div>
         <LoginForm />
-        <p className="mt-6 rounded-md bg-muted/50 p-3 text-center text-sm text-muted-foreground">
-          Demo login: <strong>admin</strong> / <strong>admin123</strong>
-        </p>
       </section>
     </main>
   );

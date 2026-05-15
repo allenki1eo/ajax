@@ -117,5 +117,26 @@ export const inputClass =
 export const buttonClass =
   "inline-flex h-9 items-center justify-center rounded-md bg-primary px-4 text-sm font-medium text-primary-foreground shadow transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50";
 
+export function StatusBadge({ status }: { status: string }) {
+  const map: Record<string, string> = {
+    completed: "bg-emerald-100 text-emerald-800 dark:bg-emerald-900/30 dark:text-emerald-400",
+    received: "bg-emerald-100 text-emerald-800 dark:bg-emerald-900/30 dark:text-emerald-400",
+    active: "bg-emerald-100 text-emerald-800 dark:bg-emerald-900/30 dark:text-emerald-400",
+    pending: "bg-amber-100 text-amber-800 dark:bg-amber-900/30 dark:text-amber-400",
+    cancelled: "bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-400",
+    inactive: "bg-slate-100 text-slate-600 dark:bg-slate-700 dark:text-slate-400",
+  };
+  return (
+    <span
+      className={clsx(
+        "inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium capitalize",
+        map[status] ?? "bg-muted text-muted-foreground",
+      )}
+    >
+      {status.replace(/_/g, " ")}
+    </span>
+  );
+}
+
 export const ghostButtonClass =
   "inline-flex h-9 items-center justify-center rounded-md border border-input bg-background px-4 text-sm font-medium shadow-sm transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50";

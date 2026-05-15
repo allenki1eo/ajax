@@ -115,7 +115,14 @@ export async function adjustStock(formData: FormData) {
   const user = await requireUser();
   const productId = num(formData, "product_id");
   const quantity = num(formData, "quantity");
+  if (quantity < 1) throw new Error("Quantity must be at least 1.");
   const direction = str(formData, "movement_type") as "in" | "out";
+  if (direction === "out") {
+    const current = await row<{ stock_quantity: number }>("SELECT stock_quantity FROM products WHERE id = ?", [productId]);
+    if ((current?.stock_quantity ?? 0) < quantity) {
+      throw new Error(`Insufficient stock. Only ${current?.stock_quantity ?? 0} unit(s) available.`);
+    }
+  }
   const signed = direction === "out" ? -quantity : quantity;
 
   await getDb().batch(
@@ -136,8 +143,16 @@ export async function recordSale(formData: FormData) {
   const user = await requireUser();
   const productId = num(formData, "product_id");
   const quantity = num(formData, "quantity");
-  const product = await row<{ selling_price: number }>("SELECT selling_price FROM products WHERE id = ?", [productId]);
-  const total = quantity * Number(product?.selling_price || 0);
+  if (quantity < 1) throw new Error("Quantity must be at least 1.");
+  const product = await row<{ selling_price: number; stock_quantity: number }>(
+    "SELECT selling_price, stock_quantity FROM products WHERE id = ?",
+    [productId],
+  );
+  if (!product) throw new Error("Product not found.");
+  if (product.stock_quantity < quantity) {
+    throw new Error(`Insufficient stock. Only ${product.stock_quantity} unit(s) available.`);
+  }
+  const total = quantity * product.selling_price;
 
   const sale = await exec(
     "INSERT INTO sales (sale_date, customer_name, total_amount, payment_method, status, notes, created_by) VALUES (?, ?, ?, ?, 'completed', ?, ?)",
