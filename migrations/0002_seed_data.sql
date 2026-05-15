@@ -1,74 +1,27 @@
--- phpMyAdmin SQL Dump
--- version 5.2.2
--- https://www.phpmyadmin.net/
---
--- Host: localhost:3306
--- Generation Time: May 14, 2026 at 11:08 PM
--- Server version: 10.11.16-MariaDB-cll-lve
--- PHP Version: 8.4.20
+-- SQLite seed data (converted from MySQL dump)
+-- Run after migrations/0001_turso_schema.sql
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-START TRANSACTION;
-SET time_zone = "+00:00";
+PRAGMA foreign_keys = OFF;
+BEGIN;
 
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
-
---
--- Database: `w2t39uh6cc89r6b9_store`
---
-
--- --------------------------------------------------------
-
---
--- Table structure for table `categories`
---
-
-CREATE TABLE `categories` (
-  `id` int(11) NOT NULL,
-  `name` varchar(100) NOT NULL,
-  `description` text DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
-
---
--- Dumping data for table `categories`
---
-
-INSERT INTO `categories` (`id`, `name`, `description`, `created_at`) VALUES
+-- categories
+INSERT INTO categories (id, name, description, created_at) VALUES
 (2, 'Clothing', 'Apparel and fashion items', '2025-09-21 08:04:47'),
 (5, 'Home & Garden', 'Home improvement and garden supplies', '2025-09-21 08:04:47');
 
--- --------------------------------------------------------
+-- suppliers
+INSERT INTO suppliers (id, name, contact_person, email, phone, address, created_at) VALUES
+(2, 'stv', '', '', '0762975904', '', '2025-09-26 10:26:58'),
+(3, 'flygle', '', '', '', '', '2025-10-05 11:47:50'),
+(4, 'maasai', '', '', '', '', '2025-10-05 11:49:50'),
+(5, 'm-munira', '', '', '', '', '2025-10-05 11:57:51');
 
---
--- Table structure for table `products`
---
+-- users
+INSERT INTO users (id, username, email, password, full_name, role, created_at, updated_at) VALUES
+(1, 'admin', 'admin@business.com', '0192023a7bbd73250516f069df18b500', 'Clinton', 'admin', '2025-09-21 08:04:47', '2025-12-13 03:33:06');
 
-CREATE TABLE `products` (
-  `id` int(11) NOT NULL,
-  `name` varchar(200) NOT NULL,
-  `description` text DEFAULT NULL,
-  `sku` varchar(50) DEFAULT NULL,
-  `category_id` int(11) DEFAULT NULL,
-  `supplier_id` int(11) DEFAULT NULL,
-  `cost_price` decimal(10,2) NOT NULL DEFAULT 0.00,
-  `selling_price` decimal(10,2) NOT NULL DEFAULT 0.00,
-  `stock_quantity` int(11) DEFAULT 0,
-  `min_stock_level` int(11) DEFAULT 0,
-  `status` enum('active','inactive') DEFAULT 'active',
-  `created_at` timestamp NULL DEFAULT current_timestamp(),
-  `updated_at` timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
-
---
--- Dumping data for table `products`
---
-
-INSERT INTO `products` (`id`, `name`, `description`, `sku`, `category_id`, `supplier_id`, `cost_price`, `selling_price`, `stock_quantity`, `min_stock_level`, `status`, `created_at`, `updated_at`) VALUES
+-- products
+INSERT INTO products (id, name, description, sku, category_id, supplier_id, cost_price, selling_price, stock_quantity, min_stock_level, status, created_at, updated_at) VALUES
 (1, 'Anningtex wax', '', '', NULL, NULL, 19500.00, 23000.00, 51, 100, 'inactive', '2025-09-21 09:16:38', '2025-09-21 11:02:36'),
 (4, 'JAVA DJ', '', '100', NULL, NULL, 5000.00, 6500.00, 1000, 500, 'inactive', '2025-09-21 09:34:16', '2025-09-21 11:02:22'),
 (6, 'DUBAI WAX', '', '12AC', 2, NULL, 9500.00, 11000.00, 700, 200, 'inactive', '2025-09-21 10:11:37', '2025-09-21 11:02:17'),
@@ -94,92 +47,8 @@ INSERT INTO `products` (`id`, `name`, `description`, `sku`, `category_id`, `supp
 (27, 'Pazia double', '', 'TN', 2, 4, 0.00, 0.00, 235, 20, 'active', '2026-01-02 09:10:41', '2026-01-02 09:14:03'),
 (29, 'Pazia double', '', 'GIR', 2, NULL, 15500.00, 18000.00, 240, 50, 'active', '2026-01-02 09:12:09', '2026-01-02 09:12:09');
 
--- --------------------------------------------------------
-
---
--- Table structure for table `purchases`
---
-
-CREATE TABLE `purchases` (
-  `id` int(11) NOT NULL,
-  `supplier_id` int(11) DEFAULT NULL,
-  `purchase_date` date NOT NULL,
-  `total_amount` decimal(10,2) NOT NULL,
-  `status` enum('pending','received','cancelled') DEFAULT 'pending',
-  `notes` text DEFAULT NULL,
-  `created_by` int(11) DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
-
---
--- Dumping data for table `purchases`
---
-
-INSERT INTO `purchases` (`id`, `supplier_id`, `purchase_date`, `total_amount`, `status`, `notes`, `created_by`, `created_at`) VALUES
-(1, NULL, '2025-09-21', 1900000.00, 'received', '', 1, '2025-09-21 16:28:18'),
-(2, NULL, '2025-09-26', 10000000.00, 'cancelled', '', 1, '2025-09-26 10:28:54'),
-(3, 3, '2025-10-05', 4140000.00, 'pending', '', 1, '2025-10-05 11:49:24'),
-(4, 4, '2025-10-05', 1845000.00, 'received', '', 1, '2025-10-05 11:51:15'),
-(5, 2, '2025-10-05', 6150000.00, 'received', '', 1, '2025-10-05 11:56:19'),
-(6, NULL, '2025-10-05', 3096000.00, 'pending', '', 1, '2025-10-05 11:58:43'),
-(7, NULL, '2025-11-07', 6600000.00, 'pending', '', 1, '2025-11-07 16:03:25');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `purchase_items`
---
-
-CREATE TABLE `purchase_items` (
-  `id` int(11) NOT NULL,
-  `purchase_id` int(11) NOT NULL,
-  `product_id` int(11) NOT NULL,
-  `quantity` int(11) NOT NULL,
-  `unit_cost` decimal(10,2) NOT NULL,
-  `total_cost` decimal(10,2) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
-
---
--- Dumping data for table `purchase_items`
---
-
-INSERT INTO `purchase_items` (`id`, `purchase_id`, `product_id`, `quantity`, `unit_cost`, `total_cost`) VALUES
-(1, 1, 16, 200, 9500.00, 1900000.00),
-(2, 2, 11, 2000, 5000.00, 10000000.00),
-(3, 3, 8, 230, 18000.00, 4140000.00),
-(4, 4, 15, 225, 8200.00, 1845000.00),
-(5, 5, 7, 200, 19500.00, 3900000.00),
-(6, 5, 11, 450, 5000.00, 2250000.00),
-(7, 6, 9, 180, 17200.00, 3096000.00),
-(8, 7, 7, 100, 19500.00, 1950000.00),
-(9, 7, 8, 100, 18000.00, 1800000.00),
-(10, 7, 10, 300, 9500.00, 2850000.00);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `sales`
---
-
-CREATE TABLE `sales` (
-  `id` int(11) NOT NULL,
-  `sale_date` date NOT NULL,
-  `customer_name` varchar(100) DEFAULT NULL,
-  `customer_email` varchar(100) DEFAULT NULL,
-  `customer_phone` varchar(20) DEFAULT NULL,
-  `total_amount` decimal(10,2) NOT NULL,
-  `payment_method` enum('cash','card','bank_transfer','other') DEFAULT 'cash',
-  `status` enum('completed','pending','cancelled') DEFAULT 'completed',
-  `notes` text DEFAULT NULL,
-  `created_by` int(11) DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
-
---
--- Dumping data for table `sales`
---
-
-INSERT INTO `sales` (`id`, `sale_date`, `customer_name`, `customer_email`, `customer_phone`, `total_amount`, `payment_method`, `status`, `notes`, `created_by`, `created_at`) VALUES
+-- sales
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES
 (1, '2025-09-21', 'Hellen', '', '', 23000.00, 'cash', 'cancelled', '', 1, '2025-09-21 09:18:08'),
 (2, '2025-09-21', '', '', '', 45500.00, 'cash', 'cancelled', '', 1, '2025-09-21 10:09:25'),
 (3, '2025-09-21', '', '', '', 84000.00, 'cash', 'cancelled', '', 1, '2025-09-21 10:13:38'),
@@ -390,26 +259,8 @@ INSERT INTO `sales` (`id`, `sale_date`, `customer_name`, `customer_email`, `cust
 (208, '2026-03-29', '', '', '', 130000.00, 'cash', 'completed', '', 1, '2026-03-29 14:30:01'),
 (209, '2026-03-29', '', '', '', 130000.00, 'cash', 'completed', '', 1, '2026-03-29 14:30:05');
 
--- --------------------------------------------------------
-
---
--- Table structure for table `sale_items`
---
-
-CREATE TABLE `sale_items` (
-  `id` int(11) NOT NULL,
-  `sale_id` int(11) NOT NULL,
-  `product_id` int(11) NOT NULL,
-  `quantity` int(11) NOT NULL,
-  `unit_price` decimal(10,2) NOT NULL,
-  `total_price` decimal(10,2) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
-
---
--- Dumping data for table `sale_items`
---
-
-INSERT INTO `sale_items` (`id`, `sale_id`, `product_id`, `quantity`, `unit_price`, `total_price`) VALUES
+-- sale_items
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES
 (1, 1, 1, 1, 23000.00, 23000.00),
 (2, 2, 4, 6, 6500.00, 39000.00),
 (3, 2, 4, 1, 6500.00, 6500.00),
@@ -755,29 +606,31 @@ INSERT INTO `sale_items` (`id`, `sale_id`, `product_id`, `quantity`, `unit_price
 (343, 208, 19, 10, 13000.00, 130000.00),
 (344, 209, 19, 10, 13000.00, 130000.00);
 
--- --------------------------------------------------------
+-- purchases
+INSERT INTO purchases (id, supplier_id, purchase_date, total_amount, status, notes, created_by, created_at) VALUES
+(1, NULL, '2025-09-21', 1900000.00, 'received', '', 1, '2025-09-21 16:28:18'),
+(2, NULL, '2025-09-26', 10000000.00, 'cancelled', '', 1, '2025-09-26 10:28:54'),
+(3, 3, '2025-10-05', 4140000.00, 'pending', '', 1, '2025-10-05 11:49:24'),
+(4, 4, '2025-10-05', 1845000.00, 'received', '', 1, '2025-10-05 11:51:15'),
+(5, 2, '2025-10-05', 6150000.00, 'received', '', 1, '2025-10-05 11:56:19'),
+(6, NULL, '2025-10-05', 3096000.00, 'pending', '', 1, '2025-10-05 11:58:43'),
+(7, NULL, '2025-11-07', 6600000.00, 'pending', '', 1, '2025-11-07 16:03:25');
 
---
--- Table structure for table `stock_movements`
---
+-- purchase_items
+INSERT INTO purchase_items (id, purchase_id, product_id, quantity, unit_cost, total_cost) VALUES
+(1, 1, 16, 200, 9500.00, 1900000.00),
+(2, 2, 11, 2000, 5000.00, 10000000.00),
+(3, 3, 8, 230, 18000.00, 4140000.00),
+(4, 4, 15, 225, 8200.00, 1845000.00),
+(5, 5, 7, 200, 19500.00, 3900000.00),
+(6, 5, 11, 450, 5000.00, 2250000.00),
+(7, 6, 9, 180, 17200.00, 3096000.00),
+(8, 7, 7, 100, 19500.00, 1950000.00),
+(9, 7, 8, 100, 18000.00, 1800000.00),
+(10, 7, 10, 300, 9500.00, 2850000.00);
 
-CREATE TABLE `stock_movements` (
-  `id` int(11) NOT NULL,
-  `product_id` int(11) NOT NULL,
-  `movement_type` enum('in','out','adjustment') NOT NULL,
-  `quantity` int(11) NOT NULL,
-  `reference_type` enum('purchase','sale','adjustment','return') NOT NULL,
-  `reference_id` int(11) DEFAULT NULL,
-  `notes` text DEFAULT NULL,
-  `created_by` int(11) DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
-
---
--- Dumping data for table `stock_movements`
---
-
-INSERT INTO `stock_movements` (`id`, `product_id`, `movement_type`, `quantity`, `reference_type`, `reference_id`, `notes`, `created_by`, `created_at`) VALUES
+-- stock_movements
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES
 (1, 1, 'in', 300, 'adjustment', NULL, 'Initial stock', 1, '2025-09-21 09:16:38'),
 (2, 1, 'out', 1, 'sale', 1, NULL, 1, '2025-09-21 09:18:08'),
 (3, 4, 'in', 1000, 'adjustment', NULL, 'Initial stock', 1, '2025-09-21 09:34:16'),
@@ -1196,232 +1049,5 @@ INSERT INTO `stock_movements` (`id`, `product_id`, `movement_type`, `quantity`, 
 (416, 19, 'out', 10, 'sale', 208, NULL, 1, '2026-03-29 14:30:01'),
 (417, 19, 'out', 10, 'sale', 209, NULL, 1, '2026-03-29 14:30:05');
 
--- --------------------------------------------------------
-
---
--- Table structure for table `suppliers`
---
-
-CREATE TABLE `suppliers` (
-  `id` int(11) NOT NULL,
-  `name` varchar(100) NOT NULL,
-  `contact_person` varchar(100) DEFAULT NULL,
-  `email` varchar(100) DEFAULT NULL,
-  `phone` varchar(20) DEFAULT NULL,
-  `address` text DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
-
---
--- Dumping data for table `suppliers`
---
-
-INSERT INTO `suppliers` (`id`, `name`, `contact_person`, `email`, `phone`, `address`, `created_at`) VALUES
-(2, 'stv', '', '', '0762975904', '', '2025-09-26 10:26:58'),
-(3, 'flygle', '', '', '', '', '2025-10-05 11:47:50'),
-(4, 'maasai', '', '', '', '', '2025-10-05 11:49:50'),
-(5, 'm-munira', '', '', '', '', '2025-10-05 11:57:51');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `users`
---
-
-CREATE TABLE `users` (
-  `id` int(11) NOT NULL,
-  `username` varchar(50) NOT NULL,
-  `email` varchar(100) NOT NULL,
-  `password` varchar(32) NOT NULL,
-  `full_name` varchar(100) NOT NULL,
-  `role` enum('admin','manager','user') DEFAULT 'user',
-  `created_at` timestamp NULL DEFAULT current_timestamp(),
-  `updated_at` timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
-
---
--- Dumping data for table `users`
---
-
-INSERT INTO `users` (`id`, `username`, `email`, `password`, `full_name`, `role`, `created_at`, `updated_at`) VALUES
-(1, 'admin', 'admin@business.com', '0192023a7bbd73250516f069df18b500', 'Clinton', 'admin', '2025-09-21 08:04:47', '2025-12-13 03:33:06');
-
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `categories`
---
-ALTER TABLE `categories`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `products`
---
-ALTER TABLE `products`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `sku` (`sku`),
-  ADD KEY `category_id` (`category_id`),
-  ADD KEY `supplier_id` (`supplier_id`);
-
---
--- Indexes for table `purchases`
---
-ALTER TABLE `purchases`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `supplier_id` (`supplier_id`),
-  ADD KEY `created_by` (`created_by`);
-
---
--- Indexes for table `purchase_items`
---
-ALTER TABLE `purchase_items`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `purchase_id` (`purchase_id`),
-  ADD KEY `product_id` (`product_id`);
-
---
--- Indexes for table `sales`
---
-ALTER TABLE `sales`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `created_by` (`created_by`);
-
---
--- Indexes for table `sale_items`
---
-ALTER TABLE `sale_items`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `sale_id` (`sale_id`),
-  ADD KEY `product_id` (`product_id`);
-
---
--- Indexes for table `stock_movements`
---
-ALTER TABLE `stock_movements`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `product_id` (`product_id`),
-  ADD KEY `created_by` (`created_by`);
-
---
--- Indexes for table `suppliers`
---
-ALTER TABLE `suppliers`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `users`
---
-ALTER TABLE `users`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `username` (`username`),
-  ADD UNIQUE KEY `email` (`email`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `categories`
---
-ALTER TABLE `categories`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
---
--- AUTO_INCREMENT for table `products`
---
-ALTER TABLE `products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
-
---
--- AUTO_INCREMENT for table `purchases`
---
-ALTER TABLE `purchases`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
-
---
--- AUTO_INCREMENT for table `purchase_items`
---
-ALTER TABLE `purchase_items`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
-
---
--- AUTO_INCREMENT for table `sales`
---
-ALTER TABLE `sales`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=210;
-
---
--- AUTO_INCREMENT for table `sale_items`
---
-ALTER TABLE `sale_items`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=345;
-
---
--- AUTO_INCREMENT for table `stock_movements`
---
-ALTER TABLE `stock_movements`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=418;
-
---
--- AUTO_INCREMENT for table `suppliers`
---
-ALTER TABLE `suppliers`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
---
--- AUTO_INCREMENT for table `users`
---
-ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- Constraints for dumped tables
---
-
---
--- Constraints for table `products`
---
-ALTER TABLE `products`
-  ADD CONSTRAINT `products_ibfk_1` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`) ON DELETE SET NULL,
-  ADD CONSTRAINT `products_ibfk_2` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE SET NULL;
-
---
--- Constraints for table `purchases`
---
-ALTER TABLE `purchases`
-  ADD CONSTRAINT `purchases_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE SET NULL,
-  ADD CONSTRAINT `purchases_ibfk_2` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE SET NULL;
-
---
--- Constraints for table `purchase_items`
---
-ALTER TABLE `purchase_items`
-  ADD CONSTRAINT `purchase_items_ibfk_1` FOREIGN KEY (`purchase_id`) REFERENCES `purchases` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `purchase_items_ibfk_2` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE CASCADE;
-
---
--- Constraints for table `sales`
---
-ALTER TABLE `sales`
-  ADD CONSTRAINT `sales_ibfk_1` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE SET NULL;
-
---
--- Constraints for table `sale_items`
---
-ALTER TABLE `sale_items`
-  ADD CONSTRAINT `sale_items_ibfk_1` FOREIGN KEY (`sale_id`) REFERENCES `sales` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `sale_items_ibfk_2` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE CASCADE;
-
---
--- Constraints for table `stock_movements`
---
-ALTER TABLE `stock_movements`
-  ADD CONSTRAINT `stock_movements_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `stock_movements_ibfk_2` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE SET NULL;
 COMMIT;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+PRAGMA foreign_keys = ON;
