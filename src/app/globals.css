@@ -4,7 +4,7 @@
 
 :root {
   color-scheme: light;
-  background: #f6f8fb;
+  background: #f7faf6;
 }
 
 * {
@@ -14,9 +14,10 @@
 body {
   margin: 0;
   background:
-    radial-gradient(circle at top left, rgba(16, 185, 129, 0.12), transparent 28rem),
-    linear-gradient(180deg, #f8fafc 0%, #eef2f7 100%);
-  color: #172033;
+    radial-gradient(circle at 8% 8%, rgba(47, 125, 92, 0.18), transparent 22rem),
+    radial-gradient(circle at 92% 4%, rgba(184, 98, 59, 0.12), transparent 20rem),
+    linear-gradient(180deg, #fbfdf9 0%, #eef5ee 100%);
+  color: #16241f;
 }
 
 button,
@@ -29,4 +30,12 @@ textarea {
 .table-scroll {
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
+}
+
+tbody tr {
+  transition: background-color 180ms ease, transform 180ms ease;
+}
+
+tbody tr:hover {
+  background-color: rgba(231, 244, 236, 0.55);
 }

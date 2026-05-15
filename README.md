@@ -1,4 +1,4 @@
-# Business Manager
+# Jungle
 
 This repository has been migrated from plain PHP/MySQL to a Next.js App Router application using Turso/libSQL SQLite.
 

@@ -10,10 +10,10 @@ export default async function LoginPage() {
     <main className="grid min-h-screen place-items-center px-4 py-10">
       <section className="w-full max-w-md rounded-lg border border-white bg-white/90 p-6 shadow-panel">
         <div className="mb-8 text-center">
-          <div className="mx-auto mb-4 grid h-14 w-14 place-items-center rounded-md bg-ink text-white">
+          <div className="mx-auto mb-4 grid h-14 w-14 place-items-center rounded-md bg-canopy text-white">
             <Boxes />
           </div>
-          <h1 className="text-3xl font-black text-ink">Business Manager</h1>
+          <h1 className="text-3xl font-black text-canopy">Jungle</h1>
           <p className="mt-2 text-sm text-slate-500">Sign in to manage stock, sales, and purchasing.</p>
         </div>
         <LoginForm />

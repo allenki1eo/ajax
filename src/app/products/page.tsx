@@ -1,13 +1,22 @@
 import { saveProduct } from "@/app/actions";
 import { AppShell } from "@/components/app-shell";
-import { Card, Field, PageHeader, buttonClass, inputClass } from "@/components/ui";
+import { Card, EmptyState, Field, PageHeader, Pagination, buttonClass, inputClass } from "@/components/ui";
 import { money, percent } from "@/lib/format";
-import { rows } from "@/lib/db";
+import { row, rows } from "@/lib/db";
 import type { Category, Product, Supplier } from "@/lib/types";
 
 export default async function ProductsPage({ searchParams }: { searchParams: Promise<Record<string, string | undefined>> }) {
   const params = await searchParams;
   const search = params.search || "";
+  const pageSize = 20;
+  const page = Math.max(1, Number(params.page || 1));
+  const offset = (page - 1) * pageSize;
+  const total = await row<{ total: number }>(
+    `SELECT COUNT(*) total
+     FROM products p
+     WHERE (? = '' OR p.name LIKE ? OR p.sku LIKE ?)`,
+    [search, `%${search}%`, `%${search}%`],
+  );
   const products = await rows<Product>(
     `SELECT p.*, c.name category_name, s.name supplier_name,
       (p.selling_price - p.cost_price) profit,
@@ -16,8 +25,8 @@ export default async function ProductsPage({ searchParams }: { searchParams: Pro
      LEFT JOIN categories c ON c.id = p.category_id
      LEFT JOIN suppliers s ON s.id = p.supplier_id
      WHERE (? = '' OR p.name LIKE ? OR p.sku LIKE ?)
-     ORDER BY p.status, p.name LIMIT 100`,
-    [search, `%${search}%`, `%${search}%`],
+     ORDER BY p.status, p.name LIMIT ? OFFSET ?`,
+    [search, `%${search}%`, `%${search}%`, pageSize, offset],
   );
   const categories = await rows<Category>("SELECT id, name, description FROM categories ORDER BY name");
   const suppliers = await rows<Supplier>("SELECT id, name, contact_person, phone, email, address FROM suppliers ORDER BY name");
@@ -61,7 +70,7 @@ export default async function ProductsPage({ searchParams }: { searchParams: Pro
                 <tr key={p.id}>
                   <td className="py-3"><p className="font-bold text-slate-900">{p.name}</p><p className="text-xs text-slate-500">{p.sku || "No SKU"}</p></td>
                   <td>{p.category_name || "Uncategorized"}</td>
-                  <td><span className={p.stock_quantity <= p.min_stock_level ? "font-black text-ember" : "font-bold text-slate-900"}>{p.stock_quantity}</span><span className="text-slate-400"> / {p.min_stock_level}</span></td>
+                  <td><span className={p.stock_quantity <= p.min_stock_level ? "font-black text-clay" : "font-bold text-slate-900"}>{p.stock_quantity}</span><span className="text-slate-400"> / {p.min_stock_level}</span></td>
                   <td>{money(p.cost_price)}</td>
                   <td>{money(p.selling_price)}</td>
                   <td>{percent(p.profit_margin)}</td>
@@ -71,6 +80,8 @@ export default async function ProductsPage({ searchParams }: { searchParams: Pro
             </tbody>
           </table>
         </div>
+        {products.length === 0 ? <EmptyState title="No products found" body="Add a product or change the search term to widen the catalog view." /> : null}
+        <Pagination basePath="/products" page={page} pageSize={pageSize} total={Number(total?.total || 0)} params={{ search }} />
       </Card>
     </AppShell>
   );

@@ -42,13 +42,13 @@ export default async function DashboardPage() {
       <div className="mt-6 grid gap-6 xl:grid-cols-[1.4fr_1fr]">
         <Card>
           <div className="mb-4 flex items-center justify-between">
-            <h2 className="text-lg font-black text-ink">Monthly sales</h2>
+            <h2 className="text-lg font-black text-canopy">Monthly sales</h2>
             <span className="text-sm font-semibold text-slate-500">{money(stats?.month_sales)} this month</span>
           </div>
           <SalesChart data={chart.map((item) => ({ month: item.month, total: Number(item.total) }))} />
         </Card>
         <Card>
-          <h2 className="mb-4 text-lg font-black text-ink">Top products</h2>
+          <h2 className="mb-4 text-lg font-black text-canopy">Top products</h2>
           <div className="space-y-3">
             {topProducts.map((product) => (
               <div key={product.name} className="flex items-center justify-between gap-3 rounded-md bg-slate-50 p-3">
@@ -56,14 +56,14 @@ export default async function DashboardPage() {
                   <p className="font-bold text-slate-900">{product.name}</p>
                   <p className="text-sm text-slate-500">{product.total_sold} sold</p>
                 </div>
-                <p className="text-sm font-black text-ink">{money(product.revenue)}</p>
+                <p className="text-sm font-black text-canopy">{money(product.revenue)}</p>
               </div>
             ))}
           </div>
         </Card>
       </div>
       <Card className="mt-6">
-        <h2 className="mb-4 text-lg font-black text-ink">Recent sales</h2>
+        <h2 className="mb-4 text-lg font-black text-canopy">Recent sales</h2>
         <div className="table-scroll">
           <table className="w-full min-w-[620px] text-left text-sm">
             <thead className="text-xs uppercase tracking-wide text-slate-500">

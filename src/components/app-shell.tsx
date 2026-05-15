@@ -35,12 +35,12 @@ export async function AppShell({ children }: { children: React.ReactNode }) {
               </nav>
             </details>
             <Link href="/" className="flex items-center gap-2">
-              <span className="grid h-9 w-9 place-items-center rounded-md bg-ink text-white">
+              <span className="grid h-9 w-9 place-items-center rounded-md bg-canopy text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.18)]">
                 <Boxes size={19} />
               </span>
               <span>
-                <span className="block text-sm font-semibold uppercase tracking-[0.2em] text-ember">Business</span>
-                <span className="block text-lg font-black leading-4 text-ink">Manager</span>
+                <span className="block text-sm font-semibold uppercase tracking-[0.2em] text-jungle">Jungle</span>
+                <span className="block text-lg font-black leading-4 text-canopy">Stock</span>
               </span>
             </Link>
           </div>
@@ -67,7 +67,7 @@ export async function AppShell({ children }: { children: React.ReactNode }) {
                 {item.label}
               </Link>
             ))}
-            <div className="mt-4 rounded-md bg-skyglass p-3 text-xs text-slate-700">
+            <div className="mt-4 rounded-md bg-leaf p-3 text-xs text-slate-700">
               <UsersRound className="mb-2" size={18} />
               Built for stock, sales, purchasing, and profit visibility.
             </div>

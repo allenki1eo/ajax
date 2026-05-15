@@ -1,12 +1,20 @@
 import { recordSale } from "@/app/actions";
 import { AppShell } from "@/components/app-shell";
-import { Card, Field, PageHeader, buttonClass, inputClass } from "@/components/ui";
+import { Card, EmptyState, Field, PageHeader, Pagination, buttonClass, inputClass } from "@/components/ui";
 import { money } from "@/lib/format";
-import { rows } from "@/lib/db";
+import { row, rows } from "@/lib/db";
 
-export default async function SalesPage() {
+export default async function SalesPage({ searchParams }: { searchParams: Promise<Record<string, string | undefined>> }) {
+  const params = await searchParams;
+  const pageSize = 25;
+  const page = Math.max(1, Number(params.page || 1));
+  const offset = (page - 1) * pageSize;
   const products = await rows<{ id: number; name: string; selling_price: number; stock_quantity: number }>("SELECT id, name, selling_price, stock_quantity FROM products WHERE status = 'active' ORDER BY name");
-  const sales = await rows<{ id: number; sale_date: string; customer_name: string | null; total_amount: number; payment_method: string; status: string }>("SELECT id, sale_date, customer_name, total_amount, payment_method, status FROM sales ORDER BY created_at DESC LIMIT 80");
+  const total = await row<{ total: number }>("SELECT COUNT(*) total FROM sales");
+  const sales = await rows<{ id: number; sale_date: string; customer_name: string | null; total_amount: number; payment_method: string; status: string }>(
+    "SELECT id, sale_date, customer_name, total_amount, payment_method, status FROM sales ORDER BY created_at DESC LIMIT ? OFFSET ?",
+    [pageSize, offset],
+  );
 
   return (
     <AppShell>
@@ -31,6 +39,8 @@ export default async function SalesPage() {
             </tbody>
           </table>
         </div>
+        {sales.length === 0 ? <EmptyState title="No sales recorded" body="Record a sale above and Jungle will update stock, revenue, and reports automatically." /> : null}
+        <Pagination basePath="/sales" page={page} pageSize={pageSize} total={Number(total?.total || 0)} />
       </Card>
     </AppShell>
   );

@@ -1,9 +1,13 @@
 import { AppShell } from "@/components/app-shell";
-import { Card, PageHeader, Stat } from "@/components/ui";
+import { Card, EmptyState, PageHeader, Pagination, Stat } from "@/components/ui";
 import { money, percent } from "@/lib/format";
 import { row, rows } from "@/lib/db";
 
-export default async function ReportsPage() {
+export default async function ReportsPage({ searchParams }: { searchParams: Promise<Record<string, string | undefined>> }) {
+  const params = await searchParams;
+  const pageSize = 15;
+  const page = Math.max(1, Number(params.page || 1));
+  const offset = (page - 1) * pageSize;
   const summary = await row<{ revenue: number; cost: number; profit: number; margin: number; sales_count: number }>(
     `SELECT
       COALESCE(SUM(si.total_price), 0) revenue,
@@ -16,11 +20,21 @@ export default async function ReportsPage() {
      JOIN products p ON p.id = si.product_id
      WHERE s.status = 'completed'`,
   );
+  const performanceTotal = await row<{ total: number }>(
+    `SELECT COUNT(*) total
+     FROM (
+       SELECT p.id
+       FROM sale_items si JOIN products p ON p.id = si.product_id JOIN sales s ON s.id = si.sale_id
+       WHERE s.status = 'completed'
+       GROUP BY p.id
+     )`,
+  );
   const productPerformance = await rows<{ name: string; qty: number; revenue: number; profit: number }>(
     `SELECT p.name, SUM(si.quantity) qty, SUM(si.total_price) revenue, SUM(si.total_price - si.quantity * p.cost_price) profit
      FROM sale_items si JOIN products p ON p.id = si.product_id JOIN sales s ON s.id = si.sale_id
      WHERE s.status = 'completed'
-     GROUP BY p.id ORDER BY revenue DESC LIMIT 20`,
+     GROUP BY p.id ORDER BY revenue DESC LIMIT ? OFFSET ?`,
+    [pageSize, offset],
   );
   const lowStock = await rows<{ name: string; stock_quantity: number; min_stock_level: number }>(
     "SELECT name, stock_quantity, min_stock_level FROM products WHERE status = 'active' AND stock_quantity <= min_stock_level ORDER BY stock_quantity ASC LIMIT 20",
@@ -37,7 +51,7 @@ export default async function ReportsPage() {
       </div>
       <div className="mt-6 grid gap-6 xl:grid-cols-[1.25fr_0.75fr]">
         <Card>
-          <h2 className="mb-4 text-lg font-black text-ink">Product performance</h2>
+          <h2 className="mb-4 text-lg font-black text-canopy">Product performance</h2>
           <div className="table-scroll">
             <table className="w-full min-w-[680px] text-left text-sm">
               <thead className="text-xs uppercase tracking-wide text-slate-500"><tr><th className="py-3">Product</th><th>Sold</th><th>Revenue</th><th>Profit</th></tr></thead>
@@ -46,9 +60,11 @@ export default async function ReportsPage() {
               </tbody>
             </table>
           </div>
+          {productPerformance.length === 0 ? <EmptyState title="No product performance yet" body="Completed sales will populate revenue, units sold, and profit by product." /> : null}
+          <Pagination basePath="/reports" page={page} pageSize={pageSize} total={Number(performanceTotal?.total || 0)} />
         </Card>
         <Card>
-          <h2 className="mb-4 text-lg font-black text-ink">Low stock</h2>
+          <h2 className="mb-4 text-lg font-black text-canopy">Low stock</h2>
           <div className="space-y-3">
             {lowStock.length === 0 ? <p className="text-sm text-slate-500">No low stock items.</p> : null}
             {lowStock.map((p) => (

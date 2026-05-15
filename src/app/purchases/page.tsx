@@ -1,14 +1,20 @@
 import { recordPurchase } from "@/app/actions";
 import { AppShell } from "@/components/app-shell";
-import { Card, Field, PageHeader, buttonClass, inputClass } from "@/components/ui";
+import { Card, EmptyState, Field, PageHeader, Pagination, buttonClass, inputClass } from "@/components/ui";
 import { money } from "@/lib/format";
-import { rows } from "@/lib/db";
+import { row, rows } from "@/lib/db";
 
-export default async function PurchasesPage() {
+export default async function PurchasesPage({ searchParams }: { searchParams: Promise<Record<string, string | undefined>> }) {
+  const params = await searchParams;
+  const pageSize = 25;
+  const page = Math.max(1, Number(params.page || 1));
+  const offset = (page - 1) * pageSize;
   const products = await rows<{ id: number; name: string; cost_price: number }>("SELECT id, name, cost_price FROM products WHERE status = 'active' ORDER BY name");
   const suppliers = await rows<{ id: number; name: string }>("SELECT id, name FROM suppliers ORDER BY name");
+  const total = await row<{ total: number }>("SELECT COUNT(*) total FROM purchases");
   const purchases = await rows<{ id: number; purchase_date: string; supplier_name: string | null; total_amount: number; status: string }>(
-    "SELECT p.id, p.purchase_date, s.name supplier_name, p.total_amount, p.status FROM purchases p LEFT JOIN suppliers s ON s.id = p.supplier_id ORDER BY p.created_at DESC LIMIT 80",
+    "SELECT p.id, p.purchase_date, s.name supplier_name, p.total_amount, p.status FROM purchases p LEFT JOIN suppliers s ON s.id = p.supplier_id ORDER BY p.created_at DESC LIMIT ? OFFSET ?",
+    [pageSize, offset],
   );
 
   return (
@@ -35,6 +41,8 @@ export default async function PurchasesPage() {
             </tbody>
           </table>
         </div>
+        {purchases.length === 0 ? <EmptyState title="No purchases recorded" body="Record incoming stock above to keep inventory value and supplier history current." /> : null}
+        <Pagination basePath="/purchases" page={page} pageSize={pageSize} total={Number(total?.total || 0)} />
       </Card>
     </AppShell>
   );

@@ -13,7 +13,7 @@ export default async function SettingsPage() {
       <PageHeader title="Settings" eyebrow="Reference data" />
       <div className="grid gap-6 xl:grid-cols-2">
         <Card>
-          <h2 className="mb-4 text-lg font-black text-ink">Categories</h2>
+          <h2 className="mb-4 text-lg font-black text-canopy">Categories</h2>
           <form action={saveCategory} className="mb-5 grid gap-3 sm:grid-cols-[1fr_1.5fr_auto]">
             <Field label="Name"><input className={inputClass} name="name" required /></Field>
             <Field label="Description"><input className={inputClass} name="description" /></Field>
@@ -22,7 +22,7 @@ export default async function SettingsPage() {
           <div className="space-y-2">{categories.map((c) => <div key={c.id} className="rounded-md bg-slate-50 p-3"><p className="font-bold">{c.name}</p><p className="text-sm text-slate-500">{c.description || "No description"}</p></div>)}</div>
         </Card>
         <Card>
-          <h2 className="mb-4 text-lg font-black text-ink">Suppliers</h2>
+          <h2 className="mb-4 text-lg font-black text-canopy">Suppliers</h2>
           <form action={saveSupplier} className="mb-5 grid gap-3 sm:grid-cols-2">
             <Field label="Name"><input className={inputClass} name="name" required /></Field>
             <Field label="Contact"><input className={inputClass} name="contact_person" /></Field>

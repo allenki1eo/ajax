@@ -5,13 +5,14 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        ink: "#14213d",
-        ember: "#f97316",
-        mint: "#10b981",
-        skyglass: "#e0f2fe",
+        canopy: "#14352c",
+        jungle: "#2f7d5c",
+        leaf: "#e7f4ec",
+        clay: "#b8623b",
+        stone: "#5f6f68",
       },
       boxShadow: {
-        panel: "0 18px 60px rgba(15, 23, 42, 0.08)",
+        panel: "0 22px 70px rgba(20, 53, 44, 0.10)",
       },
     },
   },
