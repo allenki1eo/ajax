@@ -1,5 +1,12 @@
 import { clsx } from "clsx";
-import Link from "next/link";
+import {
+  Pagination as ShadPagination,
+  PaginationContent,
+  PaginationItem,
+  PaginationNext,
+  PaginationPrevious,
+} from "@/components/ui/pagination";
+import { Card as ShadCard } from "@/components/ui/card";
 
 export function PageHeader({ title, eyebrow, children }: { title: string; eyebrow?: string; children?: React.ReactNode }) {
   return (
@@ -14,7 +21,7 @@ export function PageHeader({ title, eyebrow, children }: { title: string; eyebro
 }
 
 export function Card({ className, children }: { className?: string; children: React.ReactNode }) {
-  return <section className={clsx("rounded-xl border border-white/80 bg-white/90 p-4 shadow-panel backdrop-blur sm:p-5", className)}>{children}</section>;
+  return <ShadCard className={clsx("border-white/80 bg-white/90 p-4 shadow-panel backdrop-blur sm:p-5", className)}>{children}</ShadCard>;
 }
 
 export function Stat({ label, value, tone = "ink" }: { label: string; value: string | number; tone?: "ink" | "mint" | "ember" | "sky" }) {
@@ -83,17 +90,21 @@ export function Pagination({
       <p>
         Showing <span className="font-bold text-slate-900">{from}-{to}</span> of <span className="font-bold text-slate-900">{total}</span>
       </p>
-      <div className="flex items-center gap-2">
-        <Link aria-disabled={safePage <= 1} className={clsx(ghostButtonClass, safePage <= 1 && "pointer-events-none opacity-45")} href={href(safePage - 1)}>
-          Previous
-        </Link>
-        <span className="rounded-md bg-leaf px-3 py-2 font-bold text-canopy">
-          {safePage} / {totalPages}
-        </span>
-        <Link aria-disabled={safePage >= totalPages} className={clsx(ghostButtonClass, safePage >= totalPages && "pointer-events-none opacity-45")} href={href(safePage + 1)}>
-          Next
-        </Link>
-      </div>
+      <ShadPagination className="mx-0 w-auto justify-start sm:justify-end">
+        <PaginationContent>
+          <PaginationItem className={clsx(safePage <= 1 && "pointer-events-none opacity-45")}>
+            <PaginationPrevious href={href(safePage - 1)} />
+          </PaginationItem>
+          <PaginationItem>
+            <span className="flex h-8 items-center rounded-md bg-leaf px-3 text-sm font-bold text-canopy">
+              {safePage} / {totalPages}
+            </span>
+          </PaginationItem>
+          <PaginationItem className={clsx(safePage >= totalPages && "pointer-events-none opacity-45")}>
+            <PaginationNext href={href(safePage + 1)} />
+          </PaginationItem>
+        </PaginationContent>
+      </ShadPagination>
     </div>
   );
 }

@@ -4,6 +4,8 @@ import { SalesChart } from "@/components/sales-chart";
 import { Card, PageHeader, Stat, ghostButtonClass } from "@/components/ui";
 import { money } from "@/lib/format";
 import { row, rows } from "@/lib/db";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 
 export default async function DashboardPage() {
   const stats = await row<{ products: number; low_stock: number; today_sales: number; month_sales: number; stock_value: number }>(
@@ -31,8 +33,31 @@ export default async function DashboardPage() {
   return (
     <AppShell>
       <PageHeader title="Command Center" eyebrow="Overview">
-        <Link className={ghostButtonClass} href="/sales">Record sale</Link>
+        <Button asChild variant="outline" className={ghostButtonClass}>
+          <Link href="/sales">Record sale</Link>
+        </Button>
       </PageHeader>
+      <Card className="mb-6 overflow-hidden bg-[linear-gradient(135deg,#14352c_0%,#2f7d5c_55%,#b8623b_140%)] text-white">
+        <div className="grid gap-5 lg:grid-cols-[1.35fr_0.65fr] lg:items-center">
+          <div>
+            <Badge className="mb-4 bg-white/15 text-white hover:bg-white/20">Jungle signal</Badge>
+            <h2 className="text-2xl font-black tracking-tight sm:text-3xl">Stock, cash, and margin in one living view.</h2>
+            <p className="mt-3 max-w-2xl text-sm leading-6 text-white/75">
+              The dashboard now reads the shop floor like a canopy map: fast-moving products rise, low-stock items surface, and daily revenue stays visible.
+            </p>
+          </div>
+          <div className="grid grid-cols-2 gap-3 text-sm">
+            <div className="rounded-lg border border-white/15 bg-white/10 p-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.14)]">
+              <p className="text-white/65">This month</p>
+              <p className="mt-2 text-xl font-black">{money(stats?.month_sales)}</p>
+            </div>
+            <div className="rounded-lg border border-white/15 bg-white/10 p-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.14)]">
+              <p className="text-white/65">Low alerts</p>
+              <p className="mt-2 text-xl font-black">{stats?.low_stock || 0}</p>
+            </div>
+          </div>
+        </div>
+      </Card>
       <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
         <Stat label="Active products" value={stats?.products || 0} />
         <Stat label="Low stock alerts" value={stats?.low_stock || 0} tone="ember" />
