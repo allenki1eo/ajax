@@ -1,6 +1,6 @@
 import { saveProduct } from "@/app/actions";
 import { AppShell } from "@/components/app-shell";
-import { Card, EmptyState, Field, PageHeader, Pagination, buttonClass, inputClass } from "@/components/ui";
+import { Card, EmptyState, Field, PageHeader, Pagination, StatusBadge, buttonClass, ghostButtonClass, inputClass } from "@/components/ui";
 import { money, percent } from "@/lib/format";
 import { row, rows } from "@/lib/db";
 import type { Category, Product, Supplier } from "@/lib/types";
@@ -56,10 +56,16 @@ export default async function ProductsPage({ searchParams }: { searchParams: Pro
         </form>
       </Card>
       <Card>
-        <form className="mb-4 flex flex-col gap-3 sm:flex-row">
-          <input className={inputClass} name="search" placeholder="Search by name or SKU" defaultValue={search} />
-          <button className={buttonClass}>Search</button>
+        <form className="mb-4 flex flex-wrap gap-3" method="get">
+          <input className={inputClass + " min-w-48 flex-1"} name="search" placeholder="Search by name or SKU" defaultValue={search} />
+          <button className={buttonClass} type="submit">Search</button>
+          {search && <a href="/products" className={ghostButtonClass}>Clear</a>}
         </form>
+        {search && (
+          <p className="mb-3 text-sm text-muted-foreground">
+            {Number(total?.total || 0)} result{Number(total?.total || 0) !== 1 ? "s" : ""} for &ldquo;{search}&rdquo;
+          </p>
+        )}
         <div className="table-scroll">
           <table className="w-full min-w-[900px] text-left text-sm">
             <thead className="text-xs uppercase tracking-wide text-muted-foreground">
@@ -74,7 +80,7 @@ export default async function ProductsPage({ searchParams }: { searchParams: Pro
                   <td>{money(p.cost_price)}</td>
                   <td>{money(p.selling_price)}</td>
                   <td>{percent(p.profit_margin)}</td>
-                  <td className="capitalize">{p.status}</td>
+                  <td><StatusBadge status={p.status} /></td>
                 </tr>
               ))}
             </tbody>

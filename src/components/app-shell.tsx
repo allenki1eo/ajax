@@ -5,6 +5,7 @@ import { BarChart3, Boxes, Home, LogOut, Menu, PackagePlus, Receipt, Settings, S
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { Badge } from "@/components/ui/badge";
+import { NavLinks } from "@/components/nav-links";
 
 const nav = [
   { href: "/", label: "Dashboard", icon: Home },
@@ -35,17 +36,8 @@ export async function AppShell({ children }: { children: React.ReactNode }) {
                 <SheetHeader className="mb-4">
                   <SheetTitle className="text-foreground">Navigation</SheetTitle>
                 </SheetHeader>
-                <nav className="grid gap-1">
-                  {nav.map((item) => (
-                    <Link
-                      key={item.href}
-                      href={item.href}
-                      className="flex items-center gap-3 rounded-md px-3 py-2 text-sm font-medium text-foreground/70 transition-colors hover:bg-accent hover:text-accent-foreground"
-                    >
-                      <item.icon size={16} />
-                      {item.label}
-                    </Link>
-                  ))}
+                <nav className="grid gap-0.5">
+                  <NavLinks items={nav} mobile />
                 </nav>
               </SheetContent>
             </Sheet>
@@ -76,16 +68,7 @@ export async function AppShell({ children }: { children: React.ReactNode }) {
       <div className="mx-auto grid max-w-7xl grid-cols-1 gap-6 px-4 py-6 sm:px-6 lg:grid-cols-[14rem_1fr]">
         <aside className="hidden lg:block">
           <nav className="sticky top-20 rounded-lg border bg-card p-2 shadow-sm">
-            {nav.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className="mb-0.5 flex items-center gap-2.5 rounded-md px-3 py-2 text-sm font-medium text-foreground/70 transition-colors hover:bg-accent hover:text-accent-foreground"
-              >
-                <item.icon size={15} />
-                {item.label}
-              </Link>
-            ))}
+            <NavLinks items={nav} />
           </nav>
         </aside>
         <main>{children}</main>
