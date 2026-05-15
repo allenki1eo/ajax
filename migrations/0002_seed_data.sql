@@ -1,1048 +1,1039 @@
--- SQLite seed data (converted from MySQL dump)
+-- SQLite seed data
 -- Run after migrations/0001_turso_schema.sql
 
 -- categories
-INSERT INTO categories (id, name, description, created_at) VALUES
-(2, 'Clothing', 'Apparel and fashion items', '2025-09-21 08:04:47'),
-(5, 'Home & Garden', 'Home improvement and garden supplies', '2025-09-21 08:04:47');
+INSERT INTO categories (id, name, description, created_at) VALUES (2, 'Clothing', 'Apparel and fashion items', '2025-09-21 08:04:47');
+INSERT INTO categories (id, name, description, created_at) VALUES (5, 'Home & Garden', 'Home improvement and garden supplies', '2025-09-21 08:04:47');
 
 -- suppliers
-INSERT INTO suppliers (id, name, contact_person, email, phone, address, created_at) VALUES
-(2, 'stv', '', '', '0762975904', '', '2025-09-26 10:26:58'),
-(3, 'flygle', '', '', '', '', '2025-10-05 11:47:50'),
-(4, 'maasai', '', '', '', '', '2025-10-05 11:49:50'),
-(5, 'm-munira', '', '', '', '', '2025-10-05 11:57:51');
+INSERT INTO suppliers (id, name, contact_person, email, phone, address, created_at) VALUES (2, 'stv', '', '', '0762975904', '', '2025-09-26 10:26:58');
+INSERT INTO suppliers (id, name, contact_person, email, phone, address, created_at) VALUES (3, 'flygle', '', '', '', '', '2025-10-05 11:47:50');
+INSERT INTO suppliers (id, name, contact_person, email, phone, address, created_at) VALUES (4, 'maasai', '', '', '', '', '2025-10-05 11:49:50');
+INSERT INTO suppliers (id, name, contact_person, email, phone, address, created_at) VALUES (5, 'm-munira', '', '', '', '', '2025-10-05 11:57:51');
 
 -- users
-INSERT INTO users (id, username, email, password, full_name, role, created_at, updated_at) VALUES
-(1, 'admin', 'admin@business.com', '0192023a7bbd73250516f069df18b500', 'Clinton', 'admin', '2025-09-21 08:04:47', '2025-12-13 03:33:06');
+INSERT INTO users (id, username, email, password, full_name, role, created_at, updated_at) VALUES (1, 'admin', 'admin@business.com', '0192023a7bbd73250516f069df18b500', 'Clinton', 'admin', '2025-09-21 08:04:47', '2025-12-13 03:33:06');
 
 -- products
-INSERT INTO products (id, name, description, sku, category_id, supplier_id, cost_price, selling_price, stock_quantity, min_stock_level, status, created_at, updated_at) VALUES
-(1, 'Anningtex wax', '', '', NULL, NULL, 19500.00, 23000.00, 51, 100, 'inactive', '2025-09-21 09:16:38', '2025-09-21 11:02:36'),
-(4, 'JAVA DJ', '', '100', NULL, NULL, 5000.00, 6500.00, 1000, 500, 'inactive', '2025-09-21 09:34:16', '2025-09-21 11:02:22'),
-(6, 'DUBAI WAX', '', '12AC', 2, NULL, 9500.00, 11000.00, 700, 200, 'inactive', '2025-09-21 10:11:37', '2025-09-21 11:02:17'),
-(7, 'ANNINGTEX COTTON', '', 'COTON', 2, NULL, 19500.00, 23000.00, 554, 50, 'active', '2025-09-21 11:08:25', '2026-02-28 09:37:06'),
-(8, 'GOODSTAR WAX', '', 'G-S', 2, NULL, 18000.00, 21000.00, 211, 0, 'active', '2025-09-21 11:11:10', '2025-12-13 10:25:07'),
-(9, 'FLYHEY WAX', '', 'A3', NULL, NULL, 17200.00, 19000.00, 251, 0, 'active', '2025-09-21 11:14:06', '2025-12-13 10:25:07'),
-(10, 'DUBAI WAX', '', 'A4', NULL, NULL, 9500.00, 11000.00, 824, 0, 'active', '2025-09-21 11:37:19', '2025-12-13 10:25:07'),
-(11, 'JAVA DJ', '', 'DJ', NULL, NULL, 5000.00, 6500.00, 1408, 0, 'active', '2025-09-21 11:38:45', '2025-12-13 10:25:07'),
-(13, 'BROWN LAPAIX', '', 'A6', NULL, NULL, 7500.00, 10000.00, 44, 0, 'active', '2025-09-21 11:42:20', '2026-02-28 09:39:33'),
-(14, 'BELIEVE WAX', '', 'BLV', NULL, NULL, 8000.00, 10000.00, 89, 0, 'active', '2025-09-21 11:43:56', '2025-10-01 12:01:58'),
-(15, 'KITENGE MORO', '', 'KM1', 2, NULL, 8200.00, 9000.00, 439, 30, 'active', '2025-09-21 15:12:42', '2025-12-12 09:06:25'),
-(16, 'BATIKI', '', 'BAT#', NULL, NULL, 10700.00, 12000.00, 126, 50, 'active', '2025-09-21 16:25:21', '2026-03-13 05:31:58'),
-(17, 'KHANGA NDOGO', '', 'KH-S', 2, NULL, 7500.00, 8000.00, 96, 50, 'active', '2025-09-21 16:30:18', '2025-10-22 13:02:33'),
-(18, 'KHANGA KUBWA', '', 'KH-L', 2, NULL, 9500.00, 10000.00, 73, 20, 'active', '2025-09-21 16:32:28', '2025-10-22 13:02:33'),
-(19, 'BEDSHEET', '', 'B-S', 2, NULL, 11500.00, 13000.00, 28, 0, 'active', '2025-09-22 11:57:34', '2026-03-29 14:30:05'),
-(20, 'Curtain pile', '', 'XR', 5, NULL, 3500.00, 5000.00, 66, 0, 'active', '2025-09-23 09:00:29', '2026-01-02 09:14:03'),
-(21, 'CULTURE KATI', '', 'CU-M', 2, NULL, 8500.00, 10000.00, 15, 0, 'active', '2025-09-24 11:08:29', '2025-10-01 13:07:18'),
-(22, 'CULTURE BAG', '', 'CU-B', 2, NULL, 8500.00, 10000.00, 152, 0, 'inactive', '2025-09-24 11:12:57', '2025-10-01 11:48:59'),
-(23, 'cuture bag kubwa', '', 'kj', NULL, NULL, 10500.00, 12000.00, 49, 0, 'active', '2025-09-28 05:32:36', '2025-09-28 06:37:46'),
-(24, 'CULTURE KUBWA', '', 'CU-K', 2, NULL, 10500.00, 12000.00, 20, 5, 'active', '2025-10-01 11:45:41', '2025-10-01 11:45:41'),
-(25, 'SUPER CLOVER', '', 'SC', 2, NULL, 10200.00, 12000.00, 24, 50, 'active', '2025-10-22 12:59:25', '2025-12-13 10:25:07'),
-(26, 'LAOLUNS', '', 'BG', NULL, NULL, 8500.00, 10000.00, 281, 0, 'active', '2025-11-08 16:02:22', '2025-12-12 09:06:25'),
-(27, 'Pazia double', '', 'TN', 2, 4, 0.00, 0.00, 235, 20, 'active', '2026-01-02 09:10:41', '2026-01-02 09:14:03'),
-(29, 'Pazia double', '', 'GIR', 2, NULL, 15500.00, 18000.00, 240, 50, 'active', '2026-01-02 09:12:09', '2026-01-02 09:12:09');
+INSERT INTO products (id, name, description, sku, category_id, supplier_id, cost_price, selling_price, stock_quantity, min_stock_level, status, created_at, updated_at) VALUES (1, 'Anningtex wax', '', '', NULL, NULL, 19500.00, 23000.00, 51, 100, 'inactive', '2025-09-21 09:16:38', '2025-09-21 11:02:36');
+INSERT INTO products (id, name, description, sku, category_id, supplier_id, cost_price, selling_price, stock_quantity, min_stock_level, status, created_at, updated_at) VALUES (4, 'JAVA DJ', '', '100', NULL, NULL, 5000.00, 6500.00, 1000, 500, 'inactive', '2025-09-21 09:34:16', '2025-09-21 11:02:22');
+INSERT INTO products (id, name, description, sku, category_id, supplier_id, cost_price, selling_price, stock_quantity, min_stock_level, status, created_at, updated_at) VALUES (6, 'DUBAI WAX', '', '12AC', 2, NULL, 9500.00, 11000.00, 700, 200, 'inactive', '2025-09-21 10:11:37', '2025-09-21 11:02:17');
+INSERT INTO products (id, name, description, sku, category_id, supplier_id, cost_price, selling_price, stock_quantity, min_stock_level, status, created_at, updated_at) VALUES (7, 'ANNINGTEX COTTON', '', 'COTON', 2, NULL, 19500.00, 23000.00, 554, 50, 'active', '2025-09-21 11:08:25', '2026-02-28 09:37:06');
+INSERT INTO products (id, name, description, sku, category_id, supplier_id, cost_price, selling_price, stock_quantity, min_stock_level, status, created_at, updated_at) VALUES (8, 'GOODSTAR WAX', '', 'G-S', 2, NULL, 18000.00, 21000.00, 211, 0, 'active', '2025-09-21 11:11:10', '2025-12-13 10:25:07');
+INSERT INTO products (id, name, description, sku, category_id, supplier_id, cost_price, selling_price, stock_quantity, min_stock_level, status, created_at, updated_at) VALUES (9, 'FLYHEY WAX', '', 'A3', NULL, NULL, 17200.00, 19000.00, 251, 0, 'active', '2025-09-21 11:14:06', '2025-12-13 10:25:07');
+INSERT INTO products (id, name, description, sku, category_id, supplier_id, cost_price, selling_price, stock_quantity, min_stock_level, status, created_at, updated_at) VALUES (10, 'DUBAI WAX', '', 'A4', NULL, NULL, 9500.00, 11000.00, 824, 0, 'active', '2025-09-21 11:37:19', '2025-12-13 10:25:07');
+INSERT INTO products (id, name, description, sku, category_id, supplier_id, cost_price, selling_price, stock_quantity, min_stock_level, status, created_at, updated_at) VALUES (11, 'JAVA DJ', '', 'DJ', NULL, NULL, 5000.00, 6500.00, 1408, 0, 'active', '2025-09-21 11:38:45', '2025-12-13 10:25:07');
+INSERT INTO products (id, name, description, sku, category_id, supplier_id, cost_price, selling_price, stock_quantity, min_stock_level, status, created_at, updated_at) VALUES (13, 'BROWN LAPAIX', '', 'A6', NULL, NULL, 7500.00, 10000.00, 44, 0, 'active', '2025-09-21 11:42:20', '2026-02-28 09:39:33');
+INSERT INTO products (id, name, description, sku, category_id, supplier_id, cost_price, selling_price, stock_quantity, min_stock_level, status, created_at, updated_at) VALUES (14, 'BELIEVE WAX', '', 'BLV', NULL, NULL, 8000.00, 10000.00, 89, 0, 'active', '2025-09-21 11:43:56', '2025-10-01 12:01:58');
+INSERT INTO products (id, name, description, sku, category_id, supplier_id, cost_price, selling_price, stock_quantity, min_stock_level, status, created_at, updated_at) VALUES (15, 'KITENGE MORO', '', 'KM1', 2, NULL, 8200.00, 9000.00, 439, 30, 'active', '2025-09-21 15:12:42', '2025-12-12 09:06:25');
+INSERT INTO products (id, name, description, sku, category_id, supplier_id, cost_price, selling_price, stock_quantity, min_stock_level, status, created_at, updated_at) VALUES (16, 'BATIKI', '', 'BAT#', NULL, NULL, 10700.00, 12000.00, 126, 50, 'active', '2025-09-21 16:25:21', '2026-03-13 05:31:58');
+INSERT INTO products (id, name, description, sku, category_id, supplier_id, cost_price, selling_price, stock_quantity, min_stock_level, status, created_at, updated_at) VALUES (17, 'KHANGA NDOGO', '', 'KH-S', 2, NULL, 7500.00, 8000.00, 96, 50, 'active', '2025-09-21 16:30:18', '2025-10-22 13:02:33');
+INSERT INTO products (id, name, description, sku, category_id, supplier_id, cost_price, selling_price, stock_quantity, min_stock_level, status, created_at, updated_at) VALUES (18, 'KHANGA KUBWA', '', 'KH-L', 2, NULL, 9500.00, 10000.00, 73, 20, 'active', '2025-09-21 16:32:28', '2025-10-22 13:02:33');
+INSERT INTO products (id, name, description, sku, category_id, supplier_id, cost_price, selling_price, stock_quantity, min_stock_level, status, created_at, updated_at) VALUES (19, 'BEDSHEET', '', 'B-S', 2, NULL, 11500.00, 13000.00, 28, 0, 'active', '2025-09-22 11:57:34', '2026-03-29 14:30:05');
+INSERT INTO products (id, name, description, sku, category_id, supplier_id, cost_price, selling_price, stock_quantity, min_stock_level, status, created_at, updated_at) VALUES (20, 'Curtain pile', '', 'XR', 5, NULL, 3500.00, 5000.00, 66, 0, 'active', '2025-09-23 09:00:29', '2026-01-02 09:14:03');
+INSERT INTO products (id, name, description, sku, category_id, supplier_id, cost_price, selling_price, stock_quantity, min_stock_level, status, created_at, updated_at) VALUES (21, 'CULTURE KATI', '', 'CU-M', 2, NULL, 8500.00, 10000.00, 15, 0, 'active', '2025-09-24 11:08:29', '2025-10-01 13:07:18');
+INSERT INTO products (id, name, description, sku, category_id, supplier_id, cost_price, selling_price, stock_quantity, min_stock_level, status, created_at, updated_at) VALUES (22, 'CULTURE BAG', '', 'CU-B', 2, NULL, 8500.00, 10000.00, 152, 0, 'inactive', '2025-09-24 11:12:57', '2025-10-01 11:48:59');
+INSERT INTO products (id, name, description, sku, category_id, supplier_id, cost_price, selling_price, stock_quantity, min_stock_level, status, created_at, updated_at) VALUES (23, 'cuture bag kubwa', '', 'kj', NULL, NULL, 10500.00, 12000.00, 49, 0, 'active', '2025-09-28 05:32:36', '2025-09-28 06:37:46');
+INSERT INTO products (id, name, description, sku, category_id, supplier_id, cost_price, selling_price, stock_quantity, min_stock_level, status, created_at, updated_at) VALUES (24, 'CULTURE KUBWA', '', 'CU-K', 2, NULL, 10500.00, 12000.00, 20, 5, 'active', '2025-10-01 11:45:41', '2025-10-01 11:45:41');
+INSERT INTO products (id, name, description, sku, category_id, supplier_id, cost_price, selling_price, stock_quantity, min_stock_level, status, created_at, updated_at) VALUES (25, 'SUPER CLOVER', '', 'SC', 2, NULL, 10200.00, 12000.00, 24, 50, 'active', '2025-10-22 12:59:25', '2025-12-13 10:25:07');
+INSERT INTO products (id, name, description, sku, category_id, supplier_id, cost_price, selling_price, stock_quantity, min_stock_level, status, created_at, updated_at) VALUES (26, 'LAOLUNS', '', 'BG', NULL, NULL, 8500.00, 10000.00, 281, 0, 'active', '2025-11-08 16:02:22', '2025-12-12 09:06:25');
+INSERT INTO products (id, name, description, sku, category_id, supplier_id, cost_price, selling_price, stock_quantity, min_stock_level, status, created_at, updated_at) VALUES (27, 'Pazia double', '', 'TN', 2, 4, 0.00, 0.00, 235, 20, 'active', '2026-01-02 09:10:41', '2026-01-02 09:14:03');
+INSERT INTO products (id, name, description, sku, category_id, supplier_id, cost_price, selling_price, stock_quantity, min_stock_level, status, created_at, updated_at) VALUES (29, 'Pazia double', '', 'GIR', 2, NULL, 15500.00, 18000.00, 240, 50, 'active', '2026-01-02 09:12:09', '2026-01-02 09:12:09');
 
 -- sales
-INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES
-(1, '2025-09-21', 'Hellen', '', '', 23000.00, 'cash', 'cancelled', '', 1, '2025-09-21 09:18:08'),
-(2, '2025-09-21', '', '', '', 45500.00, 'cash', 'cancelled', '', 1, '2025-09-21 10:09:25'),
-(3, '2025-09-21', '', '', '', 84000.00, 'cash', 'cancelled', '', 1, '2025-09-21 10:13:38'),
-(4, '2025-09-21', '', '', '', 25000.00, 'cash', 'cancelled', '', 1, '2025-09-21 11:55:43'),
-(5, '2025-09-21', '', '', '', 10000.00, 'cash', 'cancelled', '', 1, '2025-09-21 11:56:20'),
-(6, '2025-09-21', '', '', '', 52000.00, 'cash', 'cancelled', '', 1, '2025-09-21 11:56:55'),
-(7, '2025-09-21', '', '', '', 15000.00, 'cash', 'cancelled', '', 1, '2025-09-21 13:15:02'),
-(8, '2025-09-21', '', '', '', 23000.00, 'cash', 'cancelled', '', 1, '2025-09-21 13:24:45'),
-(9, '2025-09-21', '', '', '', 72000.00, 'cash', 'cancelled', '', 1, '2025-09-21 15:14:32'),
-(10, '2025-09-21', '', '', '', 6500.00, 'cash', 'cancelled', '', 1, '2025-09-21 15:18:02'),
-(11, '2025-09-21', '', '', '', 24000.00, 'cash', 'completed', '', 1, '2025-09-21 16:26:13'),
-(12, '2025-09-21', '', '', '', 396000.00, 'cash', 'completed', '', 1, '2025-09-21 16:37:23'),
-(13, '2025-09-22', '', '', '', 220000.00, 'cash', 'cancelled', '', 1, '2025-09-22 02:35:04'),
-(14, '2025-09-22', '', '', '', 45500.00, 'cash', 'completed', '', 1, '2025-09-22 07:30:12'),
-(15, '2025-09-22', '', '', '', 26000.00, 'cash', 'completed', '', 1, '2025-09-22 07:43:14'),
-(16, '2025-09-22', '', '', '', 18000.00, 'cash', 'completed', '', 1, '2025-09-22 10:33:27'),
-(17, '2025-09-22', '', '', '', 117000.00, 'cash', 'completed', '', 1, '2025-09-22 10:37:14'),
-(18, '2025-09-22', '', '', '', 13000.00, 'cash', 'completed', '', 1, '2025-09-22 10:38:38'),
-(19, '2025-09-22', '', '', '', 112000.00, 'cash', 'completed', '', 1, '2025-09-22 10:44:57'),
-(20, '2025-09-22', '', '', '', 165000.00, 'cash', 'completed', '', 1, '2025-09-22 10:47:10'),
-(21, '2025-09-22', '', '', '', 1080000.00, 'cash', 'completed', '', 1, '2025-09-22 11:01:17'),
-(22, '2025-09-22', '', '', '', 20000.00, 'cash', 'completed', '', 1, '2025-09-22 11:58:05'),
-(23, '2025-09-22', '', '', '', 20000.00, 'cash', 'completed', '', 1, '2025-09-22 12:00:24'),
-(24, '2025-09-22', '', '', '', 25000.00, 'cash', 'cancelled', '', 1, '2025-09-22 12:08:08'),
-(25, '2025-09-22', '', '', '', 35000.00, 'cash', 'completed', '', 1, '2025-09-22 12:28:36'),
-(26, '2025-09-22', '', '', '', 6500.00, 'cash', 'completed', '', 1, '2025-09-22 12:35:42'),
-(27, '2025-09-22', '', '', '', 39000.00, 'cash', 'completed', '', 1, '2025-09-22 14:09:07'),
-(28, '2025-09-22', '', '', '', 65000.00, 'cash', 'completed', '', 1, '2025-09-22 14:12:02'),
-(29, '2025-09-22', '', '', '', 54500.00, 'cash', 'completed', '', 1, '2025-09-22 14:14:01'),
-(30, '2025-09-22', '', '', '', 7000.00, 'cash', 'completed', '', 1, '2025-09-22 14:46:35'),
-(31, '2025-09-22', '', '', '', 32500.00, 'cash', 'completed', '', 1, '2025-09-22 14:55:40'),
-(32, '2025-09-22', '', '', '', 11000.00, 'cash', 'completed', '', 1, '2025-09-22 15:29:53'),
-(33, '2025-09-22', '', '', '', 71500.00, 'cash', 'completed', '', 1, '2025-09-22 15:31:58'),
-(34, '2025-09-22', '', '', '', 41500.00, 'cash', 'completed', '', 1, '2025-09-22 18:56:07'),
-(35, '2025-09-23', '', '', '', 78000.00, 'cash', 'completed', '', 1, '2025-09-23 05:11:36'),
-(36, '2025-09-23', '', '', '', 52500.00, 'cash', 'completed', '', 1, '2025-09-23 07:29:31'),
-(37, '2025-09-23', '', '', '', 25000.00, 'cash', 'completed', '', 1, '2025-09-23 07:30:40'),
-(38, '2025-09-23', '', '', '', 25000.00, 'cash', 'completed', '', 1, '2025-09-23 07:31:02'),
-(39, '2025-09-23', '', '', '', 35500.00, 'cash', 'completed', '', 1, '2025-09-23 07:36:07'),
-(40, '2025-09-23', '', '', '', 52500.00, 'cash', 'completed', '', 1, '2025-09-23 07:36:54'),
-(41, '2025-09-23', '', '', '', 65000.00, 'cash', 'completed', '', 1, '2025-09-23 08:11:54'),
-(42, '2025-09-23', '', '', '', 45500.00, 'cash', 'completed', '', 1, '2025-09-23 08:27:21'),
-(43, '2025-09-23', '', '', '', 66000.00, 'cash', 'completed', '', 1, '2025-09-23 08:57:26'),
-(44, '2025-09-23', '', '', '', 16000.00, 'cash', 'completed', '', 1, '2025-09-23 09:01:07'),
-(45, '2025-09-23', '', '', '', 45500.00, 'cash', 'completed', '', 1, '2025-09-23 09:39:36'),
-(46, '2025-09-23', '', '', '', 32500.00, 'cash', 'completed', '', 1, '2025-09-23 09:58:50'),
-(47, '2025-09-23', '', '', '', 26000.00, 'cash', 'completed', '', 1, '2025-09-23 10:36:05'),
-(48, '2025-09-23', '', '', '', 97500.00, 'cash', 'completed', '', 1, '2025-09-23 11:20:26'),
-(49, '2025-09-23', '', '', '', 172000.00, 'cash', 'completed', '', 1, '2025-09-23 11:26:25'),
-(50, '2025-09-23', '', '', '', 44000.00, 'cash', 'completed', '', 1, '2025-09-23 11:32:54'),
-(51, '2025-09-23', '', '', '', 23000.00, 'cash', 'completed', '', 1, '2025-09-23 11:54:37'),
-(52, '2025-09-23', '', '', '', 39000.00, 'cash', 'completed', '', 1, '2025-09-23 12:15:24'),
-(53, '2025-09-23', '', '', '', 57000.00, 'cash', 'completed', '', 1, '2025-09-23 12:15:42'),
-(54, '2025-09-23', '', '', '', 28000.00, 'cash', 'completed', '', 1, '2025-09-23 12:16:20'),
-(55, '2025-09-23', '', '', '', 25000.00, 'cash', 'completed', '', 1, '2025-09-23 12:57:03'),
-(56, '2025-09-23', '', '', '', 12000.00, 'cash', 'completed', '', 1, '2025-09-23 12:58:07'),
-(57, '2025-09-23', '', '', '', 81000.00, 'cash', 'completed', '', 1, '2025-09-23 13:59:03'),
-(58, '2025-09-23', '', '', '', 13000.00, 'cash', 'completed', '', 1, '2025-09-23 14:23:08'),
-(59, '2025-09-23', '', '', '', 23000.00, 'cash', 'completed', '', 1, '2025-09-23 14:23:26'),
-(60, '2025-09-23', '', '', '', 28000.00, 'cash', 'completed', '', 1, '2025-09-23 14:38:57'),
-(61, '2025-09-23', '', '', '', 50500.00, 'cash', 'completed', '', 1, '2025-09-23 16:06:36'),
-(62, '2025-09-24', '', '', '', 20000.00, 'cash', 'completed', '', 1, '2025-09-24 06:50:54'),
-(63, '2025-09-23', '', '', '', 14000.00, 'cash', 'cancelled', '', 1, '2025-09-24 06:51:11'),
-(64, '2025-09-24', '', '', '', 14000.00, 'cash', 'completed', '', 1, '2025-09-24 06:52:50'),
-(65, '2025-09-24', '', '', '', 42500.00, 'cash', 'completed', '', 1, '2025-09-24 06:54:04'),
-(66, '2025-09-24', '', '', '', 16000.00, 'cash', 'completed', '', 1, '2025-09-24 07:17:18'),
-(67, '2025-09-24', '', '', '', 32500.00, 'cash', 'completed', '', 1, '2025-09-24 07:34:43'),
-(68, '2025-09-24', '', '', '', 19500.00, 'cash', 'completed', '', 1, '2025-09-24 07:40:54'),
-(69, '2025-09-24', '', '', '', 6500.00, 'cash', 'completed', '', 1, '2025-09-24 07:53:29'),
-(70, '2025-09-24', '', '', '', 6500.00, 'cash', 'cancelled', '', 1, '2025-09-24 07:58:25'),
-(71, '2025-09-24', '', '', '', 40000.00, 'cash', 'completed', '', 1, '2025-09-24 07:59:33'),
-(72, '2025-09-24', '', '', '', 66500.00, 'cash', 'completed', '', 1, '2025-09-24 08:44:05'),
-(73, '2025-09-24', '', '', '', 28500.00, 'cash', 'completed', '', 1, '2025-09-24 09:45:48'),
-(74, '2025-09-24', '', '', '', 32500.00, 'bank_transfer', 'completed', '', 1, '2025-09-24 09:48:36'),
-(75, '2025-09-24', 'Lagii lapaix', '', '', 341000.00, 'bank_transfer', 'completed', '', 1, '2025-09-24 09:53:50'),
-(76, '2025-09-24', '', '', '', 21000.00, 'cash', 'completed', '', 1, '2025-09-24 10:12:20'),
-(77, '2025-09-24', '', '', '', 85000.00, 'cash', 'completed', '', 1, '2025-09-24 10:59:27'),
-(78, '2025-09-24', '', '', '', 95000.00, 'cash', 'completed', '', 1, '2025-09-24 11:13:45'),
-(79, '2025-09-24', '', '', '', 28000.00, 'cash', 'completed', '', 1, '2025-09-24 11:29:24'),
-(80, '2025-09-24', '', '', '', 15000.00, 'cash', 'completed', '', 1, '2025-09-24 11:35:31'),
-(81, '2025-09-24', '', '', '', 52000.00, 'cash', 'completed', '', 1, '2025-09-24 12:01:47'),
-(82, '2025-09-24', '', '', '', 19500.00, 'cash', 'completed', '', 1, '2025-09-24 12:59:48'),
-(83, '2025-09-24', '', '', '', 10000.00, 'cash', 'completed', '', 1, '2025-09-24 13:01:08'),
-(84, '2025-09-24', '', '', '', 45500.00, 'cash', 'completed', '', 1, '2025-09-24 13:16:07'),
-(85, '2025-09-24', '', '', '', 76500.00, 'cash', 'completed', '', 1, '2025-09-24 13:54:15'),
-(86, '2025-09-24', '', '', '', 6500.00, 'cash', 'completed', '', 1, '2025-09-24 14:06:27'),
-(87, '2025-09-24', '', '', '', 28000.00, 'cash', 'completed', '', 1, '2025-09-24 14:14:56'),
-(88, '2025-09-24', '', '', '', 6500.00, 'cash', 'completed', '', 1, '2025-09-24 14:16:30'),
-(89, '2025-09-24', '', '', '', 65500.00, 'cash', 'completed', '', 1, '2025-09-24 14:36:16'),
-(90, '2025-09-24', 'Tedy haiderere', '', '', 75600.00, 'cash', 'completed', '', 1, '2025-09-24 15:11:04'),
-(91, '2025-09-24', '', '', '', 10000.00, 'cash', 'completed', '', 1, '2025-09-24 15:38:47'),
-(92, '2025-09-24', '', '', '', 6500.00, 'cash', 'completed', '', 1, '2025-09-24 15:39:19'),
-(93, '2025-09-24', '', '', '', 101000.00, 'cash', 'completed', '', 1, '2025-09-24 17:21:39'),
-(94, '2025-09-24', '', '', '', 39000.00, 'cash', 'completed', '', 1, '2025-09-24 17:28:26'),
-(95, '2025-09-25', '', '', '', 37000.00, 'cash', 'completed', '', 1, '2025-09-25 05:50:02'),
-(96, '2025-09-25', '', '', '', 15000.00, 'cash', 'completed', '', 1, '2025-09-25 05:50:38'),
-(97, '2025-09-25', '', '', '', 32500.00, 'cash', 'completed', '', 1, '2025-09-25 05:50:57'),
-(98, '2025-09-24', '', '', '', 65000.00, 'cash', 'completed', '', 1, '2025-09-25 06:34:06'),
-(99, '2025-09-25', '', '', '', 32500.00, 'cash', 'completed', '', 1, '2025-09-25 07:07:38'),
-(100, '2025-09-25', '', '', '', 71500.00, 'cash', 'completed', '', 1, '2025-09-25 07:17:26'),
-(101, '2025-09-25', '', '', '', 38500.00, 'cash', 'completed', '', 1, '2025-09-25 07:24:05'),
-(102, '2025-09-25', '', '', '', 74500.00, 'cash', 'completed', '', 1, '2025-09-25 07:25:51'),
-(103, '2025-09-25', '', '', '', 52000.00, 'cash', 'completed', '', 1, '2025-09-25 07:40:29'),
-(104, '2025-09-25', 'Prisca', '', '', 66500.00, 'cash', 'completed', '', 1, '2025-09-25 12:03:08'),
-(105, '2025-09-25', '', '', '', 88000.00, 'other', 'completed', '', 1, '2025-09-25 13:07:30'),
-(106, '2025-09-26', '', '', '', 76000.00, 'cash', 'completed', '', 1, '2025-09-26 07:13:20'),
-(107, '2025-09-26', '', '', '', 58000.00, 'cash', 'completed', '', 1, '2025-09-26 07:16:14'),
-(108, '2025-09-26', '', '', '', 13000.00, 'cash', 'completed', '', 1, '2025-09-26 07:16:29'),
-(109, '2025-09-26', '', '', '', 71500.00, 'cash', 'completed', '', 1, '2025-09-26 08:18:53'),
-(110, '2025-09-26', '', '', '', 154000.00, 'cash', 'completed', '', 1, '2025-09-26 09:32:39'),
-(111, '2025-09-26', '', '', '', 22000.00, 'cash', 'completed', '', 1, '2025-09-26 09:33:25'),
-(112, '2025-09-26', '', '', '', 169000.00, 'cash', 'completed', '', 1, '2025-09-26 10:16:49'),
-(113, '2025-09-26', '', '', '', 50500.00, 'cash', 'completed', '', 1, '2025-09-26 10:45:10'),
-(114, '2025-09-26', '', '', '', 28000.00, 'cash', 'completed', '', 1, '2025-09-26 10:55:17'),
-(115, '2025-09-26', '', '', '', 14000.00, 'cash', 'completed', '', 1, '2025-09-26 10:56:25'),
-(116, '2025-09-26', '', '', '', 39000.00, 'cash', 'completed', '', 1, '2025-09-26 11:00:43'),
-(117, '2025-09-26', '', '', '', 27000.00, 'cash', 'completed', '', 1, '2025-09-26 13:42:10'),
-(118, '2025-09-26', '', '', '', 31500.00, 'cash', 'completed', '', 1, '2025-09-26 13:43:10'),
-(119, '2025-09-26', '', '', '', 28000.00, 'cash', 'completed', '', 1, '2025-09-26 14:52:32'),
-(120, '2025-09-27', '', '', '', 364000.00, 'cash', 'completed', '', 1, '2025-09-27 09:34:00'),
-(121, '2025-09-27', '', '', '', 330000.00, 'cash', 'completed', '', 1, '2025-09-27 15:04:59'),
-(122, '2025-09-28', '', '', '', 163000.00, 'cash', 'completed', '', 1, '2025-09-28 05:27:27'),
-(123, '2025-09-28', '', '', '', 15000.00, 'cash', 'completed', '', 1, '2025-09-28 06:37:46'),
-(124, '2025-09-28', '', '', '', 285000.00, 'cash', 'completed', '', 1, '2025-09-28 08:16:13'),
-(125, '2025-09-28', '', '', '', 54000.00, 'cash', 'completed', '', 1, '2025-09-28 09:23:32'),
-(126, '2025-09-28', '', '', '', 18000.00, 'cash', 'cancelled', '', 1, '2025-09-28 09:50:04'),
-(127, '2025-09-28', '', '', '', 18000.00, 'cash', 'completed', '', 1, '2025-09-28 10:05:46'),
-(128, '2025-09-28', '', '', '', 136000.00, 'cash', 'completed', '', 1, '2025-09-28 11:10:43'),
-(129, '2025-09-28', '', '', '', 39000.00, 'cash', 'completed', '', 1, '2025-09-28 14:05:42'),
-(130, '2025-09-28', '', '', '', 40000.00, 'cash', 'completed', '', 1, '2025-09-28 14:44:31'),
-(131, '2025-09-28', '', '', '', 136000.00, 'cash', 'completed', '', 1, '2025-09-28 14:47:12'),
-(132, '2025-09-28', '', '', '', 24000.00, 'cash', 'completed', '', 1, '2025-09-28 15:26:31'),
-(133, '2025-09-28', '', '', '', 113400.00, 'cash', 'completed', '', 1, '2025-09-28 16:59:43'),
-(134, '2025-09-29', '', '', '', 83000.00, 'cash', 'completed', '', 1, '2025-09-29 05:33:32'),
-(135, '2025-09-29', 'salma friend', '', '', 40000.00, 'cash', 'completed', '', 1, '2025-09-29 06:46:24'),
-(136, '2025-09-29', '', '', '', 110500.00, 'cash', 'completed', '', 1, '2025-09-29 07:31:15'),
-(137, '2025-09-29', '', '', '', 12000.00, 'cash', 'completed', '', 1, '2025-09-29 08:03:45'),
-(138, '2025-09-29', '', '', '', 11000.00, 'cash', 'cancelled', '', 1, '2025-09-29 08:22:35'),
-(139, '2025-09-29', '', '', '', 55000.00, 'cash', 'completed', '', 1, '2025-09-29 08:23:50'),
-(140, '2025-09-29', '', '', '', 32500.00, 'cash', 'completed', '', 1, '2025-09-29 08:26:28'),
-(141, '2025-09-29', '', '', '', 98000.00, 'cash', 'cancelled', '', 1, '2025-09-29 09:04:43'),
-(142, '2025-09-29', '', '', '', 38000.00, 'cash', 'completed', '', 1, '2025-09-29 09:06:08'),
-(143, '2025-09-29', '', '', '', 24000.00, 'cash', 'completed', '', 1, '2025-09-29 09:08:24'),
-(144, '2025-09-29', '', '', '', 78000.00, 'cash', 'completed', '', 1, '2025-09-29 09:16:34'),
-(145, '2025-09-29', '', '', '', 65000.00, 'cash', 'completed', '', 1, '2025-09-29 09:24:49'),
-(146, '2025-09-29', '', '', '', 82000.00, 'cash', 'completed', '', 1, '2025-09-29 09:27:25'),
-(147, '2025-09-29', '', '', '', 10000.00, 'cash', 'completed', '', 1, '2025-09-29 09:31:11'),
-(148, '2025-09-29', '', '', '', 28000.00, 'cash', 'completed', '', 1, '2025-09-29 10:08:48'),
-(149, '2025-09-29', '', '', '', 39000.00, 'cash', 'completed', '', 1, '2025-09-29 10:26:09'),
-(150, '2025-09-29', '', '', '', 32500.00, 'cash', 'completed', '', 1, '2025-09-29 12:45:19'),
-(151, '2025-09-29', '', '', '', 32500.00, 'cash', 'completed', '', 1, '2025-09-29 12:45:53'),
-(152, '2025-09-29', '', '', '', 13000.00, 'cash', 'completed', '', 1, '2025-09-29 13:59:24'),
-(153, '2025-09-29', '', '', '', 60000.00, 'cash', 'completed', '', 1, '2025-09-29 14:03:18'),
-(154, '2025-09-29', '', '', '', 69000.00, 'cash', 'completed', '', 1, '2025-09-29 14:14:42'),
-(155, '2025-09-29', '', '', '', 24000.00, 'cash', 'completed', '', 1, '2025-09-29 15:23:19'),
-(156, '2025-09-29', '', '', '', 93500.00, 'cash', 'completed', '', 1, '2025-09-29 15:48:09'),
-(157, '2025-09-29', '', '', '', 28000.00, 'cash', 'completed', '', 1, '2025-09-29 16:30:34'),
-(158, '2025-09-29', '', '', '', 12000.00, 'cash', 'completed', '', 1, '2025-09-29 16:54:41'),
-(159, '2025-09-29', '', '', '', 15000.00, 'cash', 'completed', '', 1, '2025-09-29 18:08:39'),
-(160, '2025-09-30', '', '', '', 113400.00, 'cash', 'completed', '', 1, '2025-09-30 05:33:17'),
-(161, '2025-09-30', '', '', '', 55000.00, 'cash', 'completed', '', 1, '2025-09-30 05:49:23'),
-(162, '2025-09-30', '', '', '', 80000.00, 'cash', 'completed', '', 1, '2025-09-30 05:50:02'),
-(163, '2025-09-30', '', '', '', 150000.00, 'cash', 'completed', '', 1, '2025-09-30 07:23:39'),
-(164, '2025-09-30', '', '', '', 175000.00, 'cash', 'completed', '', 1, '2025-09-30 07:24:31'),
-(165, '2025-09-30', '', '', '', 10000.00, 'cash', 'completed', '', 1, '2025-09-30 07:24:56'),
-(166, '2025-09-30', 'recho', '', '0688366850', 108000.00, 'cash', 'completed', '', 1, '2025-09-30 09:31:51'),
-(167, '2025-09-30', '', '', '', 108000.00, 'cash', 'completed', '', 1, '2025-09-30 10:26:27'),
-(168, '2025-09-30', '', '', '', 66000.00, 'cash', 'completed', '', 1, '2025-09-30 10:34:44'),
-(169, '2025-09-30', '', '', '', 32500.00, 'cash', 'completed', '', 1, '2025-09-30 10:35:28'),
-(170, '2025-09-30', '', '', '', 120000.00, 'cash', 'completed', '', 1, '2025-09-30 14:17:37'),
-(171, '2025-10-01', '', '', '', 52000.00, 'cash', 'completed', '', 1, '2025-10-01 08:54:46'),
-(172, '2025-10-01', '', '', '', 147000.00, 'cash', 'completed', '', 1, '2025-10-01 08:57:35'),
-(173, '2025-10-01', '', '', '', 39000.00, 'cash', 'completed', '', 1, '2025-10-01 11:31:28'),
-(174, '2025-10-01', '', '', '', 12000.00, 'cash', 'completed', '', 1, '2025-10-01 12:01:58'),
-(175, '2025-10-01', '', '', '', 28000.00, 'cash', 'completed', '', 1, '2025-10-01 15:53:29'),
-(176, '2025-10-01', '', '', '', 24000.00, 'cash', 'completed', '', 1, '2025-10-01 17:24:31'),
-(177, '2025-10-01', '', '', '', 216000.00, 'cash', 'completed', '', 1, '2025-10-01 17:46:48'),
-(178, '2025-10-06', '', '', '', 210000.00, 'cash', 'completed', '', 1, '2025-10-06 08:42:22'),
-(179, '2025-10-07', '', '', '', 88000.00, 'cash', 'completed', '', 1, '2025-10-07 09:47:57'),
-(180, '2025-10-07', '', '', '', 244500.00, 'cash', 'completed', '', 1, '2025-10-07 09:51:31'),
-(181, '2025-10-07', '', '', '', 26000.00, 'cash', 'completed', '', 1, '2025-10-07 09:52:01'),
-(182, '2025-10-22', '', '', '', 1284000.00, 'cash', 'completed', '', 1, '2025-10-22 12:56:52'),
-(183, '2025-10-22', '', '', '', 96000.00, 'cash', 'completed', '', 1, '2025-10-22 12:59:57'),
-(184, '2025-10-22', '', '', '', 290000.00, 'cash', 'completed', '', 1, '2025-10-22 13:00:50'),
-(185, '2025-10-22', '', '', '', 144000.00, 'cash', 'completed', '', 1, '2025-10-22 13:02:33'),
-(186, '2025-10-22', '', '', '', 96500.00, 'cash', 'completed', '', 1, '2025-10-22 13:51:41'),
-(187, '2025-10-27', '', '', '', 235000.00, 'cash', 'completed', '', 1, '2025-10-27 13:31:29'),
-(188, '2025-11-16', '', '', '', 206000.00, 'cash', 'completed', '', 1, '2025-11-16 17:32:54'),
-(189, '2025-11-16', 'MAMA TITO', '', '', 180000.00, 'cash', 'completed', '', 1, '2025-11-16 17:55:06'),
-(190, '2025-11-20', 'Yassin', '', '+255768115225', 395000.00, 'cash', 'completed', '', 1, '2025-11-20 18:36:01'),
-(191, '2025-11-25', '', '', '', 147000.00, 'cash', 'completed', '', 1, '2025-11-25 09:40:12'),
-(192, '2025-11-25', '', '', '', 100500.00, 'cash', 'completed', '', 1, '2025-11-25 10:50:43'),
-(193, '2025-11-28', '', '', '', 623000.00, 'cash', 'completed', '', 1, '2025-11-28 14:20:55'),
-(194, '2025-11-28', 'MAMA JAMES MBULU', '', '', 623000.00, 'cash', 'completed', '', 1, '2025-11-28 14:22:03'),
-(195, '2025-12-01', '', '', '', 1304000.00, 'cash', 'completed', '', 1, '2025-12-01 08:40:00'),
-(196, '2025-12-01', '', '', '', 456000.00, 'cash', 'completed', '', 1, '2025-12-01 10:55:51'),
-(197, '2025-12-12', '', '', '', 316500.00, 'cash', 'completed', '', 1, '2025-12-12 09:06:25'),
-(198, '2025-12-12', '', '', '', 26000.00, 'cash', 'completed', '', 1, '2025-12-12 09:20:46'),
-(199, '2025-12-12', '', '', '', 164000.00, 'cash', 'completed', '', 1, '2025-12-12 13:02:54'),
-(200, '2025-12-12', '', '', '', 161000.00, 'cash', 'completed', '', 1, '2025-12-12 15:26:50'),
-(201, '2025-12-13', '', '', '', 46000.00, 'cash', 'completed', '', 1, '2025-12-13 03:24:36'),
-(202, '2025-12-13', '', '', '', 46000.00, 'cash', 'completed', '', 1, '2025-12-13 03:28:10'),
-(203, '2025-12-13', '', '', '', 23000.00, 'cash', 'completed', '', 1, '2025-12-13 03:29:02'),
-(204, '2025-12-13', '', '', '', 319000.00, 'cash', 'completed', '', 1, '2025-12-13 10:25:07'),
-(205, '2026-01-02', '', '', '', 260000.00, 'cash', 'completed', '', 1, '2026-01-02 09:14:03'),
-(206, '2026-02-28', '', '', '', 190000.00, 'cash', 'cancelled', '', 1, '2026-02-28 09:16:34'),
-(207, '2026-02-28', '', '', '', 70000.00, 'cash', 'completed', '', 1, '2026-02-28 09:37:06'),
-(208, '2026-03-29', '', '', '', 130000.00, 'cash', 'completed', '', 1, '2026-03-29 14:30:01'),
-(209, '2026-03-29', '', '', '', 130000.00, 'cash', 'completed', '', 1, '2026-03-29 14:30:05');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (1, '2025-09-21', 'Hellen', '', '', 23000.00, 'cash', 'cancelled', '', 1, '2025-09-21 09:18:08');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (2, '2025-09-21', '', '', '', 45500.00, 'cash', 'cancelled', '', 1, '2025-09-21 10:09:25');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (3, '2025-09-21', '', '', '', 84000.00, 'cash', 'cancelled', '', 1, '2025-09-21 10:13:38');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (4, '2025-09-21', '', '', '', 25000.00, 'cash', 'cancelled', '', 1, '2025-09-21 11:55:43');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (5, '2025-09-21', '', '', '', 10000.00, 'cash', 'cancelled', '', 1, '2025-09-21 11:56:20');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (6, '2025-09-21', '', '', '', 52000.00, 'cash', 'cancelled', '', 1, '2025-09-21 11:56:55');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (7, '2025-09-21', '', '', '', 15000.00, 'cash', 'cancelled', '', 1, '2025-09-21 13:15:02');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (8, '2025-09-21', '', '', '', 23000.00, 'cash', 'cancelled', '', 1, '2025-09-21 13:24:45');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (9, '2025-09-21', '', '', '', 72000.00, 'cash', 'cancelled', '', 1, '2025-09-21 15:14:32');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (10, '2025-09-21', '', '', '', 6500.00, 'cash', 'cancelled', '', 1, '2025-09-21 15:18:02');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (11, '2025-09-21', '', '', '', 24000.00, 'cash', 'completed', '', 1, '2025-09-21 16:26:13');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (12, '2025-09-21', '', '', '', 396000.00, 'cash', 'completed', '', 1, '2025-09-21 16:37:23');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (13, '2025-09-22', '', '', '', 220000.00, 'cash', 'cancelled', '', 1, '2025-09-22 02:35:04');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (14, '2025-09-22', '', '', '', 45500.00, 'cash', 'completed', '', 1, '2025-09-22 07:30:12');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (15, '2025-09-22', '', '', '', 26000.00, 'cash', 'completed', '', 1, '2025-09-22 07:43:14');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (16, '2025-09-22', '', '', '', 18000.00, 'cash', 'completed', '', 1, '2025-09-22 10:33:27');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (17, '2025-09-22', '', '', '', 117000.00, 'cash', 'completed', '', 1, '2025-09-22 10:37:14');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (18, '2025-09-22', '', '', '', 13000.00, 'cash', 'completed', '', 1, '2025-09-22 10:38:38');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (19, '2025-09-22', '', '', '', 112000.00, 'cash', 'completed', '', 1, '2025-09-22 10:44:57');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (20, '2025-09-22', '', '', '', 165000.00, 'cash', 'completed', '', 1, '2025-09-22 10:47:10');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (21, '2025-09-22', '', '', '', 1080000.00, 'cash', 'completed', '', 1, '2025-09-22 11:01:17');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (22, '2025-09-22', '', '', '', 20000.00, 'cash', 'completed', '', 1, '2025-09-22 11:58:05');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (23, '2025-09-22', '', '', '', 20000.00, 'cash', 'completed', '', 1, '2025-09-22 12:00:24');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (24, '2025-09-22', '', '', '', 25000.00, 'cash', 'cancelled', '', 1, '2025-09-22 12:08:08');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (25, '2025-09-22', '', '', '', 35000.00, 'cash', 'completed', '', 1, '2025-09-22 12:28:36');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (26, '2025-09-22', '', '', '', 6500.00, 'cash', 'completed', '', 1, '2025-09-22 12:35:42');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (27, '2025-09-22', '', '', '', 39000.00, 'cash', 'completed', '', 1, '2025-09-22 14:09:07');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (28, '2025-09-22', '', '', '', 65000.00, 'cash', 'completed', '', 1, '2025-09-22 14:12:02');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (29, '2025-09-22', '', '', '', 54500.00, 'cash', 'completed', '', 1, '2025-09-22 14:14:01');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (30, '2025-09-22', '', '', '', 7000.00, 'cash', 'completed', '', 1, '2025-09-22 14:46:35');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (31, '2025-09-22', '', '', '', 32500.00, 'cash', 'completed', '', 1, '2025-09-22 14:55:40');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (32, '2025-09-22', '', '', '', 11000.00, 'cash', 'completed', '', 1, '2025-09-22 15:29:53');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (33, '2025-09-22', '', '', '', 71500.00, 'cash', 'completed', '', 1, '2025-09-22 15:31:58');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (34, '2025-09-22', '', '', '', 41500.00, 'cash', 'completed', '', 1, '2025-09-22 18:56:07');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (35, '2025-09-23', '', '', '', 78000.00, 'cash', 'completed', '', 1, '2025-09-23 05:11:36');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (36, '2025-09-23', '', '', '', 52500.00, 'cash', 'completed', '', 1, '2025-09-23 07:29:31');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (37, '2025-09-23', '', '', '', 25000.00, 'cash', 'completed', '', 1, '2025-09-23 07:30:40');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (38, '2025-09-23', '', '', '', 25000.00, 'cash', 'completed', '', 1, '2025-09-23 07:31:02');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (39, '2025-09-23', '', '', '', 35500.00, 'cash', 'completed', '', 1, '2025-09-23 07:36:07');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (40, '2025-09-23', '', '', '', 52500.00, 'cash', 'completed', '', 1, '2025-09-23 07:36:54');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (41, '2025-09-23', '', '', '', 65000.00, 'cash', 'completed', '', 1, '2025-09-23 08:11:54');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (42, '2025-09-23', '', '', '', 45500.00, 'cash', 'completed', '', 1, '2025-09-23 08:27:21');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (43, '2025-09-23', '', '', '', 66000.00, 'cash', 'completed', '', 1, '2025-09-23 08:57:26');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (44, '2025-09-23', '', '', '', 16000.00, 'cash', 'completed', '', 1, '2025-09-23 09:01:07');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (45, '2025-09-23', '', '', '', 45500.00, 'cash', 'completed', '', 1, '2025-09-23 09:39:36');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (46, '2025-09-23', '', '', '', 32500.00, 'cash', 'completed', '', 1, '2025-09-23 09:58:50');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (47, '2025-09-23', '', '', '', 26000.00, 'cash', 'completed', '', 1, '2025-09-23 10:36:05');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (48, '2025-09-23', '', '', '', 97500.00, 'cash', 'completed', '', 1, '2025-09-23 11:20:26');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (49, '2025-09-23', '', '', '', 172000.00, 'cash', 'completed', '', 1, '2025-09-23 11:26:25');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (50, '2025-09-23', '', '', '', 44000.00, 'cash', 'completed', '', 1, '2025-09-23 11:32:54');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (51, '2025-09-23', '', '', '', 23000.00, 'cash', 'completed', '', 1, '2025-09-23 11:54:37');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (52, '2025-09-23', '', '', '', 39000.00, 'cash', 'completed', '', 1, '2025-09-23 12:15:24');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (53, '2025-09-23', '', '', '', 57000.00, 'cash', 'completed', '', 1, '2025-09-23 12:15:42');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (54, '2025-09-23', '', '', '', 28000.00, 'cash', 'completed', '', 1, '2025-09-23 12:16:20');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (55, '2025-09-23', '', '', '', 25000.00, 'cash', 'completed', '', 1, '2025-09-23 12:57:03');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (56, '2025-09-23', '', '', '', 12000.00, 'cash', 'completed', '', 1, '2025-09-23 12:58:07');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (57, '2025-09-23', '', '', '', 81000.00, 'cash', 'completed', '', 1, '2025-09-23 13:59:03');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (58, '2025-09-23', '', '', '', 13000.00, 'cash', 'completed', '', 1, '2025-09-23 14:23:08');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (59, '2025-09-23', '', '', '', 23000.00, 'cash', 'completed', '', 1, '2025-09-23 14:23:26');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (60, '2025-09-23', '', '', '', 28000.00, 'cash', 'completed', '', 1, '2025-09-23 14:38:57');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (61, '2025-09-23', '', '', '', 50500.00, 'cash', 'completed', '', 1, '2025-09-23 16:06:36');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (62, '2025-09-24', '', '', '', 20000.00, 'cash', 'completed', '', 1, '2025-09-24 06:50:54');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (63, '2025-09-23', '', '', '', 14000.00, 'cash', 'cancelled', '', 1, '2025-09-24 06:51:11');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (64, '2025-09-24', '', '', '', 14000.00, 'cash', 'completed', '', 1, '2025-09-24 06:52:50');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (65, '2025-09-24', '', '', '', 42500.00, 'cash', 'completed', '', 1, '2025-09-24 06:54:04');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (66, '2025-09-24', '', '', '', 16000.00, 'cash', 'completed', '', 1, '2025-09-24 07:17:18');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (67, '2025-09-24', '', '', '', 32500.00, 'cash', 'completed', '', 1, '2025-09-24 07:34:43');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (68, '2025-09-24', '', '', '', 19500.00, 'cash', 'completed', '', 1, '2025-09-24 07:40:54');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (69, '2025-09-24', '', '', '', 6500.00, 'cash', 'completed', '', 1, '2025-09-24 07:53:29');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (70, '2025-09-24', '', '', '', 6500.00, 'cash', 'cancelled', '', 1, '2025-09-24 07:58:25');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (71, '2025-09-24', '', '', '', 40000.00, 'cash', 'completed', '', 1, '2025-09-24 07:59:33');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (72, '2025-09-24', '', '', '', 66500.00, 'cash', 'completed', '', 1, '2025-09-24 08:44:05');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (73, '2025-09-24', '', '', '', 28500.00, 'cash', 'completed', '', 1, '2025-09-24 09:45:48');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (74, '2025-09-24', '', '', '', 32500.00, 'bank_transfer', 'completed', '', 1, '2025-09-24 09:48:36');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (75, '2025-09-24', 'Lagii lapaix', '', '', 341000.00, 'bank_transfer', 'completed', '', 1, '2025-09-24 09:53:50');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (76, '2025-09-24', '', '', '', 21000.00, 'cash', 'completed', '', 1, '2025-09-24 10:12:20');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (77, '2025-09-24', '', '', '', 85000.00, 'cash', 'completed', '', 1, '2025-09-24 10:59:27');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (78, '2025-09-24', '', '', '', 95000.00, 'cash', 'completed', '', 1, '2025-09-24 11:13:45');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (79, '2025-09-24', '', '', '', 28000.00, 'cash', 'completed', '', 1, '2025-09-24 11:29:24');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (80, '2025-09-24', '', '', '', 15000.00, 'cash', 'completed', '', 1, '2025-09-24 11:35:31');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (81, '2025-09-24', '', '', '', 52000.00, 'cash', 'completed', '', 1, '2025-09-24 12:01:47');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (82, '2025-09-24', '', '', '', 19500.00, 'cash', 'completed', '', 1, '2025-09-24 12:59:48');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (83, '2025-09-24', '', '', '', 10000.00, 'cash', 'completed', '', 1, '2025-09-24 13:01:08');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (84, '2025-09-24', '', '', '', 45500.00, 'cash', 'completed', '', 1, '2025-09-24 13:16:07');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (85, '2025-09-24', '', '', '', 76500.00, 'cash', 'completed', '', 1, '2025-09-24 13:54:15');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (86, '2025-09-24', '', '', '', 6500.00, 'cash', 'completed', '', 1, '2025-09-24 14:06:27');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (87, '2025-09-24', '', '', '', 28000.00, 'cash', 'completed', '', 1, '2025-09-24 14:14:56');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (88, '2025-09-24', '', '', '', 6500.00, 'cash', 'completed', '', 1, '2025-09-24 14:16:30');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (89, '2025-09-24', '', '', '', 65500.00, 'cash', 'completed', '', 1, '2025-09-24 14:36:16');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (90, '2025-09-24', 'Tedy haiderere', '', '', 75600.00, 'cash', 'completed', '', 1, '2025-09-24 15:11:04');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (91, '2025-09-24', '', '', '', 10000.00, 'cash', 'completed', '', 1, '2025-09-24 15:38:47');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (92, '2025-09-24', '', '', '', 6500.00, 'cash', 'completed', '', 1, '2025-09-24 15:39:19');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (93, '2025-09-24', '', '', '', 101000.00, 'cash', 'completed', '', 1, '2025-09-24 17:21:39');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (94, '2025-09-24', '', '', '', 39000.00, 'cash', 'completed', '', 1, '2025-09-24 17:28:26');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (95, '2025-09-25', '', '', '', 37000.00, 'cash', 'completed', '', 1, '2025-09-25 05:50:02');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (96, '2025-09-25', '', '', '', 15000.00, 'cash', 'completed', '', 1, '2025-09-25 05:50:38');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (97, '2025-09-25', '', '', '', 32500.00, 'cash', 'completed', '', 1, '2025-09-25 05:50:57');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (98, '2025-09-24', '', '', '', 65000.00, 'cash', 'completed', '', 1, '2025-09-25 06:34:06');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (99, '2025-09-25', '', '', '', 32500.00, 'cash', 'completed', '', 1, '2025-09-25 07:07:38');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (100, '2025-09-25', '', '', '', 71500.00, 'cash', 'completed', '', 1, '2025-09-25 07:17:26');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (101, '2025-09-25', '', '', '', 38500.00, 'cash', 'completed', '', 1, '2025-09-25 07:24:05');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (102, '2025-09-25', '', '', '', 74500.00, 'cash', 'completed', '', 1, '2025-09-25 07:25:51');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (103, '2025-09-25', '', '', '', 52000.00, 'cash', 'completed', '', 1, '2025-09-25 07:40:29');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (104, '2025-09-25', 'Prisca', '', '', 66500.00, 'cash', 'completed', '', 1, '2025-09-25 12:03:08');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (105, '2025-09-25', '', '', '', 88000.00, 'other', 'completed', '', 1, '2025-09-25 13:07:30');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (106, '2025-09-26', '', '', '', 76000.00, 'cash', 'completed', '', 1, '2025-09-26 07:13:20');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (107, '2025-09-26', '', '', '', 58000.00, 'cash', 'completed', '', 1, '2025-09-26 07:16:14');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (108, '2025-09-26', '', '', '', 13000.00, 'cash', 'completed', '', 1, '2025-09-26 07:16:29');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (109, '2025-09-26', '', '', '', 71500.00, 'cash', 'completed', '', 1, '2025-09-26 08:18:53');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (110, '2025-09-26', '', '', '', 154000.00, 'cash', 'completed', '', 1, '2025-09-26 09:32:39');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (111, '2025-09-26', '', '', '', 22000.00, 'cash', 'completed', '', 1, '2025-09-26 09:33:25');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (112, '2025-09-26', '', '', '', 169000.00, 'cash', 'completed', '', 1, '2025-09-26 10:16:49');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (113, '2025-09-26', '', '', '', 50500.00, 'cash', 'completed', '', 1, '2025-09-26 10:45:10');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (114, '2025-09-26', '', '', '', 28000.00, 'cash', 'completed', '', 1, '2025-09-26 10:55:17');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (115, '2025-09-26', '', '', '', 14000.00, 'cash', 'completed', '', 1, '2025-09-26 10:56:25');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (116, '2025-09-26', '', '', '', 39000.00, 'cash', 'completed', '', 1, '2025-09-26 11:00:43');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (117, '2025-09-26', '', '', '', 27000.00, 'cash', 'completed', '', 1, '2025-09-26 13:42:10');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (118, '2025-09-26', '', '', '', 31500.00, 'cash', 'completed', '', 1, '2025-09-26 13:43:10');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (119, '2025-09-26', '', '', '', 28000.00, 'cash', 'completed', '', 1, '2025-09-26 14:52:32');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (120, '2025-09-27', '', '', '', 364000.00, 'cash', 'completed', '', 1, '2025-09-27 09:34:00');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (121, '2025-09-27', '', '', '', 330000.00, 'cash', 'completed', '', 1, '2025-09-27 15:04:59');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (122, '2025-09-28', '', '', '', 163000.00, 'cash', 'completed', '', 1, '2025-09-28 05:27:27');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (123, '2025-09-28', '', '', '', 15000.00, 'cash', 'completed', '', 1, '2025-09-28 06:37:46');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (124, '2025-09-28', '', '', '', 285000.00, 'cash', 'completed', '', 1, '2025-09-28 08:16:13');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (125, '2025-09-28', '', '', '', 54000.00, 'cash', 'completed', '', 1, '2025-09-28 09:23:32');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (126, '2025-09-28', '', '', '', 18000.00, 'cash', 'cancelled', '', 1, '2025-09-28 09:50:04');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (127, '2025-09-28', '', '', '', 18000.00, 'cash', 'completed', '', 1, '2025-09-28 10:05:46');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (128, '2025-09-28', '', '', '', 136000.00, 'cash', 'completed', '', 1, '2025-09-28 11:10:43');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (129, '2025-09-28', '', '', '', 39000.00, 'cash', 'completed', '', 1, '2025-09-28 14:05:42');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (130, '2025-09-28', '', '', '', 40000.00, 'cash', 'completed', '', 1, '2025-09-28 14:44:31');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (131, '2025-09-28', '', '', '', 136000.00, 'cash', 'completed', '', 1, '2025-09-28 14:47:12');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (132, '2025-09-28', '', '', '', 24000.00, 'cash', 'completed', '', 1, '2025-09-28 15:26:31');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (133, '2025-09-28', '', '', '', 113400.00, 'cash', 'completed', '', 1, '2025-09-28 16:59:43');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (134, '2025-09-29', '', '', '', 83000.00, 'cash', 'completed', '', 1, '2025-09-29 05:33:32');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (135, '2025-09-29', 'salma friend', '', '', 40000.00, 'cash', 'completed', '', 1, '2025-09-29 06:46:24');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (136, '2025-09-29', '', '', '', 110500.00, 'cash', 'completed', '', 1, '2025-09-29 07:31:15');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (137, '2025-09-29', '', '', '', 12000.00, 'cash', 'completed', '', 1, '2025-09-29 08:03:45');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (138, '2025-09-29', '', '', '', 11000.00, 'cash', 'cancelled', '', 1, '2025-09-29 08:22:35');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (139, '2025-09-29', '', '', '', 55000.00, 'cash', 'completed', '', 1, '2025-09-29 08:23:50');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (140, '2025-09-29', '', '', '', 32500.00, 'cash', 'completed', '', 1, '2025-09-29 08:26:28');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (141, '2025-09-29', '', '', '', 98000.00, 'cash', 'cancelled', '', 1, '2025-09-29 09:04:43');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (142, '2025-09-29', '', '', '', 38000.00, 'cash', 'completed', '', 1, '2025-09-29 09:06:08');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (143, '2025-09-29', '', '', '', 24000.00, 'cash', 'completed', '', 1, '2025-09-29 09:08:24');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (144, '2025-09-29', '', '', '', 78000.00, 'cash', 'completed', '', 1, '2025-09-29 09:16:34');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (145, '2025-09-29', '', '', '', 65000.00, 'cash', 'completed', '', 1, '2025-09-29 09:24:49');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (146, '2025-09-29', '', '', '', 82000.00, 'cash', 'completed', '', 1, '2025-09-29 09:27:25');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (147, '2025-09-29', '', '', '', 10000.00, 'cash', 'completed', '', 1, '2025-09-29 09:31:11');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (148, '2025-09-29', '', '', '', 28000.00, 'cash', 'completed', '', 1, '2025-09-29 10:08:48');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (149, '2025-09-29', '', '', '', 39000.00, 'cash', 'completed', '', 1, '2025-09-29 10:26:09');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (150, '2025-09-29', '', '', '', 32500.00, 'cash', 'completed', '', 1, '2025-09-29 12:45:19');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (151, '2025-09-29', '', '', '', 32500.00, 'cash', 'completed', '', 1, '2025-09-29 12:45:53');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (152, '2025-09-29', '', '', '', 13000.00, 'cash', 'completed', '', 1, '2025-09-29 13:59:24');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (153, '2025-09-29', '', '', '', 60000.00, 'cash', 'completed', '', 1, '2025-09-29 14:03:18');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (154, '2025-09-29', '', '', '', 69000.00, 'cash', 'completed', '', 1, '2025-09-29 14:14:42');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (155, '2025-09-29', '', '', '', 24000.00, 'cash', 'completed', '', 1, '2025-09-29 15:23:19');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (156, '2025-09-29', '', '', '', 93500.00, 'cash', 'completed', '', 1, '2025-09-29 15:48:09');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (157, '2025-09-29', '', '', '', 28000.00, 'cash', 'completed', '', 1, '2025-09-29 16:30:34');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (158, '2025-09-29', '', '', '', 12000.00, 'cash', 'completed', '', 1, '2025-09-29 16:54:41');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (159, '2025-09-29', '', '', '', 15000.00, 'cash', 'completed', '', 1, '2025-09-29 18:08:39');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (160, '2025-09-30', '', '', '', 113400.00, 'cash', 'completed', '', 1, '2025-09-30 05:33:17');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (161, '2025-09-30', '', '', '', 55000.00, 'cash', 'completed', '', 1, '2025-09-30 05:49:23');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (162, '2025-09-30', '', '', '', 80000.00, 'cash', 'completed', '', 1, '2025-09-30 05:50:02');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (163, '2025-09-30', '', '', '', 150000.00, 'cash', 'completed', '', 1, '2025-09-30 07:23:39');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (164, '2025-09-30', '', '', '', 175000.00, 'cash', 'completed', '', 1, '2025-09-30 07:24:31');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (165, '2025-09-30', '', '', '', 10000.00, 'cash', 'completed', '', 1, '2025-09-30 07:24:56');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (166, '2025-09-30', 'recho', '', '0688366850', 108000.00, 'cash', 'completed', '', 1, '2025-09-30 09:31:51');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (167, '2025-09-30', '', '', '', 108000.00, 'cash', 'completed', '', 1, '2025-09-30 10:26:27');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (168, '2025-09-30', '', '', '', 66000.00, 'cash', 'completed', '', 1, '2025-09-30 10:34:44');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (169, '2025-09-30', '', '', '', 32500.00, 'cash', 'completed', '', 1, '2025-09-30 10:35:28');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (170, '2025-09-30', '', '', '', 120000.00, 'cash', 'completed', '', 1, '2025-09-30 14:17:37');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (171, '2025-10-01', '', '', '', 52000.00, 'cash', 'completed', '', 1, '2025-10-01 08:54:46');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (172, '2025-10-01', '', '', '', 147000.00, 'cash', 'completed', '', 1, '2025-10-01 08:57:35');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (173, '2025-10-01', '', '', '', 39000.00, 'cash', 'completed', '', 1, '2025-10-01 11:31:28');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (174, '2025-10-01', '', '', '', 12000.00, 'cash', 'completed', '', 1, '2025-10-01 12:01:58');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (175, '2025-10-01', '', '', '', 28000.00, 'cash', 'completed', '', 1, '2025-10-01 15:53:29');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (176, '2025-10-01', '', '', '', 24000.00, 'cash', 'completed', '', 1, '2025-10-01 17:24:31');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (177, '2025-10-01', '', '', '', 216000.00, 'cash', 'completed', '', 1, '2025-10-01 17:46:48');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (178, '2025-10-06', '', '', '', 210000.00, 'cash', 'completed', '', 1, '2025-10-06 08:42:22');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (179, '2025-10-07', '', '', '', 88000.00, 'cash', 'completed', '', 1, '2025-10-07 09:47:57');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (180, '2025-10-07', '', '', '', 244500.00, 'cash', 'completed', '', 1, '2025-10-07 09:51:31');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (181, '2025-10-07', '', '', '', 26000.00, 'cash', 'completed', '', 1, '2025-10-07 09:52:01');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (182, '2025-10-22', '', '', '', 1284000.00, 'cash', 'completed', '', 1, '2025-10-22 12:56:52');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (183, '2025-10-22', '', '', '', 96000.00, 'cash', 'completed', '', 1, '2025-10-22 12:59:57');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (184, '2025-10-22', '', '', '', 290000.00, 'cash', 'completed', '', 1, '2025-10-22 13:00:50');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (185, '2025-10-22', '', '', '', 144000.00, 'cash', 'completed', '', 1, '2025-10-22 13:02:33');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (186, '2025-10-22', '', '', '', 96500.00, 'cash', 'completed', '', 1, '2025-10-22 13:51:41');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (187, '2025-10-27', '', '', '', 235000.00, 'cash', 'completed', '', 1, '2025-10-27 13:31:29');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (188, '2025-11-16', '', '', '', 206000.00, 'cash', 'completed', '', 1, '2025-11-16 17:32:54');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (189, '2025-11-16', 'MAMA TITO', '', '', 180000.00, 'cash', 'completed', '', 1, '2025-11-16 17:55:06');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (190, '2025-11-20', 'Yassin', '', '+255768115225', 395000.00, 'cash', 'completed', '', 1, '2025-11-20 18:36:01');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (191, '2025-11-25', '', '', '', 147000.00, 'cash', 'completed', '', 1, '2025-11-25 09:40:12');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (192, '2025-11-25', '', '', '', 100500.00, 'cash', 'completed', '', 1, '2025-11-25 10:50:43');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (193, '2025-11-28', '', '', '', 623000.00, 'cash', 'completed', '', 1, '2025-11-28 14:20:55');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (194, '2025-11-28', 'MAMA JAMES MBULU', '', '', 623000.00, 'cash', 'completed', '', 1, '2025-11-28 14:22:03');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (195, '2025-12-01', '', '', '', 1304000.00, 'cash', 'completed', '', 1, '2025-12-01 08:40:00');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (196, '2025-12-01', '', '', '', 456000.00, 'cash', 'completed', '', 1, '2025-12-01 10:55:51');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (197, '2025-12-12', '', '', '', 316500.00, 'cash', 'completed', '', 1, '2025-12-12 09:06:25');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (198, '2025-12-12', '', '', '', 26000.00, 'cash', 'completed', '', 1, '2025-12-12 09:20:46');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (199, '2025-12-12', '', '', '', 164000.00, 'cash', 'completed', '', 1, '2025-12-12 13:02:54');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (200, '2025-12-12', '', '', '', 161000.00, 'cash', 'completed', '', 1, '2025-12-12 15:26:50');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (201, '2025-12-13', '', '', '', 46000.00, 'cash', 'completed', '', 1, '2025-12-13 03:24:36');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (202, '2025-12-13', '', '', '', 46000.00, 'cash', 'completed', '', 1, '2025-12-13 03:28:10');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (203, '2025-12-13', '', '', '', 23000.00, 'cash', 'completed', '', 1, '2025-12-13 03:29:02');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (204, '2025-12-13', '', '', '', 319000.00, 'cash', 'completed', '', 1, '2025-12-13 10:25:07');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (205, '2026-01-02', '', '', '', 260000.00, 'cash', 'completed', '', 1, '2026-01-02 09:14:03');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (206, '2026-02-28', '', '', '', 190000.00, 'cash', 'cancelled', '', 1, '2026-02-28 09:16:34');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (207, '2026-02-28', '', '', '', 70000.00, 'cash', 'completed', '', 1, '2026-02-28 09:37:06');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (208, '2026-03-29', '', '', '', 130000.00, 'cash', 'completed', '', 1, '2026-03-29 14:30:01');
+INSERT INTO sales (id, sale_date, customer_name, customer_email, customer_phone, total_amount, payment_method, status, notes, created_by, created_at) VALUES (209, '2026-03-29', '', '', '', 130000.00, 'cash', 'completed', '', 1, '2026-03-29 14:30:05');
 
 -- sale_items
-INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES
-(1, 1, 1, 1, 23000.00, 23000.00),
-(2, 2, 4, 6, 6500.00, 39000.00),
-(3, 2, 4, 1, 6500.00, 6500.00),
-(4, 3, 6, 6, 14000.00, 84000.00),
-(5, 4, 9, 1, 25000.00, 25000.00),
-(6, 5, 13, 1, 10000.00, 10000.00),
-(7, 6, 11, 8, 6500.00, 52000.00),
-(8, 7, 9, 1, 15000.00, 15000.00),
-(9, 8, 7, 10, 2300.00, 23000.00),
-(10, 9, 15, 8, 9000.00, 72000.00),
-(11, 10, 11, 1, 6500.00, 6500.00),
-(12, 11, 16, 2, 12000.00, 24000.00),
-(13, 12, 10, 36, 11000.00, 396000.00),
-(14, 13, 10, 20, 11000.00, 220000.00),
-(15, 14, 11, 7, 6500.00, 45500.00),
-(16, 15, 11, 4, 6500.00, 26000.00),
-(17, 16, 15, 2, 9000.00, 18000.00),
-(18, 17, 11, 18, 6500.00, 117000.00),
-(19, 18, 11, 2, 6500.00, 13000.00),
-(20, 19, 9, 1, 19000.00, 19000.00),
-(21, 19, 15, 2, 9000.00, 18000.00),
-(22, 19, 7, 1, 23000.00, 23000.00),
-(23, 19, 11, 6, 6500.00, 39000.00),
-(24, 19, 11, 2, 6500.00, 13000.00),
-(25, 20, 11, 10, 6500.00, 65000.00),
-(26, 20, 14, 5, 9000.00, 45000.00),
-(27, 20, 10, 5, 11000.00, 55000.00),
-(28, 21, 10, 100, 10800.00, 1080000.00),
-(29, 22, 19, 1, 20000.00, 20000.00),
-(30, 23, 19, 1, 20000.00, 20000.00),
-(31, 24, 7, 1, 25000.00, 25000.00),
-(32, 25, 11, 2, 6500.00, 13000.00),
-(33, 25, 15, 1, 9000.00, 9000.00),
-(34, 25, 11, 2, 6500.00, 13000.00),
-(35, 26, 11, 1, 6500.00, 6500.00),
-(36, 27, 11, 6, 6500.00, 39000.00),
-(37, 28, 11, 10, 6500.00, 65000.00),
-(38, 29, 10, 2, 11000.00, 22000.00),
-(39, 29, 11, 5, 6500.00, 32500.00),
-(40, 30, 11, 1, 7000.00, 7000.00),
-(41, 31, 11, 3, 6500.00, 19500.00),
-(42, 31, 11, 2, 6500.00, 13000.00),
-(43, 32, 10, 1, 11000.00, 11000.00),
-(44, 33, 11, 11, 6500.00, 71500.00),
-(45, 34, 11, 5, 6500.00, 32500.00),
-(46, 34, 15, 1, 9000.00, 9000.00),
-(47, 35, 11, 12, 6500.00, 78000.00),
-(48, 36, 11, 3, 6500.00, 19500.00),
-(49, 36, 10, 3, 11000.00, 33000.00),
-(50, 37, 8, 1, 25000.00, 25000.00),
-(51, 38, 7, 1, 25000.00, 25000.00),
-(52, 39, 11, 1, 6500.00, 6500.00),
-(53, 39, 9, 1, 19000.00, 19000.00),
-(54, 39, 14, 1, 10000.00, 10000.00),
-(55, 40, 11, 3, 6500.00, 19500.00),
-(56, 40, 10, 3, 11000.00, 33000.00),
-(57, 41, 11, 10, 6500.00, 65000.00),
-(58, 42, 11, 7, 6500.00, 45500.00),
-(59, 43, 10, 6, 11000.00, 66000.00),
-(60, 44, 20, 2, 8000.00, 16000.00),
-(61, 45, 11, 7, 6500.00, 45500.00),
-(62, 46, 11, 5, 6500.00, 32500.00),
-(63, 47, 11, 4, 6500.00, 26000.00),
-(64, 48, 11, 15, 6500.00, 97500.00),
-(65, 49, 11, 2, 6500.00, 13000.00),
-(66, 49, 10, 4, 11000.00, 44000.00),
-(67, 49, 7, 5, 23000.00, 115000.00),
-(68, 50, 7, 2, 22000.00, 44000.00),
-(69, 51, 9, 1, 23000.00, 23000.00),
-(70, 52, 11, 6, 6500.00, 39000.00),
-(71, 53, 9, 3, 19000.00, 57000.00),
-(72, 54, 7, 1, 28000.00, 28000.00),
-(73, 55, 9, 1, 25000.00, 25000.00),
-(74, 56, 13, 1, 12000.00, 12000.00),
-(75, 57, 11, 6, 6500.00, 39000.00),
-(76, 57, 13, 2, 10000.00, 20000.00),
-(77, 57, 10, 2, 11000.00, 22000.00),
-(78, 58, 11, 2, 6500.00, 13000.00),
-(79, 59, 7, 1, 23000.00, 23000.00),
-(80, 60, 7, 1, 28000.00, 28000.00),
-(81, 61, 11, 1, 6500.00, 6500.00),
-(82, 61, 10, 4, 11000.00, 44000.00),
-(83, 62, 18, 2, 10000.00, 20000.00),
-(84, 63, 11, 2, 7000.00, 14000.00),
-(85, 64, 11, 2, 7000.00, 14000.00),
-(86, 65, 11, 3, 6500.00, 19500.00),
-(87, 65, 7, 1, 23000.00, 23000.00),
-(88, 66, 17, 2, 8000.00, 16000.00),
-(89, 67, 11, 5, 6500.00, 32500.00),
-(90, 68, 11, 3, 6500.00, 19500.00),
-(91, 69, 11, 1, 6500.00, 6500.00),
-(92, 70, 11, 1, 6500.00, 6500.00),
-(93, 71, 7, 1, 28000.00, 28000.00),
-(94, 71, 18, 1, 12000.00, 12000.00),
-(95, 72, 11, 7, 6500.00, 45500.00),
-(96, 72, 10, 1, 11000.00, 11000.00),
-(97, 72, 13, 1, 10000.00, 10000.00),
-(98, 73, 13, 3, 9500.00, 28500.00),
-(99, 74, 11, 5, 6500.00, 32500.00),
-(100, 75, 10, 31, 11000.00, 341000.00),
-(101, 76, 17, 1, 10000.00, 10000.00),
-(102, 76, 10, 1, 11000.00, 11000.00),
-(103, 77, 17, 4, 8000.00, 32000.00),
-(104, 77, 18, 3, 10000.00, 30000.00),
-(105, 77, 7, 1, 23000.00, 23000.00),
-(106, 78, 22, 1, 10000.00, 10000.00),
-(107, 78, 10, 6, 11000.00, 66000.00),
-(108, 78, 9, 1, 19000.00, 19000.00),
-(109, 79, 7, 1, 28000.00, 28000.00),
-(110, 80, 11, 2, 7500.00, 15000.00),
-(111, 81, 11, 8, 6500.00, 52000.00),
-(112, 82, 11, 3, 6500.00, 19500.00),
-(113, 83, 15, 1, 10000.00, 10000.00),
-(114, 84, 11, 7, 6500.00, 45500.00),
-(115, 85, 11, 1, 6500.00, 6500.00),
-(116, 85, 13, 7, 10000.00, 70000.00),
-(117, 86, 11, 1, 6500.00, 6500.00),
-(118, 87, 7, 1, 28000.00, 28000.00),
-(119, 88, 11, 1, 6500.00, 6500.00),
-(120, 89, 22, 2, 10000.00, 20000.00),
-(121, 89, 11, 7, 6500.00, 45500.00),
-(122, 90, 11, 12, 6300.00, 75600.00),
-(123, 91, 22, 1, 10000.00, 10000.00),
-(124, 92, 11, 1, 6500.00, 6500.00),
-(125, 93, 11, 10, 6500.00, 65000.00),
-(126, 93, 15, 4, 9000.00, 36000.00),
-(127, 94, 11, 6, 6500.00, 39000.00),
-(128, 95, 10, 1, 11000.00, 11000.00),
-(129, 95, 11, 4, 6500.00, 26000.00),
-(130, 96, 16, 1, 15000.00, 15000.00),
-(131, 97, 11, 5, 6500.00, 32500.00),
-(132, 98, 11, 10, 6500.00, 65000.00),
-(133, 99, 11, 5, 6500.00, 32500.00),
-(134, 100, 11, 11, 6500.00, 71500.00),
-(135, 101, 17, 4, 8000.00, 32000.00),
-(136, 101, 11, 1, 6500.00, 6500.00),
-(137, 102, 11, 9, 6500.00, 58500.00),
-(138, 102, 17, 2, 8000.00, 16000.00),
-(139, 103, 11, 8, 6500.00, 52000.00),
-(140, 104, 11, 5, 6500.00, 32500.00),
-(141, 104, 17, 3, 8000.00, 24000.00),
-(142, 104, 18, 1, 10000.00, 10000.00),
-(143, 105, 16, 4, 12000.00, 48000.00),
-(144, 105, 7, 1, 28000.00, 28000.00),
-(145, 105, 18, 1, 12000.00, 12000.00),
-(146, 106, 13, 7, 10000.00, 70000.00),
-(147, 106, 11, 1, 6000.00, 6000.00),
-(148, 107, 18, 1, 12000.00, 12000.00),
-(149, 107, 14, 1, 10000.00, 10000.00),
-(150, 107, 20, 6, 6000.00, 36000.00),
-(151, 108, 11, 2, 6500.00, 13000.00),
-(152, 109, 11, 11, 6500.00, 71500.00),
-(153, 110, 7, 4, 23000.00, 92000.00),
-(154, 110, 11, 3, 6000.00, 18000.00),
-(155, 110, 10, 4, 11000.00, 44000.00),
-(156, 111, 10, 2, 11000.00, 22000.00),
-(157, 112, 18, 4, 10000.00, 40000.00),
-(158, 112, 17, 2, 7000.00, 14000.00),
-(159, 112, 7, 5, 23000.00, 115000.00),
-(160, 113, 14, 2, 9000.00, 18000.00),
-(161, 113, 11, 5, 6500.00, 32500.00),
-(162, 114, 7, 1, 28000.00, 28000.00),
-(163, 115, 16, 1, 14000.00, 14000.00),
-(164, 116, 11, 6, 6500.00, 39000.00),
-(165, 117, 7, 1, 27000.00, 27000.00),
-(166, 118, 16, 1, 12000.00, 12000.00),
-(167, 118, 11, 3, 6500.00, 19500.00),
-(168, 119, 7, 1, 28000.00, 28000.00),
-(169, 120, 10, 6, 11000.00, 66000.00),
-(170, 120, 17, 5, 8000.00, 40000.00),
-(171, 120, 18, 3, 10000.00, 30000.00),
-(172, 120, 7, 9, 23000.00, 207000.00),
-(173, 120, 8, 1, 21000.00, 21000.00),
-(174, 121, 10, 30, 11000.00, 330000.00),
-(175, 122, 13, 10, 10000.00, 100000.00),
-(176, 122, 10, 3, 11000.00, 33000.00),
-(177, 122, 22, 3, 10000.00, 30000.00),
-(178, 123, 23, 1, 15000.00, 15000.00),
-(179, 124, 10, 20, 11000.00, 220000.00),
-(180, 124, 11, 10, 6500.00, 65000.00),
-(181, 125, 8, 2, 27000.00, 54000.00),
-(182, 126, 10, 1, 18000.00, 18000.00),
-(183, 127, 10, 1, 18000.00, 18000.00),
-(184, 128, 11, 18, 6500.00, 117000.00),
-(185, 128, 9, 1, 19000.00, 19000.00),
-(186, 129, 11, 6, 6500.00, 39000.00),
-(187, 130, 20, 8, 5000.00, 40000.00),
-(188, 131, 11, 18, 6500.00, 117000.00),
-(189, 131, 9, 1, 19000.00, 19000.00),
-(190, 132, 20, 4, 6000.00, 24000.00),
-(191, 133, 11, 18, 6300.00, 113400.00),
-(192, 134, 18, 5, 10000.00, 50000.00),
-(193, 134, 10, 3, 11000.00, 33000.00),
-(194, 135, 10, 4, 10000.00, 40000.00),
-(195, 136, 11, 5, 6500.00, 32500.00),
-(196, 136, 11, 12, 6500.00, 78000.00),
-(197, 137, 22, 1, 12000.00, 12000.00),
-(198, 138, 10, 1, 11000.00, 11000.00),
-(199, 139, 10, 5, 11000.00, 55000.00),
-(200, 140, 11, 5, 6500.00, 32500.00),
-(201, 141, 11, 10, 6500.00, 65000.00),
-(202, 141, 10, 3, 11000.00, 33000.00),
-(203, 142, 18, 3, 10000.00, 30000.00),
-(204, 142, 17, 1, 8000.00, 8000.00),
-(205, 143, 20, 4, 6000.00, 24000.00),
-(206, 144, 11, 12, 6500.00, 78000.00),
-(207, 145, 11, 10, 6500.00, 65000.00),
-(208, 146, 18, 3, 10000.00, 30000.00),
-(209, 146, 11, 8, 6500.00, 52000.00),
-(210, 147, 15, 1, 10000.00, 10000.00),
-(211, 148, 7, 1, 28000.00, 28000.00),
-(212, 149, 11, 6, 6500.00, 39000.00),
-(213, 150, 11, 5, 6500.00, 32500.00),
-(214, 151, 11, 5, 6500.00, 32500.00),
-(215, 152, 11, 2, 6500.00, 13000.00),
-(216, 153, 16, 5, 12000.00, 60000.00),
-(217, 154, 7, 3, 23000.00, 69000.00),
-(218, 155, 16, 2, 12000.00, 24000.00),
-(219, 156, 10, 7, 11000.00, 77000.00),
-(220, 156, 11, 1, 6500.00, 6500.00),
-(221, 156, 17, 1, 10000.00, 10000.00),
-(222, 157, 7, 1, 28000.00, 28000.00),
-(223, 158, 16, 1, 12000.00, 12000.00),
-(224, 159, 10, 1, 15000.00, 15000.00),
-(225, 160, 11, 18, 6300.00, 113400.00),
-(226, 161, 9, 1, 25000.00, 25000.00),
-(227, 161, 7, 1, 30000.00, 30000.00),
-(228, 162, 18, 8, 10000.00, 80000.00),
-(229, 163, 17, 2, 8000.00, 16000.00),
-(230, 163, 11, 2, 6500.00, 13000.00),
-(231, 163, 9, 3, 19000.00, 57000.00),
-(232, 163, 10, 2, 11000.00, 22000.00),
-(233, 163, 8, 2, 21000.00, 42000.00),
-(234, 164, 10, 10, 11000.00, 110000.00),
-(235, 164, 11, 10, 6500.00, 65000.00),
-(236, 165, 17, 1, 10000.00, 10000.00),
-(237, 166, 11, 6, 6500.00, 39000.00),
-(238, 166, 7, 3, 23000.00, 69000.00),
-(239, 167, 13, 12, 9000.00, 108000.00),
-(240, 168, 17, 1, 8000.00, 8000.00),
-(241, 168, 7, 1, 23000.00, 23000.00),
-(242, 168, 16, 2, 12000.00, 24000.00),
-(243, 168, 10, 1, 11000.00, 11000.00),
-(244, 169, 11, 5, 6500.00, 32500.00),
-(245, 170, 10, 5, 11000.00, 55000.00),
-(246, 170, 11, 10, 6500.00, 65000.00),
-(247, 171, 11, 8, 6500.00, 52000.00),
-(248, 172, 10, 11, 11000.00, 121000.00),
-(249, 172, 11, 4, 6500.00, 26000.00),
-(250, 173, 14, 1, 10000.00, 10000.00),
-(251, 173, 7, 1, 29000.00, 29000.00),
-(252, 174, 14, 1, 12000.00, 12000.00),
-(253, 175, 11, 2, 6500.00, 13000.00),
-(254, 175, 10, 1, 15000.00, 15000.00),
-(255, 176, 16, 2, 12000.00, 24000.00),
-(256, 177, 16, 18, 12000.00, 216000.00),
-(257, 178, 13, 9, 10000.00, 90000.00),
-(258, 178, 11, 6, 6500.00, 39000.00),
-(259, 178, 10, 5, 11000.00, 55000.00),
-(260, 178, 11, 4, 6500.00, 26000.00),
-(261, 179, 10, 8, 11000.00, 88000.00),
-(262, 180, 11, 14, 6500.00, 91000.00),
-(263, 180, 7, 2, 23000.00, 46000.00),
-(264, 180, 11, 1, 6500.00, 6500.00),
-(265, 180, 9, 2, 19000.00, 38000.00),
-(266, 180, 11, 2, 6500.00, 13000.00),
-(267, 180, 15, 3, 9000.00, 27000.00),
-(268, 180, 7, 1, 23000.00, 23000.00),
-(269, 181, 11, 4, 6500.00, 26000.00),
-(270, 182, 7, 8, 23000.00, 184000.00),
-(271, 182, 10, 100, 11000.00, 1100000.00),
-(272, 183, 25, 8, 12000.00, 96000.00),
-(273, 184, 9, 5, 19000.00, 95000.00),
-(274, 184, 11, 30, 6500.00, 195000.00),
-(275, 185, 18, 5, 10000.00, 50000.00),
-(276, 185, 17, 5, 8000.00, 40000.00),
-(277, 185, 16, 2, 12000.00, 24000.00),
-(278, 185, 7, 1, 30000.00, 30000.00),
-(279, 186, 11, 9, 6500.00, 58500.00),
-(280, 186, 9, 2, 19000.00, 38000.00),
-(281, 187, 11, 6, 6000.00, 36000.00),
-(282, 187, 15, 4, 9000.00, 36000.00),
-(283, 187, 7, 5, 23000.00, 115000.00),
-(284, 187, 25, 4, 12000.00, 48000.00),
-(285, 188, 7, 4, 23000.00, 92000.00),
-(286, 188, 8, 2, 21000.00, 42000.00),
-(287, 188, 25, 6, 12000.00, 72000.00),
-(288, 189, 25, 15, 12000.00, 180000.00),
-(289, 190, 25, 20, 11500.00, 230000.00),
-(290, 190, 10, 15, 11000.00, 165000.00),
-(291, 191, 26, 7, 10000.00, 70000.00),
-(292, 191, 15, 2, 11500.00, 23000.00),
-(293, 191, 26, 1, 15000.00, 15000.00),
-(294, 191, 11, 6, 6500.00, 39000.00),
-(295, 192, 25, 4, 12000.00, 48000.00),
-(296, 192, 10, 3, 11000.00, 33000.00),
-(297, 192, 11, 3, 6500.00, 19500.00),
-(298, 193, 10, 25, 11000.00, 275000.00),
-(299, 193, 25, 29, 12000.00, 348000.00),
-(300, 194, 10, 25, 11000.00, 275000.00),
-(301, 194, 25, 29, 12000.00, 348000.00),
-(302, 195, 25, 47, 11800.00, 554600.00),
-(303, 195, 10, 13, 10800.00, 140400.00),
-(304, 195, 10, 17, 11000.00, 187000.00),
-(305, 195, 10, 15, 11000.00, 165000.00),
-(306, 195, 11, 15, 6500.00, 97500.00),
-(307, 195, 11, 3, 6500.00, 19500.00),
-(308, 195, 11, 5, 6500.00, 32500.00),
-(309, 195, 15, 1, 12000.00, 12000.00),
-(310, 195, 26, 5, 10000.00, 50000.00),
-(311, 195, 11, 7, 6500.00, 45500.00),
-(312, 196, 10, 10, 11000.00, 110000.00),
-(313, 196, 25, 10, 12000.00, 120000.00),
-(314, 196, 8, 4, 22000.00, 88000.00),
-(315, 196, 7, 6, 23000.00, 138000.00),
-(316, 197, 10, 12, 11000.00, 132000.00),
-(317, 197, 10, 4, 11000.00, 44000.00),
-(318, 197, 13, 4, 9000.00, 36000.00),
-(319, 197, 11, 5, 6500.00, 32500.00),
-(320, 197, 15, 1, 12000.00, 12000.00),
-(321, 197, 26, 6, 10000.00, 60000.00),
-(322, 198, 11, 4, 6500.00, 26000.00),
-(323, 199, 25, 1, 12000.00, 12000.00),
-(324, 199, 11, 8, 6500.00, 52000.00),
-(325, 199, 9, 5, 20000.00, 100000.00),
-(326, 200, 7, 7, 23000.00, 161000.00),
-(327, 201, 7, 2, 23000.00, 46000.00),
-(328, 202, 7, 2, 23000.00, 46000.00),
-(329, 203, 7, 1, 23000.00, 23000.00),
-(330, 204, 25, 3, 12000.00, 36000.00),
-(331, 204, 10, 2, 11000.00, 22000.00),
-(332, 204, 9, 1, 20000.00, 20000.00),
-(333, 204, 11, 10, 6000.00, 60000.00),
-(334, 204, 7, 5, 23000.00, 115000.00),
-(335, 204, 8, 3, 22000.00, 66000.00),
-(336, 205, 16, 10, 12000.00, 120000.00),
-(337, 205, 27, 5, 18000.00, 90000.00),
-(338, 205, 20, 10, 5000.00, 50000.00),
-(339, 206, 16, 15, 12000.00, 180000.00),
-(340, 206, 13, 1, 10000.00, 10000.00),
-(341, 207, 7, 2, 23000.00, 46000.00),
-(342, 207, 16, 2, 12000.00, 24000.00),
-(343, 208, 19, 10, 13000.00, 130000.00),
-(344, 209, 19, 10, 13000.00, 130000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (1, 1, 1, 1, 23000.00, 23000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (2, 2, 4, 6, 6500.00, 39000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (3, 2, 4, 1, 6500.00, 6500.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (4, 3, 6, 6, 14000.00, 84000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (5, 4, 9, 1, 25000.00, 25000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (6, 5, 13, 1, 10000.00, 10000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (7, 6, 11, 8, 6500.00, 52000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (8, 7, 9, 1, 15000.00, 15000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (9, 8, 7, 10, 2300.00, 23000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (10, 9, 15, 8, 9000.00, 72000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (11, 10, 11, 1, 6500.00, 6500.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (12, 11, 16, 2, 12000.00, 24000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (13, 12, 10, 36, 11000.00, 396000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (14, 13, 10, 20, 11000.00, 220000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (15, 14, 11, 7, 6500.00, 45500.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (16, 15, 11, 4, 6500.00, 26000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (17, 16, 15, 2, 9000.00, 18000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (18, 17, 11, 18, 6500.00, 117000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (19, 18, 11, 2, 6500.00, 13000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (20, 19, 9, 1, 19000.00, 19000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (21, 19, 15, 2, 9000.00, 18000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (22, 19, 7, 1, 23000.00, 23000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (23, 19, 11, 6, 6500.00, 39000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (24, 19, 11, 2, 6500.00, 13000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (25, 20, 11, 10, 6500.00, 65000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (26, 20, 14, 5, 9000.00, 45000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (27, 20, 10, 5, 11000.00, 55000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (28, 21, 10, 100, 10800.00, 1080000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (29, 22, 19, 1, 20000.00, 20000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (30, 23, 19, 1, 20000.00, 20000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (31, 24, 7, 1, 25000.00, 25000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (32, 25, 11, 2, 6500.00, 13000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (33, 25, 15, 1, 9000.00, 9000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (34, 25, 11, 2, 6500.00, 13000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (35, 26, 11, 1, 6500.00, 6500.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (36, 27, 11, 6, 6500.00, 39000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (37, 28, 11, 10, 6500.00, 65000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (38, 29, 10, 2, 11000.00, 22000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (39, 29, 11, 5, 6500.00, 32500.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (40, 30, 11, 1, 7000.00, 7000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (41, 31, 11, 3, 6500.00, 19500.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (42, 31, 11, 2, 6500.00, 13000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (43, 32, 10, 1, 11000.00, 11000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (44, 33, 11, 11, 6500.00, 71500.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (45, 34, 11, 5, 6500.00, 32500.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (46, 34, 15, 1, 9000.00, 9000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (47, 35, 11, 12, 6500.00, 78000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (48, 36, 11, 3, 6500.00, 19500.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (49, 36, 10, 3, 11000.00, 33000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (50, 37, 8, 1, 25000.00, 25000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (51, 38, 7, 1, 25000.00, 25000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (52, 39, 11, 1, 6500.00, 6500.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (53, 39, 9, 1, 19000.00, 19000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (54, 39, 14, 1, 10000.00, 10000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (55, 40, 11, 3, 6500.00, 19500.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (56, 40, 10, 3, 11000.00, 33000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (57, 41, 11, 10, 6500.00, 65000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (58, 42, 11, 7, 6500.00, 45500.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (59, 43, 10, 6, 11000.00, 66000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (60, 44, 20, 2, 8000.00, 16000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (61, 45, 11, 7, 6500.00, 45500.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (62, 46, 11, 5, 6500.00, 32500.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (63, 47, 11, 4, 6500.00, 26000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (64, 48, 11, 15, 6500.00, 97500.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (65, 49, 11, 2, 6500.00, 13000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (66, 49, 10, 4, 11000.00, 44000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (67, 49, 7, 5, 23000.00, 115000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (68, 50, 7, 2, 22000.00, 44000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (69, 51, 9, 1, 23000.00, 23000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (70, 52, 11, 6, 6500.00, 39000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (71, 53, 9, 3, 19000.00, 57000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (72, 54, 7, 1, 28000.00, 28000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (73, 55, 9, 1, 25000.00, 25000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (74, 56, 13, 1, 12000.00, 12000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (75, 57, 11, 6, 6500.00, 39000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (76, 57, 13, 2, 10000.00, 20000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (77, 57, 10, 2, 11000.00, 22000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (78, 58, 11, 2, 6500.00, 13000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (79, 59, 7, 1, 23000.00, 23000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (80, 60, 7, 1, 28000.00, 28000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (81, 61, 11, 1, 6500.00, 6500.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (82, 61, 10, 4, 11000.00, 44000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (83, 62, 18, 2, 10000.00, 20000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (84, 63, 11, 2, 7000.00, 14000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (85, 64, 11, 2, 7000.00, 14000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (86, 65, 11, 3, 6500.00, 19500.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (87, 65, 7, 1, 23000.00, 23000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (88, 66, 17, 2, 8000.00, 16000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (89, 67, 11, 5, 6500.00, 32500.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (90, 68, 11, 3, 6500.00, 19500.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (91, 69, 11, 1, 6500.00, 6500.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (92, 70, 11, 1, 6500.00, 6500.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (93, 71, 7, 1, 28000.00, 28000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (94, 71, 18, 1, 12000.00, 12000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (95, 72, 11, 7, 6500.00, 45500.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (96, 72, 10, 1, 11000.00, 11000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (97, 72, 13, 1, 10000.00, 10000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (98, 73, 13, 3, 9500.00, 28500.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (99, 74, 11, 5, 6500.00, 32500.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (100, 75, 10, 31, 11000.00, 341000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (101, 76, 17, 1, 10000.00, 10000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (102, 76, 10, 1, 11000.00, 11000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (103, 77, 17, 4, 8000.00, 32000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (104, 77, 18, 3, 10000.00, 30000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (105, 77, 7, 1, 23000.00, 23000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (106, 78, 22, 1, 10000.00, 10000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (107, 78, 10, 6, 11000.00, 66000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (108, 78, 9, 1, 19000.00, 19000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (109, 79, 7, 1, 28000.00, 28000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (110, 80, 11, 2, 7500.00, 15000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (111, 81, 11, 8, 6500.00, 52000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (112, 82, 11, 3, 6500.00, 19500.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (113, 83, 15, 1, 10000.00, 10000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (114, 84, 11, 7, 6500.00, 45500.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (115, 85, 11, 1, 6500.00, 6500.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (116, 85, 13, 7, 10000.00, 70000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (117, 86, 11, 1, 6500.00, 6500.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (118, 87, 7, 1, 28000.00, 28000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (119, 88, 11, 1, 6500.00, 6500.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (120, 89, 22, 2, 10000.00, 20000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (121, 89, 11, 7, 6500.00, 45500.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (122, 90, 11, 12, 6300.00, 75600.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (123, 91, 22, 1, 10000.00, 10000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (124, 92, 11, 1, 6500.00, 6500.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (125, 93, 11, 10, 6500.00, 65000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (126, 93, 15, 4, 9000.00, 36000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (127, 94, 11, 6, 6500.00, 39000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (128, 95, 10, 1, 11000.00, 11000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (129, 95, 11, 4, 6500.00, 26000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (130, 96, 16, 1, 15000.00, 15000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (131, 97, 11, 5, 6500.00, 32500.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (132, 98, 11, 10, 6500.00, 65000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (133, 99, 11, 5, 6500.00, 32500.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (134, 100, 11, 11, 6500.00, 71500.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (135, 101, 17, 4, 8000.00, 32000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (136, 101, 11, 1, 6500.00, 6500.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (137, 102, 11, 9, 6500.00, 58500.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (138, 102, 17, 2, 8000.00, 16000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (139, 103, 11, 8, 6500.00, 52000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (140, 104, 11, 5, 6500.00, 32500.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (141, 104, 17, 3, 8000.00, 24000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (142, 104, 18, 1, 10000.00, 10000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (143, 105, 16, 4, 12000.00, 48000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (144, 105, 7, 1, 28000.00, 28000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (145, 105, 18, 1, 12000.00, 12000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (146, 106, 13, 7, 10000.00, 70000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (147, 106, 11, 1, 6000.00, 6000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (148, 107, 18, 1, 12000.00, 12000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (149, 107, 14, 1, 10000.00, 10000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (150, 107, 20, 6, 6000.00, 36000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (151, 108, 11, 2, 6500.00, 13000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (152, 109, 11, 11, 6500.00, 71500.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (153, 110, 7, 4, 23000.00, 92000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (154, 110, 11, 3, 6000.00, 18000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (155, 110, 10, 4, 11000.00, 44000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (156, 111, 10, 2, 11000.00, 22000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (157, 112, 18, 4, 10000.00, 40000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (158, 112, 17, 2, 7000.00, 14000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (159, 112, 7, 5, 23000.00, 115000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (160, 113, 14, 2, 9000.00, 18000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (161, 113, 11, 5, 6500.00, 32500.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (162, 114, 7, 1, 28000.00, 28000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (163, 115, 16, 1, 14000.00, 14000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (164, 116, 11, 6, 6500.00, 39000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (165, 117, 7, 1, 27000.00, 27000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (166, 118, 16, 1, 12000.00, 12000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (167, 118, 11, 3, 6500.00, 19500.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (168, 119, 7, 1, 28000.00, 28000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (169, 120, 10, 6, 11000.00, 66000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (170, 120, 17, 5, 8000.00, 40000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (171, 120, 18, 3, 10000.00, 30000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (172, 120, 7, 9, 23000.00, 207000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (173, 120, 8, 1, 21000.00, 21000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (174, 121, 10, 30, 11000.00, 330000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (175, 122, 13, 10, 10000.00, 100000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (176, 122, 10, 3, 11000.00, 33000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (177, 122, 22, 3, 10000.00, 30000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (178, 123, 23, 1, 15000.00, 15000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (179, 124, 10, 20, 11000.00, 220000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (180, 124, 11, 10, 6500.00, 65000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (181, 125, 8, 2, 27000.00, 54000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (182, 126, 10, 1, 18000.00, 18000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (183, 127, 10, 1, 18000.00, 18000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (184, 128, 11, 18, 6500.00, 117000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (185, 128, 9, 1, 19000.00, 19000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (186, 129, 11, 6, 6500.00, 39000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (187, 130, 20, 8, 5000.00, 40000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (188, 131, 11, 18, 6500.00, 117000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (189, 131, 9, 1, 19000.00, 19000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (190, 132, 20, 4, 6000.00, 24000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (191, 133, 11, 18, 6300.00, 113400.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (192, 134, 18, 5, 10000.00, 50000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (193, 134, 10, 3, 11000.00, 33000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (194, 135, 10, 4, 10000.00, 40000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (195, 136, 11, 5, 6500.00, 32500.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (196, 136, 11, 12, 6500.00, 78000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (197, 137, 22, 1, 12000.00, 12000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (198, 138, 10, 1, 11000.00, 11000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (199, 139, 10, 5, 11000.00, 55000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (200, 140, 11, 5, 6500.00, 32500.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (201, 141, 11, 10, 6500.00, 65000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (202, 141, 10, 3, 11000.00, 33000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (203, 142, 18, 3, 10000.00, 30000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (204, 142, 17, 1, 8000.00, 8000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (205, 143, 20, 4, 6000.00, 24000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (206, 144, 11, 12, 6500.00, 78000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (207, 145, 11, 10, 6500.00, 65000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (208, 146, 18, 3, 10000.00, 30000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (209, 146, 11, 8, 6500.00, 52000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (210, 147, 15, 1, 10000.00, 10000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (211, 148, 7, 1, 28000.00, 28000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (212, 149, 11, 6, 6500.00, 39000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (213, 150, 11, 5, 6500.00, 32500.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (214, 151, 11, 5, 6500.00, 32500.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (215, 152, 11, 2, 6500.00, 13000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (216, 153, 16, 5, 12000.00, 60000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (217, 154, 7, 3, 23000.00, 69000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (218, 155, 16, 2, 12000.00, 24000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (219, 156, 10, 7, 11000.00, 77000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (220, 156, 11, 1, 6500.00, 6500.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (221, 156, 17, 1, 10000.00, 10000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (222, 157, 7, 1, 28000.00, 28000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (223, 158, 16, 1, 12000.00, 12000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (224, 159, 10, 1, 15000.00, 15000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (225, 160, 11, 18, 6300.00, 113400.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (226, 161, 9, 1, 25000.00, 25000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (227, 161, 7, 1, 30000.00, 30000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (228, 162, 18, 8, 10000.00, 80000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (229, 163, 17, 2, 8000.00, 16000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (230, 163, 11, 2, 6500.00, 13000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (231, 163, 9, 3, 19000.00, 57000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (232, 163, 10, 2, 11000.00, 22000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (233, 163, 8, 2, 21000.00, 42000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (234, 164, 10, 10, 11000.00, 110000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (235, 164, 11, 10, 6500.00, 65000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (236, 165, 17, 1, 10000.00, 10000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (237, 166, 11, 6, 6500.00, 39000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (238, 166, 7, 3, 23000.00, 69000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (239, 167, 13, 12, 9000.00, 108000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (240, 168, 17, 1, 8000.00, 8000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (241, 168, 7, 1, 23000.00, 23000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (242, 168, 16, 2, 12000.00, 24000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (243, 168, 10, 1, 11000.00, 11000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (244, 169, 11, 5, 6500.00, 32500.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (245, 170, 10, 5, 11000.00, 55000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (246, 170, 11, 10, 6500.00, 65000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (247, 171, 11, 8, 6500.00, 52000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (248, 172, 10, 11, 11000.00, 121000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (249, 172, 11, 4, 6500.00, 26000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (250, 173, 14, 1, 10000.00, 10000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (251, 173, 7, 1, 29000.00, 29000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (252, 174, 14, 1, 12000.00, 12000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (253, 175, 11, 2, 6500.00, 13000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (254, 175, 10, 1, 15000.00, 15000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (255, 176, 16, 2, 12000.00, 24000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (256, 177, 16, 18, 12000.00, 216000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (257, 178, 13, 9, 10000.00, 90000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (258, 178, 11, 6, 6500.00, 39000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (259, 178, 10, 5, 11000.00, 55000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (260, 178, 11, 4, 6500.00, 26000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (261, 179, 10, 8, 11000.00, 88000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (262, 180, 11, 14, 6500.00, 91000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (263, 180, 7, 2, 23000.00, 46000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (264, 180, 11, 1, 6500.00, 6500.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (265, 180, 9, 2, 19000.00, 38000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (266, 180, 11, 2, 6500.00, 13000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (267, 180, 15, 3, 9000.00, 27000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (268, 180, 7, 1, 23000.00, 23000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (269, 181, 11, 4, 6500.00, 26000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (270, 182, 7, 8, 23000.00, 184000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (271, 182, 10, 100, 11000.00, 1100000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (272, 183, 25, 8, 12000.00, 96000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (273, 184, 9, 5, 19000.00, 95000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (274, 184, 11, 30, 6500.00, 195000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (275, 185, 18, 5, 10000.00, 50000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (276, 185, 17, 5, 8000.00, 40000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (277, 185, 16, 2, 12000.00, 24000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (278, 185, 7, 1, 30000.00, 30000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (279, 186, 11, 9, 6500.00, 58500.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (280, 186, 9, 2, 19000.00, 38000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (281, 187, 11, 6, 6000.00, 36000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (282, 187, 15, 4, 9000.00, 36000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (283, 187, 7, 5, 23000.00, 115000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (284, 187, 25, 4, 12000.00, 48000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (285, 188, 7, 4, 23000.00, 92000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (286, 188, 8, 2, 21000.00, 42000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (287, 188, 25, 6, 12000.00, 72000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (288, 189, 25, 15, 12000.00, 180000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (289, 190, 25, 20, 11500.00, 230000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (290, 190, 10, 15, 11000.00, 165000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (291, 191, 26, 7, 10000.00, 70000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (292, 191, 15, 2, 11500.00, 23000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (293, 191, 26, 1, 15000.00, 15000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (294, 191, 11, 6, 6500.00, 39000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (295, 192, 25, 4, 12000.00, 48000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (296, 192, 10, 3, 11000.00, 33000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (297, 192, 11, 3, 6500.00, 19500.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (298, 193, 10, 25, 11000.00, 275000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (299, 193, 25, 29, 12000.00, 348000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (300, 194, 10, 25, 11000.00, 275000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (301, 194, 25, 29, 12000.00, 348000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (302, 195, 25, 47, 11800.00, 554600.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (303, 195, 10, 13, 10800.00, 140400.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (304, 195, 10, 17, 11000.00, 187000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (305, 195, 10, 15, 11000.00, 165000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (306, 195, 11, 15, 6500.00, 97500.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (307, 195, 11, 3, 6500.00, 19500.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (308, 195, 11, 5, 6500.00, 32500.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (309, 195, 15, 1, 12000.00, 12000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (310, 195, 26, 5, 10000.00, 50000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (311, 195, 11, 7, 6500.00, 45500.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (312, 196, 10, 10, 11000.00, 110000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (313, 196, 25, 10, 12000.00, 120000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (314, 196, 8, 4, 22000.00, 88000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (315, 196, 7, 6, 23000.00, 138000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (316, 197, 10, 12, 11000.00, 132000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (317, 197, 10, 4, 11000.00, 44000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (318, 197, 13, 4, 9000.00, 36000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (319, 197, 11, 5, 6500.00, 32500.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (320, 197, 15, 1, 12000.00, 12000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (321, 197, 26, 6, 10000.00, 60000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (322, 198, 11, 4, 6500.00, 26000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (323, 199, 25, 1, 12000.00, 12000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (324, 199, 11, 8, 6500.00, 52000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (325, 199, 9, 5, 20000.00, 100000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (326, 200, 7, 7, 23000.00, 161000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (327, 201, 7, 2, 23000.00, 46000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (328, 202, 7, 2, 23000.00, 46000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (329, 203, 7, 1, 23000.00, 23000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (330, 204, 25, 3, 12000.00, 36000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (331, 204, 10, 2, 11000.00, 22000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (332, 204, 9, 1, 20000.00, 20000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (333, 204, 11, 10, 6000.00, 60000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (334, 204, 7, 5, 23000.00, 115000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (335, 204, 8, 3, 22000.00, 66000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (336, 205, 16, 10, 12000.00, 120000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (337, 205, 27, 5, 18000.00, 90000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (338, 205, 20, 10, 5000.00, 50000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (339, 206, 16, 15, 12000.00, 180000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (340, 206, 13, 1, 10000.00, 10000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (341, 207, 7, 2, 23000.00, 46000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (342, 207, 16, 2, 12000.00, 24000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (343, 208, 19, 10, 13000.00, 130000.00);
+INSERT INTO sale_items (id, sale_id, product_id, quantity, unit_price, total_price) VALUES (344, 209, 19, 10, 13000.00, 130000.00);
 
 -- purchases
-INSERT INTO purchases (id, supplier_id, purchase_date, total_amount, status, notes, created_by, created_at) VALUES
-(1, NULL, '2025-09-21', 1900000.00, 'received', '', 1, '2025-09-21 16:28:18'),
-(2, NULL, '2025-09-26', 10000000.00, 'cancelled', '', 1, '2025-09-26 10:28:54'),
-(3, 3, '2025-10-05', 4140000.00, 'pending', '', 1, '2025-10-05 11:49:24'),
-(4, 4, '2025-10-05', 1845000.00, 'received', '', 1, '2025-10-05 11:51:15'),
-(5, 2, '2025-10-05', 6150000.00, 'received', '', 1, '2025-10-05 11:56:19'),
-(6, NULL, '2025-10-05', 3096000.00, 'pending', '', 1, '2025-10-05 11:58:43'),
-(7, NULL, '2025-11-07', 6600000.00, 'pending', '', 1, '2025-11-07 16:03:25');
+INSERT INTO purchases (id, supplier_id, purchase_date, total_amount, status, notes, created_by, created_at) VALUES (1, NULL, '2025-09-21', 1900000.00, 'received', '', 1, '2025-09-21 16:28:18');
+INSERT INTO purchases (id, supplier_id, purchase_date, total_amount, status, notes, created_by, created_at) VALUES (2, NULL, '2025-09-26', 10000000.00, 'cancelled', '', 1, '2025-09-26 10:28:54');
+INSERT INTO purchases (id, supplier_id, purchase_date, total_amount, status, notes, created_by, created_at) VALUES (3, 3, '2025-10-05', 4140000.00, 'pending', '', 1, '2025-10-05 11:49:24');
+INSERT INTO purchases (id, supplier_id, purchase_date, total_amount, status, notes, created_by, created_at) VALUES (4, 4, '2025-10-05', 1845000.00, 'received', '', 1, '2025-10-05 11:51:15');
+INSERT INTO purchases (id, supplier_id, purchase_date, total_amount, status, notes, created_by, created_at) VALUES (5, 2, '2025-10-05', 6150000.00, 'received', '', 1, '2025-10-05 11:56:19');
+INSERT INTO purchases (id, supplier_id, purchase_date, total_amount, status, notes, created_by, created_at) VALUES (6, NULL, '2025-10-05', 3096000.00, 'pending', '', 1, '2025-10-05 11:58:43');
+INSERT INTO purchases (id, supplier_id, purchase_date, total_amount, status, notes, created_by, created_at) VALUES (7, NULL, '2025-11-07', 6600000.00, 'pending', '', 1, '2025-11-07 16:03:25');
 
 -- purchase_items
-INSERT INTO purchase_items (id, purchase_id, product_id, quantity, unit_cost, total_cost) VALUES
-(1, 1, 16, 200, 9500.00, 1900000.00),
-(2, 2, 11, 2000, 5000.00, 10000000.00),
-(3, 3, 8, 230, 18000.00, 4140000.00),
-(4, 4, 15, 225, 8200.00, 1845000.00),
-(5, 5, 7, 200, 19500.00, 3900000.00),
-(6, 5, 11, 450, 5000.00, 2250000.00),
-(7, 6, 9, 180, 17200.00, 3096000.00),
-(8, 7, 7, 100, 19500.00, 1950000.00),
-(9, 7, 8, 100, 18000.00, 1800000.00),
-(10, 7, 10, 300, 9500.00, 2850000.00);
+INSERT INTO purchase_items (id, purchase_id, product_id, quantity, unit_cost, total_cost) VALUES (1, 1, 16, 200, 9500.00, 1900000.00);
+INSERT INTO purchase_items (id, purchase_id, product_id, quantity, unit_cost, total_cost) VALUES (2, 2, 11, 2000, 5000.00, 10000000.00);
+INSERT INTO purchase_items (id, purchase_id, product_id, quantity, unit_cost, total_cost) VALUES (3, 3, 8, 230, 18000.00, 4140000.00);
+INSERT INTO purchase_items (id, purchase_id, product_id, quantity, unit_cost, total_cost) VALUES (4, 4, 15, 225, 8200.00, 1845000.00);
+INSERT INTO purchase_items (id, purchase_id, product_id, quantity, unit_cost, total_cost) VALUES (5, 5, 7, 200, 19500.00, 3900000.00);
+INSERT INTO purchase_items (id, purchase_id, product_id, quantity, unit_cost, total_cost) VALUES (6, 5, 11, 450, 5000.00, 2250000.00);
+INSERT INTO purchase_items (id, purchase_id, product_id, quantity, unit_cost, total_cost) VALUES (7, 6, 9, 180, 17200.00, 3096000.00);
+INSERT INTO purchase_items (id, purchase_id, product_id, quantity, unit_cost, total_cost) VALUES (8, 7, 7, 100, 19500.00, 1950000.00);
+INSERT INTO purchase_items (id, purchase_id, product_id, quantity, unit_cost, total_cost) VALUES (9, 7, 8, 100, 18000.00, 1800000.00);
+INSERT INTO purchase_items (id, purchase_id, product_id, quantity, unit_cost, total_cost) VALUES (10, 7, 10, 300, 9500.00, 2850000.00);
 
 -- stock_movements
-INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES
-(1, 1, 'in', 300, 'adjustment', NULL, 'Initial stock', 1, '2025-09-21 09:16:38'),
-(2, 1, 'out', 1, 'sale', 1, NULL, 1, '2025-09-21 09:18:08'),
-(3, 4, 'in', 1000, 'adjustment', NULL, 'Initial stock', 1, '2025-09-21 09:34:16'),
-(4, 4, 'out', 6, 'sale', 2, NULL, 1, '2025-09-21 10:09:25'),
-(5, 4, 'out', 1, 'sale', 2, NULL, 1, '2025-09-21 10:09:25'),
-(6, 6, 'in', 700, 'adjustment', NULL, 'Initial stock', 1, '2025-09-21 10:11:37'),
-(7, 6, 'out', 6, 'sale', 3, NULL, 1, '2025-09-21 10:13:38'),
-(8, 1, 'out', 250, 'adjustment', NULL, '', 1, '2025-09-21 10:51:53'),
-(9, 6, 'in', 6, 'return', 3, 'Sale cancellation', 1, '2025-09-21 11:02:17'),
-(10, 4, 'in', 6, 'return', 2, 'Sale cancellation', 1, '2025-09-21 11:02:22'),
-(11, 4, 'in', 1, 'return', 2, 'Sale cancellation', 1, '2025-09-21 11:02:22'),
-(12, 1, 'in', 1, 'return', 1, 'Sale cancellation', 1, '2025-09-21 11:02:26'),
-(13, 1, 'in', 1, 'return', 1, 'Sale cancellation', 1, '2025-09-21 11:02:36'),
-(14, 7, 'in', 100, 'adjustment', NULL, 'Initial stock', 1, '2025-09-21 11:08:25'),
-(15, 8, 'in', 100, 'adjustment', NULL, 'Initial stock', 1, '2025-09-21 11:11:10'),
-(16, 9, 'in', 100, 'adjustment', NULL, 'Initial stock', 1, '2025-09-21 11:14:06'),
-(17, 10, 'in', 100, 'adjustment', NULL, 'Initial stock', 1, '2025-09-21 11:37:19'),
-(18, 11, 'in', 100, 'adjustment', NULL, 'Initial stock', 1, '2025-09-21 11:38:45'),
-(19, 13, 'in', 100, 'adjustment', NULL, 'Initial stock', 1, '2025-09-21 11:42:20'),
-(20, 14, 'in', 100, 'adjustment', NULL, 'Initial stock', 1, '2025-09-21 11:43:56'),
-(21, 9, 'out', 1, 'sale', 4, NULL, 1, '2025-09-21 11:55:43'),
-(22, 13, 'out', 1, 'sale', 5, NULL, 1, '2025-09-21 11:56:20'),
-(23, 11, 'out', 8, 'sale', 6, NULL, 1, '2025-09-21 11:56:55'),
-(24, 9, 'out', 1, 'sale', 7, NULL, 1, '2025-09-21 13:15:02'),
-(25, 7, 'out', 10, 'sale', 8, NULL, 1, '2025-09-21 13:24:45'),
-(26, 7, 'in', 10, 'return', 8, 'Sale cancellation', 1, '2025-09-21 13:28:51'),
-(27, 15, 'in', 100, 'adjustment', NULL, 'Initial stock', 1, '2025-09-21 15:12:42'),
-(28, 15, 'out', 8, 'sale', 9, NULL, 1, '2025-09-21 15:14:32'),
-(29, 11, 'out', 1, 'sale', 10, NULL, 1, '2025-09-21 15:18:02'),
-(30, 9, 'in', 1, 'return', 4, 'Sale cancellation', 1, '2025-09-21 15:26:26'),
-(31, 13, 'in', 1, 'return', 5, 'Sale cancellation', 1, '2025-09-21 15:26:44'),
-(32, 11, 'in', 8, 'return', 6, 'Sale cancellation', 1, '2025-09-21 15:26:49'),
-(33, 9, 'in', 1, 'return', 7, 'Sale cancellation', 1, '2025-09-21 16:16:49'),
-(34, 15, 'in', 8, 'return', 9, 'Sale cancellation', 1, '2025-09-21 16:17:06'),
-(35, 11, 'in', 1, 'return', 10, 'Sale cancellation', 1, '2025-09-21 16:17:18'),
-(36, 16, 'in', 200, 'adjustment', NULL, 'Initial stock', 1, '2025-09-21 16:25:21'),
-(37, 16, 'out', 2, 'sale', 11, NULL, 1, '2025-09-21 16:26:13'),
-(38, 16, 'in', 200, 'purchase', 1, NULL, 1, '2025-09-21 16:28:18'),
-(39, 17, 'in', 130, 'adjustment', NULL, 'Initial stock', 1, '2025-09-21 16:30:18'),
-(40, 18, 'in', 10000, 'adjustment', NULL, 'Initial stock', 1, '2025-09-21 16:32:28'),
-(41, 10, 'out', 36, 'sale', 12, NULL, 1, '2025-09-21 16:37:23'),
-(42, 10, 'out', 20, 'sale', 13, NULL, 1, '2025-09-22 02:35:04'),
-(43, 18, 'out', 100, 'adjustment', NULL, '', 1, '2025-09-22 03:08:55'),
-(44, 18, 'out', 810, 'adjustment', NULL, '', 1, '2025-09-22 03:09:30'),
-(45, 18, 'out', 8800, 'adjustment', NULL, '', 1, '2025-09-22 03:10:22'),
-(46, 11, 'out', 7, 'sale', 14, NULL, 1, '2025-09-22 07:30:12'),
-(47, 11, 'out', 4, 'sale', 15, NULL, 1, '2025-09-22 07:43:14'),
-(48, 15, 'out', 2, 'sale', 16, NULL, 1, '2025-09-22 10:33:27'),
-(49, 11, 'out', 18, 'sale', 17, NULL, 1, '2025-09-22 10:37:14'),
-(50, 11, 'out', 2, 'sale', 18, NULL, 1, '2025-09-22 10:38:38'),
-(51, 9, 'out', 1, 'sale', 19, NULL, 1, '2025-09-22 10:44:57'),
-(52, 15, 'out', 2, 'sale', 19, NULL, 1, '2025-09-22 10:44:57'),
-(53, 7, 'out', 1, 'sale', 19, NULL, 1, '2025-09-22 10:44:57'),
-(54, 11, 'out', 6, 'sale', 19, NULL, 1, '2025-09-22 10:44:57'),
-(55, 11, 'out', 2, 'sale', 19, NULL, 1, '2025-09-22 10:44:57'),
-(56, 11, 'out', 10, 'sale', 20, NULL, 1, '2025-09-22 10:47:10'),
-(57, 14, 'out', 5, 'sale', 20, NULL, 1, '2025-09-22 10:47:10'),
-(58, 10, 'out', 5, 'sale', 20, NULL, 1, '2025-09-22 10:47:10'),
-(59, 11, 'in', 1000, 'adjustment', NULL, '', 1, '2025-09-22 10:56:09'),
-(60, 10, 'in', 1000, 'adjustment', NULL, '', 1, '2025-09-22 10:59:11'),
-(61, 10, 'out', 100, 'sale', 21, NULL, 1, '2025-09-22 11:01:17'),
-(62, 19, 'in', 50, 'adjustment', NULL, 'Initial stock', 1, '2025-09-22 11:57:34'),
-(63, 19, 'out', 1, 'sale', 22, NULL, 1, '2025-09-22 11:58:05'),
-(64, 19, 'out', 1, 'sale', 23, NULL, 1, '2025-09-22 12:00:24'),
-(65, 7, 'out', 1, 'sale', 24, NULL, 1, '2025-09-22 12:08:08'),
-(66, 7, 'in', 1, 'return', 24, 'Sale cancellation', 1, '2025-09-22 12:13:24'),
-(67, 11, 'out', 2, 'sale', 25, NULL, 1, '2025-09-22 12:28:36'),
-(68, 15, 'out', 1, 'sale', 25, NULL, 1, '2025-09-22 12:28:36'),
-(69, 11, 'out', 2, 'sale', 25, NULL, 1, '2025-09-22 12:28:36'),
-(70, 11, 'out', 1, 'sale', 26, NULL, 1, '2025-09-22 12:35:42'),
-(71, 11, 'out', 6, 'sale', 27, NULL, 1, '2025-09-22 14:09:07'),
-(72, 11, 'out', 10, 'sale', 28, NULL, 1, '2025-09-22 14:12:02'),
-(73, 10, 'out', 2, 'sale', 29, NULL, 1, '2025-09-22 14:14:01'),
-(74, 11, 'out', 5, 'sale', 29, NULL, 1, '2025-09-22 14:14:01'),
-(75, 11, 'out', 1, 'sale', 30, NULL, 1, '2025-09-22 14:46:35'),
-(76, 11, 'out', 3, 'sale', 31, NULL, 1, '2025-09-22 14:55:40'),
-(77, 11, 'out', 2, 'sale', 31, NULL, 1, '2025-09-22 14:55:40'),
-(78, 10, 'in', 20, 'return', 13, 'Sale cancellation', 1, '2025-09-22 15:12:46'),
-(79, 10, 'out', 1, 'sale', 32, NULL, 1, '2025-09-22 15:29:53'),
-(80, 11, 'out', 11, 'sale', 33, NULL, 1, '2025-09-22 15:31:58'),
-(81, 11, 'out', 5, 'sale', 34, NULL, 1, '2025-09-22 18:56:07'),
-(82, 15, 'out', 1, 'sale', 34, NULL, 1, '2025-09-22 18:56:07'),
-(83, 11, 'out', 12, 'sale', 35, NULL, 1, '2025-09-23 05:11:36'),
-(84, 11, 'out', 3, 'sale', 36, NULL, 1, '2025-09-23 07:29:31'),
-(85, 10, 'out', 3, 'sale', 36, NULL, 1, '2025-09-23 07:29:31'),
-(86, 8, 'out', 1, 'sale', 37, NULL, 1, '2025-09-23 07:30:40'),
-(87, 7, 'out', 1, 'sale', 38, NULL, 1, '2025-09-23 07:31:02'),
-(88, 11, 'out', 1, 'sale', 39, NULL, 1, '2025-09-23 07:36:07'),
-(89, 9, 'out', 1, 'sale', 39, NULL, 1, '2025-09-23 07:36:07'),
-(90, 14, 'out', 1, 'sale', 39, NULL, 1, '2025-09-23 07:36:07'),
-(91, 11, 'out', 3, 'sale', 40, NULL, 1, '2025-09-23 07:36:54'),
-(92, 10, 'out', 3, 'sale', 40, NULL, 1, '2025-09-23 07:36:54'),
-(93, 11, 'out', 10, 'sale', 41, NULL, 1, '2025-09-23 08:11:54'),
-(94, 11, 'out', 7, 'sale', 42, NULL, 1, '2025-09-23 08:27:21'),
-(95, 10, 'out', 6, 'sale', 43, NULL, 1, '2025-09-23 08:57:26'),
-(96, 20, 'in', 100, 'adjustment', NULL, 'Initial stock', 1, '2025-09-23 09:00:29'),
-(97, 20, 'out', 2, 'sale', 44, NULL, 1, '2025-09-23 09:01:07'),
-(98, 11, 'out', 7, 'sale', 45, NULL, 1, '2025-09-23 09:39:36'),
-(99, 11, 'out', 5, 'sale', 46, NULL, 1, '2025-09-23 09:58:50'),
-(100, 11, 'out', 4, 'sale', 47, NULL, 1, '2025-09-23 10:36:05'),
-(101, 11, 'out', 15, 'sale', 48, NULL, 1, '2025-09-23 11:20:26'),
-(102, 11, 'out', 2, 'sale', 49, NULL, 1, '2025-09-23 11:26:25'),
-(103, 10, 'out', 4, 'sale', 49, NULL, 1, '2025-09-23 11:26:25'),
-(104, 7, 'out', 5, 'sale', 49, NULL, 1, '2025-09-23 11:26:25'),
-(105, 7, 'out', 2, 'sale', 50, NULL, 1, '2025-09-23 11:32:54'),
-(106, 9, 'out', 1, 'sale', 51, NULL, 1, '2025-09-23 11:54:37'),
-(107, 11, 'out', 6, 'sale', 52, NULL, 1, '2025-09-23 12:15:24'),
-(108, 9, 'out', 3, 'sale', 53, NULL, 1, '2025-09-23 12:15:42'),
-(109, 7, 'out', 1, 'sale', 54, NULL, 1, '2025-09-23 12:16:20'),
-(110, 9, 'out', 1, 'sale', 55, NULL, 1, '2025-09-23 12:57:03'),
-(111, 13, 'out', 1, 'sale', 56, NULL, 1, '2025-09-23 12:58:07'),
-(112, 11, 'out', 6, 'sale', 57, NULL, 1, '2025-09-23 13:59:03'),
-(113, 13, 'out', 2, 'sale', 57, NULL, 1, '2025-09-23 13:59:03'),
-(114, 10, 'out', 2, 'sale', 57, NULL, 1, '2025-09-23 13:59:03'),
-(115, 11, 'out', 2, 'sale', 58, NULL, 1, '2025-09-23 14:23:08'),
-(116, 7, 'out', 1, 'sale', 59, NULL, 1, '2025-09-23 14:23:26'),
-(117, 7, 'out', 1, 'sale', 60, NULL, 1, '2025-09-23 14:38:57'),
-(118, 11, 'out', 1, 'sale', 61, NULL, 1, '2025-09-23 16:06:36'),
-(119, 10, 'out', 4, 'sale', 61, NULL, 1, '2025-09-23 16:06:36'),
-(120, 18, 'out', 2, 'sale', 62, NULL, 1, '2025-09-24 06:50:54'),
-(121, 11, 'out', 2, 'sale', 63, NULL, 1, '2025-09-24 06:51:11'),
-(122, 11, 'in', 2, 'return', 63, 'Sale cancellation', 1, '2025-09-24 06:51:52'),
-(123, 11, 'out', 2, 'sale', 64, NULL, 1, '2025-09-24 06:52:50'),
-(124, 11, 'out', 3, 'sale', 65, NULL, 1, '2025-09-24 06:54:04'),
-(125, 7, 'out', 1, 'sale', 65, NULL, 1, '2025-09-24 06:54:04'),
-(126, 17, 'out', 2, 'sale', 66, NULL, 1, '2025-09-24 07:17:18'),
-(127, 11, 'out', 5, 'sale', 67, NULL, 1, '2025-09-24 07:34:43'),
-(128, 11, 'out', 3, 'sale', 68, NULL, 1, '2025-09-24 07:40:54'),
-(129, 11, 'out', 1, 'sale', 69, NULL, 1, '2025-09-24 07:53:29'),
-(130, 11, 'out', 1, 'sale', 70, NULL, 1, '2025-09-24 07:58:25'),
-(131, 11, 'in', 1, 'return', 70, 'Sale cancellation', 1, '2025-09-24 07:58:36'),
-(132, 7, 'out', 1, 'sale', 71, NULL, 1, '2025-09-24 07:59:33'),
-(133, 18, 'out', 1, 'sale', 71, NULL, 1, '2025-09-24 07:59:33'),
-(134, 11, 'out', 7, 'sale', 72, NULL, 1, '2025-09-24 08:44:05'),
-(135, 10, 'out', 1, 'sale', 72, NULL, 1, '2025-09-24 08:44:05'),
-(136, 13, 'out', 1, 'sale', 72, NULL, 1, '2025-09-24 08:44:05'),
-(137, 13, 'out', 3, 'sale', 73, NULL, 1, '2025-09-24 09:45:48'),
-(138, 11, 'out', 5, 'sale', 74, NULL, 1, '2025-09-24 09:48:36'),
-(139, 10, 'out', 31, 'sale', 75, NULL, 1, '2025-09-24 09:53:50'),
-(140, 17, 'out', 1, 'sale', 76, NULL, 1, '2025-09-24 10:12:20'),
-(141, 10, 'out', 1, 'sale', 76, NULL, 1, '2025-09-24 10:12:20'),
-(142, 17, 'out', 4, 'sale', 77, NULL, 1, '2025-09-24 10:59:27'),
-(143, 18, 'out', 3, 'sale', 77, NULL, 1, '2025-09-24 10:59:27'),
-(144, 7, 'out', 1, 'sale', 77, NULL, 1, '2025-09-24 10:59:27'),
-(145, 22, 'in', 160, 'adjustment', NULL, 'Initial stock', 1, '2025-09-24 11:12:57'),
-(146, 22, 'out', 1, 'sale', 78, NULL, 1, '2025-09-24 11:13:45'),
-(147, 10, 'out', 6, 'sale', 78, NULL, 1, '2025-09-24 11:13:45'),
-(148, 9, 'out', 1, 'sale', 78, NULL, 1, '2025-09-24 11:13:45'),
-(149, 7, 'out', 1, 'sale', 79, NULL, 1, '2025-09-24 11:29:24'),
-(150, 11, 'out', 2, 'sale', 80, NULL, 1, '2025-09-24 11:35:31'),
-(151, 11, 'out', 8, 'sale', 81, NULL, 1, '2025-09-24 12:01:47'),
-(152, 11, 'out', 3, 'sale', 82, NULL, 1, '2025-09-24 12:59:48'),
-(153, 15, 'out', 1, 'sale', 83, NULL, 1, '2025-09-24 13:01:08'),
-(154, 11, 'out', 7, 'sale', 84, NULL, 1, '2025-09-24 13:16:07'),
-(155, 11, 'out', 1, 'sale', 85, NULL, 1, '2025-09-24 13:54:15'),
-(156, 13, 'out', 7, 'sale', 85, NULL, 1, '2025-09-24 13:54:15'),
-(157, 11, 'out', 1, 'sale', 86, NULL, 1, '2025-09-24 14:06:27'),
-(158, 7, 'out', 1, 'sale', 87, NULL, 1, '2025-09-24 14:14:56'),
-(159, 11, 'out', 1, 'sale', 88, NULL, 1, '2025-09-24 14:16:30'),
-(160, 22, 'out', 2, 'sale', 89, NULL, 1, '2025-09-24 14:36:16'),
-(161, 11, 'out', 7, 'sale', 89, NULL, 1, '2025-09-24 14:36:16'),
-(162, 11, 'out', 12, 'sale', 90, NULL, 1, '2025-09-24 15:11:04'),
-(163, 22, 'out', 1, 'sale', 91, NULL, 1, '2025-09-24 15:38:47'),
-(164, 11, 'out', 1, 'sale', 92, NULL, 1, '2025-09-24 15:39:19'),
-(165, 11, 'out', 10, 'sale', 93, NULL, 1, '2025-09-24 17:21:39'),
-(166, 15, 'out', 4, 'sale', 93, NULL, 1, '2025-09-24 17:21:39'),
-(167, 11, 'out', 6, 'sale', 94, NULL, 1, '2025-09-24 17:28:26'),
-(168, 10, 'out', 1, 'sale', 95, NULL, 1, '2025-09-25 05:50:02'),
-(169, 11, 'out', 4, 'sale', 95, NULL, 1, '2025-09-25 05:50:02'),
-(170, 16, 'out', 1, 'sale', 96, NULL, 1, '2025-09-25 05:50:38'),
-(171, 11, 'out', 5, 'sale', 97, NULL, 1, '2025-09-25 05:50:57'),
-(172, 11, 'out', 10, 'sale', 98, NULL, 1, '2025-09-25 06:34:06'),
-(173, 11, 'out', 5, 'sale', 99, NULL, 1, '2025-09-25 07:07:38'),
-(174, 11, 'out', 11, 'sale', 100, NULL, 1, '2025-09-25 07:17:26'),
-(175, 17, 'out', 4, 'sale', 101, NULL, 1, '2025-09-25 07:24:05'),
-(176, 11, 'out', 1, 'sale', 101, NULL, 1, '2025-09-25 07:24:05'),
-(177, 11, 'out', 9, 'sale', 102, NULL, 1, '2025-09-25 07:25:51'),
-(178, 17, 'out', 2, 'sale', 102, NULL, 1, '2025-09-25 07:25:51'),
-(179, 11, 'out', 8, 'sale', 103, NULL, 1, '2025-09-25 07:40:29'),
-(180, 11, 'out', 5, 'sale', 104, NULL, 1, '2025-09-25 12:03:08'),
-(181, 17, 'out', 3, 'sale', 104, NULL, 1, '2025-09-25 12:03:08'),
-(182, 18, 'out', 1, 'sale', 104, NULL, 1, '2025-09-25 12:03:08'),
-(183, 16, 'out', 4, 'sale', 105, NULL, 1, '2025-09-25 13:07:30'),
-(184, 7, 'out', 1, 'sale', 105, NULL, 1, '2025-09-25 13:07:30'),
-(185, 18, 'out', 1, 'sale', 105, NULL, 1, '2025-09-25 13:07:30'),
-(186, 13, 'out', 7, 'sale', 106, NULL, 1, '2025-09-26 07:13:20'),
-(187, 11, 'out', 1, 'sale', 106, NULL, 1, '2025-09-26 07:13:20'),
-(188, 18, 'out', 1, 'sale', 107, NULL, 1, '2025-09-26 07:16:14'),
-(189, 14, 'out', 1, 'sale', 107, NULL, 1, '2025-09-26 07:16:14'),
-(190, 20, 'out', 6, 'sale', 107, NULL, 1, '2025-09-26 07:16:14'),
-(191, 11, 'out', 2, 'sale', 108, NULL, 1, '2025-09-26 07:16:29'),
-(192, 11, 'out', 11, 'sale', 109, NULL, 1, '2025-09-26 08:18:53'),
-(193, 7, 'out', 4, 'sale', 110, NULL, 1, '2025-09-26 09:32:39'),
-(194, 11, 'out', 3, 'sale', 110, NULL, 1, '2025-09-26 09:32:39'),
-(195, 10, 'out', 4, 'sale', 110, NULL, 1, '2025-09-26 09:32:39'),
-(196, 10, 'out', 2, 'sale', 111, NULL, 1, '2025-09-26 09:33:25'),
-(197, 18, 'out', 4, 'sale', 112, NULL, 1, '2025-09-26 10:16:49'),
-(198, 17, 'out', 2, 'sale', 112, NULL, 1, '2025-09-26 10:16:49'),
-(199, 7, 'out', 5, 'sale', 112, NULL, 1, '2025-09-26 10:16:49'),
-(200, 11, 'in', 2000, 'purchase', 2, NULL, 1, '2025-09-26 10:28:54'),
-(201, 14, 'out', 2, 'sale', 113, NULL, 1, '2025-09-26 10:45:10'),
-(202, 11, 'out', 5, 'sale', 113, NULL, 1, '2025-09-26 10:45:10'),
-(203, 7, 'out', 1, 'sale', 114, NULL, 1, '2025-09-26 10:55:17'),
-(204, 16, 'out', 1, 'sale', 115, NULL, 1, '2025-09-26 10:56:25'),
-(205, 11, 'out', 6, 'sale', 116, NULL, 1, '2025-09-26 11:00:43'),
-(206, 7, 'out', 1, 'sale', 117, NULL, 1, '2025-09-26 13:42:10'),
-(207, 16, 'out', 1, 'sale', 118, NULL, 1, '2025-09-26 13:43:10'),
-(208, 11, 'out', 3, 'sale', 118, NULL, 1, '2025-09-26 13:43:10'),
-(209, 7, 'out', 1, 'sale', 119, NULL, 1, '2025-09-26 14:52:32'),
-(210, 18, 'out', 77, 'adjustment', NULL, '', 1, '2025-09-27 07:08:16'),
-(211, 18, 'out', 133, 'adjustment', NULL, '', 1, '2025-09-27 07:09:11'),
-(212, 18, 'in', 10, 'adjustment', NULL, '', 1, '2025-09-27 07:09:37'),
-(213, 18, 'out', 77, 'adjustment', NULL, '', 1, '2025-09-27 07:42:12'),
-(214, 18, 'in', 100, 'adjustment', NULL, '', 1, '2025-09-27 09:27:58'),
-(215, 10, 'out', 6, 'sale', 120, NULL, 1, '2025-09-27 09:34:00'),
-(216, 17, 'out', 5, 'sale', 120, NULL, 1, '2025-09-27 09:34:00'),
-(217, 18, 'out', 3, 'sale', 120, NULL, 1, '2025-09-27 09:34:00'),
-(218, 7, 'out', 9, 'sale', 120, NULL, 1, '2025-09-27 09:34:00'),
-(219, 8, 'out', 1, 'sale', 120, NULL, 1, '2025-09-27 09:34:00'),
-(220, 10, 'out', 30, 'sale', 121, NULL, 1, '2025-09-27 15:04:59'),
-(221, 13, 'out', 10, 'sale', 122, NULL, 1, '2025-09-28 05:27:27'),
-(222, 10, 'out', 3, 'sale', 122, NULL, 1, '2025-09-28 05:27:27'),
-(223, 22, 'out', 3, 'sale', 122, NULL, 1, '2025-09-28 05:27:27'),
-(224, 23, 'in', 50, 'adjustment', NULL, 'Initial stock', 1, '2025-09-28 05:32:36'),
-(225, 23, 'out', 1, 'sale', 123, NULL, 1, '2025-09-28 06:37:46'),
-(226, 10, 'out', 20, 'sale', 124, NULL, 1, '2025-09-28 08:16:13'),
-(227, 11, 'out', 10, 'sale', 124, NULL, 1, '2025-09-28 08:16:13'),
-(228, 8, 'out', 2, 'sale', 125, NULL, 1, '2025-09-28 09:23:32'),
-(229, 10, 'out', 1, 'sale', 126, NULL, 1, '2025-09-28 09:50:04'),
-(230, 10, 'out', 1, 'sale', 127, NULL, 1, '2025-09-28 10:05:46'),
-(231, 10, 'in', 1, 'return', 126, 'Sale cancellation', 1, '2025-09-28 10:06:38'),
-(232, 11, 'out', 18, 'sale', 128, NULL, 1, '2025-09-28 11:10:43'),
-(233, 9, 'out', 1, 'sale', 128, NULL, 1, '2025-09-28 11:10:43'),
-(234, 11, 'out', 6, 'sale', 129, NULL, 1, '2025-09-28 14:05:42'),
-(235, 20, 'out', 8, 'sale', 130, NULL, 1, '2025-09-28 14:44:31'),
-(236, 11, 'out', 18, 'sale', 131, NULL, 1, '2025-09-28 14:47:12'),
-(237, 9, 'out', 1, 'sale', 131, NULL, 1, '2025-09-28 14:47:12'),
-(238, 20, 'out', 4, 'sale', 132, NULL, 1, '2025-09-28 15:26:31'),
-(239, 11, 'out', 18, 'sale', 133, NULL, 1, '2025-09-28 16:59:43'),
-(240, 18, 'out', 5, 'sale', 134, NULL, 1, '2025-09-29 05:33:32'),
-(241, 10, 'out', 3, 'sale', 134, NULL, 1, '2025-09-29 05:33:32'),
-(242, 10, 'out', 4, 'sale', 135, NULL, 1, '2025-09-29 06:46:24'),
-(243, 11, 'out', 5, 'sale', 136, NULL, 1, '2025-09-29 07:31:15'),
-(244, 11, 'out', 12, 'sale', 136, NULL, 1, '2025-09-29 07:31:15'),
-(245, 22, 'out', 1, 'sale', 137, NULL, 1, '2025-09-29 08:03:45'),
-(246, 10, 'out', 1, 'sale', 138, NULL, 1, '2025-09-29 08:22:35'),
-(247, 10, 'in', 1, 'return', 138, 'Sale cancellation', 1, '2025-09-29 08:23:24'),
-(248, 10, 'out', 5, 'sale', 139, NULL, 1, '2025-09-29 08:23:50'),
-(249, 11, 'out', 5, 'sale', 140, NULL, 1, '2025-09-29 08:26:28'),
-(250, 11, 'out', 10, 'sale', 141, NULL, 1, '2025-09-29 09:04:43'),
-(251, 10, 'out', 3, 'sale', 141, NULL, 1, '2025-09-29 09:04:43'),
-(252, 18, 'out', 3, 'sale', 142, NULL, 1, '2025-09-29 09:06:08'),
-(253, 17, 'out', 1, 'sale', 142, NULL, 1, '2025-09-29 09:06:08'),
-(254, 20, 'out', 4, 'sale', 143, NULL, 1, '2025-09-29 09:08:24'),
-(255, 11, 'out', 12, 'sale', 144, NULL, 1, '2025-09-29 09:16:34'),
-(256, 11, 'in', 10, 'return', 141, 'Sale cancellation', 1, '2025-09-29 09:21:54'),
-(257, 10, 'in', 3, 'return', 141, 'Sale cancellation', 1, '2025-09-29 09:21:54'),
-(258, 11, 'out', 10, 'sale', 145, NULL, 1, '2025-09-29 09:24:49'),
-(259, 18, 'out', 3, 'sale', 146, NULL, 1, '2025-09-29 09:27:25'),
-(260, 11, 'out', 8, 'sale', 146, NULL, 1, '2025-09-29 09:27:25'),
-(261, 15, 'out', 1, 'sale', 147, NULL, 1, '2025-09-29 09:31:11'),
-(262, 7, 'out', 1, 'sale', 148, NULL, 1, '2025-09-29 10:08:48'),
-(263, 11, 'out', 6, 'sale', 149, NULL, 1, '2025-09-29 10:26:09'),
-(264, 11, 'out', 5, 'sale', 150, NULL, 1, '2025-09-29 12:45:19'),
-(265, 11, 'out', 5, 'sale', 151, NULL, 1, '2025-09-29 12:45:53'),
-(266, 11, 'out', 2, 'sale', 152, NULL, 1, '2025-09-29 13:59:24'),
-(267, 16, 'out', 5, 'sale', 153, NULL, 1, '2025-09-29 14:03:18'),
-(268, 7, 'out', 3, 'sale', 154, NULL, 1, '2025-09-29 14:14:42'),
-(269, 16, 'out', 2, 'sale', 155, NULL, 1, '2025-09-29 15:23:19'),
-(270, 10, 'out', 7, 'sale', 156, NULL, 1, '2025-09-29 15:48:09'),
-(271, 11, 'out', 1, 'sale', 156, NULL, 1, '2025-09-29 15:48:09'),
-(272, 17, 'out', 1, 'sale', 156, NULL, 1, '2025-09-29 15:48:09'),
-(273, 7, 'out', 1, 'sale', 157, NULL, 1, '2025-09-29 16:30:34'),
-(274, 16, 'out', 1, 'sale', 158, NULL, 1, '2025-09-29 16:54:41'),
-(275, 10, 'out', 1, 'sale', 159, NULL, 1, '2025-09-29 18:08:39'),
-(276, 11, 'out', 18, 'sale', 160, NULL, 1, '2025-09-30 05:33:17'),
-(277, 9, 'out', 1, 'sale', 161, NULL, 1, '2025-09-30 05:49:23'),
-(278, 7, 'out', 1, 'sale', 161, NULL, 1, '2025-09-30 05:49:23'),
-(279, 18, 'out', 8, 'sale', 162, NULL, 1, '2025-09-30 05:50:02'),
-(280, 17, 'out', 2, 'sale', 163, NULL, 1, '2025-09-30 07:23:39'),
-(281, 11, 'out', 2, 'sale', 163, NULL, 1, '2025-09-30 07:23:39'),
-(282, 9, 'out', 3, 'sale', 163, NULL, 1, '2025-09-30 07:23:39'),
-(283, 10, 'out', 2, 'sale', 163, NULL, 1, '2025-09-30 07:23:39'),
-(284, 8, 'out', 2, 'sale', 163, NULL, 1, '2025-09-30 07:23:39'),
-(285, 10, 'out', 10, 'sale', 164, NULL, 1, '2025-09-30 07:24:31'),
-(286, 11, 'out', 10, 'sale', 164, NULL, 1, '2025-09-30 07:24:31'),
-(287, 17, 'out', 1, 'sale', 165, NULL, 1, '2025-09-30 07:24:56'),
-(288, 11, 'out', 6, 'sale', 166, NULL, 1, '2025-09-30 09:31:51'),
-(289, 7, 'out', 3, 'sale', 166, NULL, 1, '2025-09-30 09:31:51'),
-(290, 13, 'out', 12, 'sale', 167, NULL, 1, '2025-09-30 10:26:27'),
-(291, 17, 'out', 1, 'sale', 168, NULL, 1, '2025-09-30 10:34:44'),
-(292, 7, 'out', 1, 'sale', 168, NULL, 1, '2025-09-30 10:34:44'),
-(293, 16, 'out', 2, 'sale', 168, NULL, 1, '2025-09-30 10:34:44'),
-(294, 10, 'out', 1, 'sale', 168, NULL, 1, '2025-09-30 10:34:44'),
-(295, 11, 'out', 5, 'sale', 169, NULL, 1, '2025-09-30 10:35:28'),
-(296, 10, 'out', 5, 'sale', 170, NULL, 1, '2025-09-30 14:17:37'),
-(297, 11, 'out', 10, 'sale', 170, NULL, 1, '2025-09-30 14:17:37'),
-(298, 11, 'out', 8, 'sale', 171, NULL, 1, '2025-10-01 08:54:46'),
-(299, 10, 'out', 11, 'sale', 172, NULL, 1, '2025-10-01 08:57:35'),
-(300, 11, 'out', 4, 'sale', 172, NULL, 1, '2025-10-01 08:57:35'),
-(301, 14, 'out', 1, 'sale', 173, NULL, 1, '2025-10-01 11:31:28'),
-(302, 7, 'out', 1, 'sale', 173, NULL, 1, '2025-10-01 11:31:28'),
-(303, 24, 'in', 20, 'adjustment', NULL, 'Initial stock', 1, '2025-10-01 11:45:41'),
-(304, 14, 'out', 1, 'sale', 174, NULL, 1, '2025-10-01 12:01:58'),
-(305, 21, 'in', 15, 'adjustment', NULL, 'Stock adjustment', 1, '2025-10-01 13:07:18'),
-(306, 11, 'out', 2, 'sale', 175, NULL, 1, '2025-10-01 15:53:29'),
-(307, 10, 'out', 1, 'sale', 175, NULL, 1, '2025-10-01 15:53:29'),
-(308, 16, 'out', 2, 'sale', 176, NULL, 1, '2025-10-01 17:24:31'),
-(309, 16, 'out', 18, 'sale', 177, NULL, 1, '2025-10-01 17:46:48'),
-(310, 15, 'in', 137, 'adjustment', NULL, 'Stock adjustment', 1, '2025-10-05 11:39:19'),
-(311, 11, 'out', 1539, 'adjustment', NULL, 'Stock adjustment', 1, '2025-10-05 11:40:22'),
-(312, 7, 'in', 250, 'adjustment', NULL, 'Stock adjustment', 1, '2025-10-05 11:41:12'),
-(313, 16, 'out', 221, 'adjustment', NULL, 'Stock adjustment', 1, '2025-10-05 11:42:19'),
-(314, 8, 'in', 230, 'purchase', 3, NULL, 1, '2025-10-05 11:49:24'),
-(315, 15, 'in', 225, 'purchase', 4, NULL, 1, '2025-10-05 11:51:15'),
-(316, 7, 'in', 200, 'purchase', 5, NULL, 1, '2025-10-05 11:56:19'),
-(317, 11, 'in', 450, 'purchase', 5, NULL, 1, '2025-10-05 11:56:19'),
-(318, 9, 'in', 180, 'purchase', 6, NULL, 1, '2025-10-05 11:58:43'),
-(319, 13, 'out', 9, 'sale', 178, NULL, 1, '2025-10-06 08:42:22'),
-(320, 11, 'out', 6, 'sale', 178, NULL, 1, '2025-10-06 08:42:22'),
-(321, 10, 'out', 5, 'sale', 178, NULL, 1, '2025-10-06 08:42:22'),
-(322, 11, 'out', 4, 'sale', 178, NULL, 1, '2025-10-06 08:42:22'),
-(323, 10, 'out', 8, 'sale', 179, NULL, 1, '2025-10-07 09:47:57'),
-(324, 11, 'out', 14, 'sale', 180, NULL, 1, '2025-10-07 09:51:31'),
-(325, 7, 'out', 2, 'sale', 180, NULL, 1, '2025-10-07 09:51:31'),
-(326, 11, 'out', 1, 'sale', 180, NULL, 1, '2025-10-07 09:51:31'),
-(327, 9, 'out', 2, 'sale', 180, NULL, 1, '2025-10-07 09:51:31'),
-(328, 11, 'out', 2, 'sale', 180, NULL, 1, '2025-10-07 09:51:31'),
-(329, 15, 'out', 3, 'sale', 180, NULL, 1, '2025-10-07 09:51:31'),
-(330, 7, 'out', 1, 'sale', 180, NULL, 1, '2025-10-07 09:51:31'),
-(331, 11, 'out', 4, 'sale', 181, NULL, 1, '2025-10-07 09:52:01'),
-(332, 8, 'out', 204, 'adjustment', NULL, 'Stock adjustment', 1, '2025-10-10 16:17:12'),
-(333, 7, 'out', 8, 'sale', 182, NULL, 1, '2025-10-22 12:56:52'),
-(334, 10, 'out', 100, 'sale', 182, NULL, 1, '2025-10-22 12:56:52'),
-(335, 25, 'in', 200, 'adjustment', NULL, 'Initial stock', 1, '2025-10-22 12:59:25'),
-(336, 25, 'out', 8, 'sale', 183, NULL, 1, '2025-10-22 12:59:57'),
-(337, 9, 'out', 5, 'sale', 184, NULL, 1, '2025-10-22 13:00:50'),
-(338, 11, 'out', 30, 'sale', 184, NULL, 1, '2025-10-22 13:00:50'),
-(339, 18, 'out', 5, 'sale', 185, NULL, 1, '2025-10-22 13:02:33'),
-(340, 17, 'out', 5, 'sale', 185, NULL, 1, '2025-10-22 13:02:33'),
-(341, 16, 'out', 2, 'sale', 185, NULL, 1, '2025-10-22 13:02:33'),
-(342, 7, 'out', 1, 'sale', 185, NULL, 1, '2025-10-22 13:02:33'),
-(343, 11, 'in', 100, 'adjustment', NULL, '', 1, '2025-10-22 13:27:56'),
-(344, 11, 'out', 9, 'sale', 186, NULL, 1, '2025-10-22 13:51:41'),
-(345, 9, 'out', 2, 'sale', 186, NULL, 1, '2025-10-22 13:51:41'),
-(346, 11, 'out', 6, 'sale', 187, NULL, 1, '2025-10-27 13:31:29'),
-(347, 15, 'out', 4, 'sale', 187, NULL, 1, '2025-10-27 13:31:29'),
-(348, 7, 'out', 5, 'sale', 187, NULL, 1, '2025-10-27 13:31:29'),
-(349, 25, 'out', 4, 'sale', 187, NULL, 1, '2025-10-27 13:31:29'),
-(350, 7, 'in', 100, 'purchase', 7, NULL, 1, '2025-11-07 16:03:25'),
-(351, 8, 'in', 100, 'purchase', 7, NULL, 1, '2025-11-07 16:03:25'),
-(352, 10, 'in', 300, 'purchase', 7, NULL, 1, '2025-11-07 16:03:25'),
-(353, 26, 'in', 300, 'adjustment', NULL, 'Initial stock', 1, '2025-11-08 16:02:22'),
-(354, 7, 'out', 4, 'sale', 188, NULL, 1, '2025-11-16 17:32:54'),
-(355, 8, 'out', 2, 'sale', 188, NULL, 1, '2025-11-16 17:32:54'),
-(356, 25, 'out', 6, 'sale', 188, NULL, 1, '2025-11-16 17:32:54'),
-(357, 25, 'out', 15, 'sale', 189, NULL, 1, '2025-11-16 17:55:06'),
-(358, 25, 'out', 20, 'sale', 190, NULL, 1, '2025-11-20 18:36:01'),
-(359, 10, 'out', 15, 'sale', 190, NULL, 1, '2025-11-20 18:36:01'),
-(360, 26, 'out', 7, 'sale', 191, NULL, 1, '2025-11-25 09:40:12'),
-(361, 15, 'out', 2, 'sale', 191, NULL, 1, '2025-11-25 09:40:12'),
-(362, 26, 'out', 1, 'sale', 191, NULL, 1, '2025-11-25 09:40:12'),
-(363, 11, 'out', 6, 'sale', 191, NULL, 1, '2025-11-25 09:40:12'),
-(364, 25, 'out', 4, 'sale', 192, NULL, 1, '2025-11-25 10:50:43'),
-(365, 10, 'out', 3, 'sale', 192, NULL, 1, '2025-11-25 10:50:43'),
-(366, 11, 'out', 3, 'sale', 192, NULL, 1, '2025-11-25 10:50:43'),
-(367, 10, 'out', 25, 'sale', 193, NULL, 1, '2025-11-28 14:20:56'),
-(368, 25, 'out', 29, 'sale', 193, NULL, 1, '2025-11-28 14:20:56'),
-(369, 10, 'out', 25, 'sale', 194, NULL, 1, '2025-11-28 14:22:03'),
-(370, 25, 'out', 29, 'sale', 194, NULL, 1, '2025-11-28 14:22:03'),
-(371, 25, 'out', 47, 'sale', 195, NULL, 1, '2025-12-01 08:40:00'),
-(372, 10, 'out', 13, 'sale', 195, NULL, 1, '2025-12-01 08:40:00'),
-(373, 10, 'out', 17, 'sale', 195, NULL, 1, '2025-12-01 08:40:00'),
-(374, 10, 'out', 15, 'sale', 195, NULL, 1, '2025-12-01 08:40:00'),
-(375, 11, 'out', 15, 'sale', 195, NULL, 1, '2025-12-01 08:40:00'),
-(376, 11, 'out', 3, 'sale', 195, NULL, 1, '2025-12-01 08:40:00'),
-(377, 11, 'out', 5, 'sale', 195, NULL, 1, '2025-12-01 08:40:00'),
-(378, 15, 'out', 1, 'sale', 195, NULL, 1, '2025-12-01 08:40:00'),
-(379, 26, 'out', 5, 'sale', 195, NULL, 1, '2025-12-01 08:40:00'),
-(380, 11, 'out', 7, 'sale', 195, NULL, 1, '2025-12-01 08:40:00'),
-(381, 10, 'out', 10, 'sale', 196, NULL, 1, '2025-12-01 10:55:51'),
-(382, 25, 'out', 10, 'sale', 196, NULL, 1, '2025-12-01 10:55:51'),
-(383, 8, 'out', 4, 'sale', 196, NULL, 1, '2025-12-01 10:55:51'),
-(384, 7, 'out', 6, 'sale', 196, NULL, 1, '2025-12-01 10:55:51'),
-(385, 10, 'out', 12, 'sale', 197, NULL, 1, '2025-12-12 09:06:25'),
-(386, 10, 'out', 4, 'sale', 197, NULL, 1, '2025-12-12 09:06:25'),
-(387, 13, 'out', 4, 'sale', 197, NULL, 1, '2025-12-12 09:06:25'),
-(388, 11, 'out', 5, 'sale', 197, NULL, 1, '2025-12-12 09:06:25'),
-(389, 15, 'out', 1, 'sale', 197, NULL, 1, '2025-12-12 09:06:25'),
-(390, 26, 'out', 6, 'sale', 197, NULL, 1, '2025-12-12 09:06:25'),
-(391, 11, 'out', 4, 'sale', 198, NULL, 1, '2025-12-12 09:20:46'),
-(392, 25, 'out', 1, 'sale', 199, NULL, 1, '2025-12-12 13:02:54'),
-(393, 11, 'out', 8, 'sale', 199, NULL, 1, '2025-12-12 13:02:54'),
-(394, 9, 'out', 5, 'sale', 199, NULL, 1, '2025-12-12 13:02:54'),
-(395, 7, 'out', 7, 'sale', 200, NULL, 1, '2025-12-12 15:26:50'),
-(396, 7, 'out', 2, 'sale', 201, NULL, 1, '2025-12-13 03:24:36'),
-(397, 7, 'out', 2, 'sale', 202, NULL, 1, '2025-12-13 03:28:10'),
-(398, 7, 'out', 1, 'sale', 203, NULL, 1, '2025-12-13 03:29:02'),
-(399, 25, 'out', 3, 'sale', 204, NULL, 1, '2025-12-13 10:25:07'),
-(400, 10, 'out', 2, 'sale', 204, NULL, 1, '2025-12-13 10:25:07'),
-(401, 9, 'out', 1, 'sale', 204, NULL, 1, '2025-12-13 10:25:07'),
-(402, 11, 'out', 10, 'sale', 204, NULL, 1, '2025-12-13 10:25:07'),
-(403, 7, 'out', 5, 'sale', 204, NULL, 1, '2025-12-13 10:25:07'),
-(404, 8, 'out', 3, 'sale', 204, NULL, 1, '2025-12-13 10:25:07'),
-(405, 27, 'in', 240, 'adjustment', NULL, 'Initial stock', 1, '2026-01-02 09:10:41'),
-(406, 29, 'in', 240, 'adjustment', NULL, 'Initial stock', 1, '2026-01-02 09:12:09'),
-(407, 16, 'out', 10, 'sale', 205, NULL, 1, '2026-01-02 09:14:03'),
-(408, 27, 'out', 5, 'sale', 205, NULL, 1, '2026-01-02 09:14:03'),
-(409, 20, 'out', 10, 'sale', 205, NULL, 1, '2026-01-02 09:14:03'),
-(410, 16, 'out', 15, 'sale', 206, NULL, 1, '2026-02-28 09:16:34'),
-(411, 13, 'out', 1, 'sale', 206, NULL, 1, '2026-02-28 09:16:34'),
-(412, 7, 'out', 2, 'sale', 207, NULL, 1, '2026-02-28 09:37:06'),
-(413, 16, 'out', 2, 'sale', 207, NULL, 1, '2026-02-28 09:37:06'),
-(414, 16, 'in', 15, 'return', 206, 'Sale cancellation', 1, '2026-02-28 09:39:33'),
-(415, 13, 'in', 1, 'return', 206, 'Sale cancellation', 1, '2026-02-28 09:39:33'),
-(416, 19, 'out', 10, 'sale', 208, NULL, 1, '2026-03-29 14:30:01'),
-(417, 19, 'out', 10, 'sale', 209, NULL, 1, '2026-03-29 14:30:05');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (1, 1, 'in', 300, 'adjustment', NULL, 'Initial stock', 1, '2025-09-21 09:16:38');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (2, 1, 'out', 1, 'sale', 1, NULL, 1, '2025-09-21 09:18:08');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (3, 4, 'in', 1000, 'adjustment', NULL, 'Initial stock', 1, '2025-09-21 09:34:16');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (4, 4, 'out', 6, 'sale', 2, NULL, 1, '2025-09-21 10:09:25');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (5, 4, 'out', 1, 'sale', 2, NULL, 1, '2025-09-21 10:09:25');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (6, 6, 'in', 700, 'adjustment', NULL, 'Initial stock', 1, '2025-09-21 10:11:37');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (7, 6, 'out', 6, 'sale', 3, NULL, 1, '2025-09-21 10:13:38');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (8, 1, 'out', 250, 'adjustment', NULL, '', 1, '2025-09-21 10:51:53');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (9, 6, 'in', 6, 'return', 3, 'Sale cancellation', 1, '2025-09-21 11:02:17');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (10, 4, 'in', 6, 'return', 2, 'Sale cancellation', 1, '2025-09-21 11:02:22');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (11, 4, 'in', 1, 'return', 2, 'Sale cancellation', 1, '2025-09-21 11:02:22');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (12, 1, 'in', 1, 'return', 1, 'Sale cancellation', 1, '2025-09-21 11:02:26');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (13, 1, 'in', 1, 'return', 1, 'Sale cancellation', 1, '2025-09-21 11:02:36');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (14, 7, 'in', 100, 'adjustment', NULL, 'Initial stock', 1, '2025-09-21 11:08:25');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (15, 8, 'in', 100, 'adjustment', NULL, 'Initial stock', 1, '2025-09-21 11:11:10');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (16, 9, 'in', 100, 'adjustment', NULL, 'Initial stock', 1, '2025-09-21 11:14:06');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (17, 10, 'in', 100, 'adjustment', NULL, 'Initial stock', 1, '2025-09-21 11:37:19');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (18, 11, 'in', 100, 'adjustment', NULL, 'Initial stock', 1, '2025-09-21 11:38:45');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (19, 13, 'in', 100, 'adjustment', NULL, 'Initial stock', 1, '2025-09-21 11:42:20');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (20, 14, 'in', 100, 'adjustment', NULL, 'Initial stock', 1, '2025-09-21 11:43:56');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (21, 9, 'out', 1, 'sale', 4, NULL, 1, '2025-09-21 11:55:43');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (22, 13, 'out', 1, 'sale', 5, NULL, 1, '2025-09-21 11:56:20');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (23, 11, 'out', 8, 'sale', 6, NULL, 1, '2025-09-21 11:56:55');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (24, 9, 'out', 1, 'sale', 7, NULL, 1, '2025-09-21 13:15:02');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (25, 7, 'out', 10, 'sale', 8, NULL, 1, '2025-09-21 13:24:45');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (26, 7, 'in', 10, 'return', 8, 'Sale cancellation', 1, '2025-09-21 13:28:51');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (27, 15, 'in', 100, 'adjustment', NULL, 'Initial stock', 1, '2025-09-21 15:12:42');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (28, 15, 'out', 8, 'sale', 9, NULL, 1, '2025-09-21 15:14:32');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (29, 11, 'out', 1, 'sale', 10, NULL, 1, '2025-09-21 15:18:02');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (30, 9, 'in', 1, 'return', 4, 'Sale cancellation', 1, '2025-09-21 15:26:26');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (31, 13, 'in', 1, 'return', 5, 'Sale cancellation', 1, '2025-09-21 15:26:44');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (32, 11, 'in', 8, 'return', 6, 'Sale cancellation', 1, '2025-09-21 15:26:49');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (33, 9, 'in', 1, 'return', 7, 'Sale cancellation', 1, '2025-09-21 16:16:49');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (34, 15, 'in', 8, 'return', 9, 'Sale cancellation', 1, '2025-09-21 16:17:06');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (35, 11, 'in', 1, 'return', 10, 'Sale cancellation', 1, '2025-09-21 16:17:18');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (36, 16, 'in', 200, 'adjustment', NULL, 'Initial stock', 1, '2025-09-21 16:25:21');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (37, 16, 'out', 2, 'sale', 11, NULL, 1, '2025-09-21 16:26:13');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (38, 16, 'in', 200, 'purchase', 1, NULL, 1, '2025-09-21 16:28:18');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (39, 17, 'in', 130, 'adjustment', NULL, 'Initial stock', 1, '2025-09-21 16:30:18');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (40, 18, 'in', 10000, 'adjustment', NULL, 'Initial stock', 1, '2025-09-21 16:32:28');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (41, 10, 'out', 36, 'sale', 12, NULL, 1, '2025-09-21 16:37:23');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (42, 10, 'out', 20, 'sale', 13, NULL, 1, '2025-09-22 02:35:04');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (43, 18, 'out', 100, 'adjustment', NULL, '', 1, '2025-09-22 03:08:55');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (44, 18, 'out', 810, 'adjustment', NULL, '', 1, '2025-09-22 03:09:30');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (45, 18, 'out', 8800, 'adjustment', NULL, '', 1, '2025-09-22 03:10:22');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (46, 11, 'out', 7, 'sale', 14, NULL, 1, '2025-09-22 07:30:12');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (47, 11, 'out', 4, 'sale', 15, NULL, 1, '2025-09-22 07:43:14');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (48, 15, 'out', 2, 'sale', 16, NULL, 1, '2025-09-22 10:33:27');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (49, 11, 'out', 18, 'sale', 17, NULL, 1, '2025-09-22 10:37:14');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (50, 11, 'out', 2, 'sale', 18, NULL, 1, '2025-09-22 10:38:38');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (51, 9, 'out', 1, 'sale', 19, NULL, 1, '2025-09-22 10:44:57');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (52, 15, 'out', 2, 'sale', 19, NULL, 1, '2025-09-22 10:44:57');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (53, 7, 'out', 1, 'sale', 19, NULL, 1, '2025-09-22 10:44:57');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (54, 11, 'out', 6, 'sale', 19, NULL, 1, '2025-09-22 10:44:57');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (55, 11, 'out', 2, 'sale', 19, NULL, 1, '2025-09-22 10:44:57');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (56, 11, 'out', 10, 'sale', 20, NULL, 1, '2025-09-22 10:47:10');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (57, 14, 'out', 5, 'sale', 20, NULL, 1, '2025-09-22 10:47:10');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (58, 10, 'out', 5, 'sale', 20, NULL, 1, '2025-09-22 10:47:10');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (59, 11, 'in', 1000, 'adjustment', NULL, '', 1, '2025-09-22 10:56:09');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (60, 10, 'in', 1000, 'adjustment', NULL, '', 1, '2025-09-22 10:59:11');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (61, 10, 'out', 100, 'sale', 21, NULL, 1, '2025-09-22 11:01:17');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (62, 19, 'in', 50, 'adjustment', NULL, 'Initial stock', 1, '2025-09-22 11:57:34');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (63, 19, 'out', 1, 'sale', 22, NULL, 1, '2025-09-22 11:58:05');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (64, 19, 'out', 1, 'sale', 23, NULL, 1, '2025-09-22 12:00:24');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (65, 7, 'out', 1, 'sale', 24, NULL, 1, '2025-09-22 12:08:08');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (66, 7, 'in', 1, 'return', 24, 'Sale cancellation', 1, '2025-09-22 12:13:24');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (67, 11, 'out', 2, 'sale', 25, NULL, 1, '2025-09-22 12:28:36');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (68, 15, 'out', 1, 'sale', 25, NULL, 1, '2025-09-22 12:28:36');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (69, 11, 'out', 2, 'sale', 25, NULL, 1, '2025-09-22 12:28:36');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (70, 11, 'out', 1, 'sale', 26, NULL, 1, '2025-09-22 12:35:42');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (71, 11, 'out', 6, 'sale', 27, NULL, 1, '2025-09-22 14:09:07');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (72, 11, 'out', 10, 'sale', 28, NULL, 1, '2025-09-22 14:12:02');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (73, 10, 'out', 2, 'sale', 29, NULL, 1, '2025-09-22 14:14:01');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (74, 11, 'out', 5, 'sale', 29, NULL, 1, '2025-09-22 14:14:01');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (75, 11, 'out', 1, 'sale', 30, NULL, 1, '2025-09-22 14:46:35');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (76, 11, 'out', 3, 'sale', 31, NULL, 1, '2025-09-22 14:55:40');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (77, 11, 'out', 2, 'sale', 31, NULL, 1, '2025-09-22 14:55:40');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (78, 10, 'in', 20, 'return', 13, 'Sale cancellation', 1, '2025-09-22 15:12:46');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (79, 10, 'out', 1, 'sale', 32, NULL, 1, '2025-09-22 15:29:53');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (80, 11, 'out', 11, 'sale', 33, NULL, 1, '2025-09-22 15:31:58');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (81, 11, 'out', 5, 'sale', 34, NULL, 1, '2025-09-22 18:56:07');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (82, 15, 'out', 1, 'sale', 34, NULL, 1, '2025-09-22 18:56:07');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (83, 11, 'out', 12, 'sale', 35, NULL, 1, '2025-09-23 05:11:36');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (84, 11, 'out', 3, 'sale', 36, NULL, 1, '2025-09-23 07:29:31');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (85, 10, 'out', 3, 'sale', 36, NULL, 1, '2025-09-23 07:29:31');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (86, 8, 'out', 1, 'sale', 37, NULL, 1, '2025-09-23 07:30:40');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (87, 7, 'out', 1, 'sale', 38, NULL, 1, '2025-09-23 07:31:02');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (88, 11, 'out', 1, 'sale', 39, NULL, 1, '2025-09-23 07:36:07');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (89, 9, 'out', 1, 'sale', 39, NULL, 1, '2025-09-23 07:36:07');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (90, 14, 'out', 1, 'sale', 39, NULL, 1, '2025-09-23 07:36:07');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (91, 11, 'out', 3, 'sale', 40, NULL, 1, '2025-09-23 07:36:54');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (92, 10, 'out', 3, 'sale', 40, NULL, 1, '2025-09-23 07:36:54');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (93, 11, 'out', 10, 'sale', 41, NULL, 1, '2025-09-23 08:11:54');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (94, 11, 'out', 7, 'sale', 42, NULL, 1, '2025-09-23 08:27:21');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (95, 10, 'out', 6, 'sale', 43, NULL, 1, '2025-09-23 08:57:26');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (96, 20, 'in', 100, 'adjustment', NULL, 'Initial stock', 1, '2025-09-23 09:00:29');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (97, 20, 'out', 2, 'sale', 44, NULL, 1, '2025-09-23 09:01:07');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (98, 11, 'out', 7, 'sale', 45, NULL, 1, '2025-09-23 09:39:36');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (99, 11, 'out', 5, 'sale', 46, NULL, 1, '2025-09-23 09:58:50');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (100, 11, 'out', 4, 'sale', 47, NULL, 1, '2025-09-23 10:36:05');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (101, 11, 'out', 15, 'sale', 48, NULL, 1, '2025-09-23 11:20:26');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (102, 11, 'out', 2, 'sale', 49, NULL, 1, '2025-09-23 11:26:25');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (103, 10, 'out', 4, 'sale', 49, NULL, 1, '2025-09-23 11:26:25');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (104, 7, 'out', 5, 'sale', 49, NULL, 1, '2025-09-23 11:26:25');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (105, 7, 'out', 2, 'sale', 50, NULL, 1, '2025-09-23 11:32:54');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (106, 9, 'out', 1, 'sale', 51, NULL, 1, '2025-09-23 11:54:37');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (107, 11, 'out', 6, 'sale', 52, NULL, 1, '2025-09-23 12:15:24');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (108, 9, 'out', 3, 'sale', 53, NULL, 1, '2025-09-23 12:15:42');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (109, 7, 'out', 1, 'sale', 54, NULL, 1, '2025-09-23 12:16:20');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (110, 9, 'out', 1, 'sale', 55, NULL, 1, '2025-09-23 12:57:03');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (111, 13, 'out', 1, 'sale', 56, NULL, 1, '2025-09-23 12:58:07');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (112, 11, 'out', 6, 'sale', 57, NULL, 1, '2025-09-23 13:59:03');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (113, 13, 'out', 2, 'sale', 57, NULL, 1, '2025-09-23 13:59:03');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (114, 10, 'out', 2, 'sale', 57, NULL, 1, '2025-09-23 13:59:03');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (115, 11, 'out', 2, 'sale', 58, NULL, 1, '2025-09-23 14:23:08');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (116, 7, 'out', 1, 'sale', 59, NULL, 1, '2025-09-23 14:23:26');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (117, 7, 'out', 1, 'sale', 60, NULL, 1, '2025-09-23 14:38:57');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (118, 11, 'out', 1, 'sale', 61, NULL, 1, '2025-09-23 16:06:36');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (119, 10, 'out', 4, 'sale', 61, NULL, 1, '2025-09-23 16:06:36');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (120, 18, 'out', 2, 'sale', 62, NULL, 1, '2025-09-24 06:50:54');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (121, 11, 'out', 2, 'sale', 63, NULL, 1, '2025-09-24 06:51:11');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (122, 11, 'in', 2, 'return', 63, 'Sale cancellation', 1, '2025-09-24 06:51:52');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (123, 11, 'out', 2, 'sale', 64, NULL, 1, '2025-09-24 06:52:50');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (124, 11, 'out', 3, 'sale', 65, NULL, 1, '2025-09-24 06:54:04');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (125, 7, 'out', 1, 'sale', 65, NULL, 1, '2025-09-24 06:54:04');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (126, 17, 'out', 2, 'sale', 66, NULL, 1, '2025-09-24 07:17:18');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (127, 11, 'out', 5, 'sale', 67, NULL, 1, '2025-09-24 07:34:43');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (128, 11, 'out', 3, 'sale', 68, NULL, 1, '2025-09-24 07:40:54');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (129, 11, 'out', 1, 'sale', 69, NULL, 1, '2025-09-24 07:53:29');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (130, 11, 'out', 1, 'sale', 70, NULL, 1, '2025-09-24 07:58:25');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (131, 11, 'in', 1, 'return', 70, 'Sale cancellation', 1, '2025-09-24 07:58:36');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (132, 7, 'out', 1, 'sale', 71, NULL, 1, '2025-09-24 07:59:33');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (133, 18, 'out', 1, 'sale', 71, NULL, 1, '2025-09-24 07:59:33');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (134, 11, 'out', 7, 'sale', 72, NULL, 1, '2025-09-24 08:44:05');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (135, 10, 'out', 1, 'sale', 72, NULL, 1, '2025-09-24 08:44:05');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (136, 13, 'out', 1, 'sale', 72, NULL, 1, '2025-09-24 08:44:05');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (137, 13, 'out', 3, 'sale', 73, NULL, 1, '2025-09-24 09:45:48');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (138, 11, 'out', 5, 'sale', 74, NULL, 1, '2025-09-24 09:48:36');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (139, 10, 'out', 31, 'sale', 75, NULL, 1, '2025-09-24 09:53:50');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (140, 17, 'out', 1, 'sale', 76, NULL, 1, '2025-09-24 10:12:20');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (141, 10, 'out', 1, 'sale', 76, NULL, 1, '2025-09-24 10:12:20');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (142, 17, 'out', 4, 'sale', 77, NULL, 1, '2025-09-24 10:59:27');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (143, 18, 'out', 3, 'sale', 77, NULL, 1, '2025-09-24 10:59:27');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (144, 7, 'out', 1, 'sale', 77, NULL, 1, '2025-09-24 10:59:27');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (145, 22, 'in', 160, 'adjustment', NULL, 'Initial stock', 1, '2025-09-24 11:12:57');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (146, 22, 'out', 1, 'sale', 78, NULL, 1, '2025-09-24 11:13:45');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (147, 10, 'out', 6, 'sale', 78, NULL, 1, '2025-09-24 11:13:45');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (148, 9, 'out', 1, 'sale', 78, NULL, 1, '2025-09-24 11:13:45');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (149, 7, 'out', 1, 'sale', 79, NULL, 1, '2025-09-24 11:29:24');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (150, 11, 'out', 2, 'sale', 80, NULL, 1, '2025-09-24 11:35:31');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (151, 11, 'out', 8, 'sale', 81, NULL, 1, '2025-09-24 12:01:47');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (152, 11, 'out', 3, 'sale', 82, NULL, 1, '2025-09-24 12:59:48');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (153, 15, 'out', 1, 'sale', 83, NULL, 1, '2025-09-24 13:01:08');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (154, 11, 'out', 7, 'sale', 84, NULL, 1, '2025-09-24 13:16:07');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (155, 11, 'out', 1, 'sale', 85, NULL, 1, '2025-09-24 13:54:15');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (156, 13, 'out', 7, 'sale', 85, NULL, 1, '2025-09-24 13:54:15');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (157, 11, 'out', 1, 'sale', 86, NULL, 1, '2025-09-24 14:06:27');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (158, 7, 'out', 1, 'sale', 87, NULL, 1, '2025-09-24 14:14:56');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (159, 11, 'out', 1, 'sale', 88, NULL, 1, '2025-09-24 14:16:30');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (160, 22, 'out', 2, 'sale', 89, NULL, 1, '2025-09-24 14:36:16');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (161, 11, 'out', 7, 'sale', 89, NULL, 1, '2025-09-24 14:36:16');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (162, 11, 'out', 12, 'sale', 90, NULL, 1, '2025-09-24 15:11:04');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (163, 22, 'out', 1, 'sale', 91, NULL, 1, '2025-09-24 15:38:47');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (164, 11, 'out', 1, 'sale', 92, NULL, 1, '2025-09-24 15:39:19');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (165, 11, 'out', 10, 'sale', 93, NULL, 1, '2025-09-24 17:21:39');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (166, 15, 'out', 4, 'sale', 93, NULL, 1, '2025-09-24 17:21:39');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (167, 11, 'out', 6, 'sale', 94, NULL, 1, '2025-09-24 17:28:26');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (168, 10, 'out', 1, 'sale', 95, NULL, 1, '2025-09-25 05:50:02');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (169, 11, 'out', 4, 'sale', 95, NULL, 1, '2025-09-25 05:50:02');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (170, 16, 'out', 1, 'sale', 96, NULL, 1, '2025-09-25 05:50:38');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (171, 11, 'out', 5, 'sale', 97, NULL, 1, '2025-09-25 05:50:57');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (172, 11, 'out', 10, 'sale', 98, NULL, 1, '2025-09-25 06:34:06');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (173, 11, 'out', 5, 'sale', 99, NULL, 1, '2025-09-25 07:07:38');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (174, 11, 'out', 11, 'sale', 100, NULL, 1, '2025-09-25 07:17:26');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (175, 17, 'out', 4, 'sale', 101, NULL, 1, '2025-09-25 07:24:05');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (176, 11, 'out', 1, 'sale', 101, NULL, 1, '2025-09-25 07:24:05');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (177, 11, 'out', 9, 'sale', 102, NULL, 1, '2025-09-25 07:25:51');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (178, 17, 'out', 2, 'sale', 102, NULL, 1, '2025-09-25 07:25:51');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (179, 11, 'out', 8, 'sale', 103, NULL, 1, '2025-09-25 07:40:29');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (180, 11, 'out', 5, 'sale', 104, NULL, 1, '2025-09-25 12:03:08');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (181, 17, 'out', 3, 'sale', 104, NULL, 1, '2025-09-25 12:03:08');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (182, 18, 'out', 1, 'sale', 104, NULL, 1, '2025-09-25 12:03:08');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (183, 16, 'out', 4, 'sale', 105, NULL, 1, '2025-09-25 13:07:30');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (184, 7, 'out', 1, 'sale', 105, NULL, 1, '2025-09-25 13:07:30');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (185, 18, 'out', 1, 'sale', 105, NULL, 1, '2025-09-25 13:07:30');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (186, 13, 'out', 7, 'sale', 106, NULL, 1, '2025-09-26 07:13:20');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (187, 11, 'out', 1, 'sale', 106, NULL, 1, '2025-09-26 07:13:20');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (188, 18, 'out', 1, 'sale', 107, NULL, 1, '2025-09-26 07:16:14');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (189, 14, 'out', 1, 'sale', 107, NULL, 1, '2025-09-26 07:16:14');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (190, 20, 'out', 6, 'sale', 107, NULL, 1, '2025-09-26 07:16:14');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (191, 11, 'out', 2, 'sale', 108, NULL, 1, '2025-09-26 07:16:29');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (192, 11, 'out', 11, 'sale', 109, NULL, 1, '2025-09-26 08:18:53');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (193, 7, 'out', 4, 'sale', 110, NULL, 1, '2025-09-26 09:32:39');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (194, 11, 'out', 3, 'sale', 110, NULL, 1, '2025-09-26 09:32:39');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (195, 10, 'out', 4, 'sale', 110, NULL, 1, '2025-09-26 09:32:39');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (196, 10, 'out', 2, 'sale', 111, NULL, 1, '2025-09-26 09:33:25');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (197, 18, 'out', 4, 'sale', 112, NULL, 1, '2025-09-26 10:16:49');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (198, 17, 'out', 2, 'sale', 112, NULL, 1, '2025-09-26 10:16:49');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (199, 7, 'out', 5, 'sale', 112, NULL, 1, '2025-09-26 10:16:49');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (200, 11, 'in', 2000, 'purchase', 2, NULL, 1, '2025-09-26 10:28:54');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (201, 14, 'out', 2, 'sale', 113, NULL, 1, '2025-09-26 10:45:10');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (202, 11, 'out', 5, 'sale', 113, NULL, 1, '2025-09-26 10:45:10');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (203, 7, 'out', 1, 'sale', 114, NULL, 1, '2025-09-26 10:55:17');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (204, 16, 'out', 1, 'sale', 115, NULL, 1, '2025-09-26 10:56:25');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (205, 11, 'out', 6, 'sale', 116, NULL, 1, '2025-09-26 11:00:43');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (206, 7, 'out', 1, 'sale', 117, NULL, 1, '2025-09-26 13:42:10');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (207, 16, 'out', 1, 'sale', 118, NULL, 1, '2025-09-26 13:43:10');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (208, 11, 'out', 3, 'sale', 118, NULL, 1, '2025-09-26 13:43:10');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (209, 7, 'out', 1, 'sale', 119, NULL, 1, '2025-09-26 14:52:32');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (210, 18, 'out', 77, 'adjustment', NULL, '', 1, '2025-09-27 07:08:16');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (211, 18, 'out', 133, 'adjustment', NULL, '', 1, '2025-09-27 07:09:11');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (212, 18, 'in', 10, 'adjustment', NULL, '', 1, '2025-09-27 07:09:37');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (213, 18, 'out', 77, 'adjustment', NULL, '', 1, '2025-09-27 07:42:12');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (214, 18, 'in', 100, 'adjustment', NULL, '', 1, '2025-09-27 09:27:58');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (215, 10, 'out', 6, 'sale', 120, NULL, 1, '2025-09-27 09:34:00');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (216, 17, 'out', 5, 'sale', 120, NULL, 1, '2025-09-27 09:34:00');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (217, 18, 'out', 3, 'sale', 120, NULL, 1, '2025-09-27 09:34:00');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (218, 7, 'out', 9, 'sale', 120, NULL, 1, '2025-09-27 09:34:00');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (219, 8, 'out', 1, 'sale', 120, NULL, 1, '2025-09-27 09:34:00');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (220, 10, 'out', 30, 'sale', 121, NULL, 1, '2025-09-27 15:04:59');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (221, 13, 'out', 10, 'sale', 122, NULL, 1, '2025-09-28 05:27:27');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (222, 10, 'out', 3, 'sale', 122, NULL, 1, '2025-09-28 05:27:27');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (223, 22, 'out', 3, 'sale', 122, NULL, 1, '2025-09-28 05:27:27');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (224, 23, 'in', 50, 'adjustment', NULL, 'Initial stock', 1, '2025-09-28 05:32:36');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (225, 23, 'out', 1, 'sale', 123, NULL, 1, '2025-09-28 06:37:46');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (226, 10, 'out', 20, 'sale', 124, NULL, 1, '2025-09-28 08:16:13');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (227, 11, 'out', 10, 'sale', 124, NULL, 1, '2025-09-28 08:16:13');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (228, 8, 'out', 2, 'sale', 125, NULL, 1, '2025-09-28 09:23:32');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (229, 10, 'out', 1, 'sale', 126, NULL, 1, '2025-09-28 09:50:04');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (230, 10, 'out', 1, 'sale', 127, NULL, 1, '2025-09-28 10:05:46');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (231, 10, 'in', 1, 'return', 126, 'Sale cancellation', 1, '2025-09-28 10:06:38');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (232, 11, 'out', 18, 'sale', 128, NULL, 1, '2025-09-28 11:10:43');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (233, 9, 'out', 1, 'sale', 128, NULL, 1, '2025-09-28 11:10:43');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (234, 11, 'out', 6, 'sale', 129, NULL, 1, '2025-09-28 14:05:42');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (235, 20, 'out', 8, 'sale', 130, NULL, 1, '2025-09-28 14:44:31');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (236, 11, 'out', 18, 'sale', 131, NULL, 1, '2025-09-28 14:47:12');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (237, 9, 'out', 1, 'sale', 131, NULL, 1, '2025-09-28 14:47:12');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (238, 20, 'out', 4, 'sale', 132, NULL, 1, '2025-09-28 15:26:31');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (239, 11, 'out', 18, 'sale', 133, NULL, 1, '2025-09-28 16:59:43');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (240, 18, 'out', 5, 'sale', 134, NULL, 1, '2025-09-29 05:33:32');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (241, 10, 'out', 3, 'sale', 134, NULL, 1, '2025-09-29 05:33:32');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (242, 10, 'out', 4, 'sale', 135, NULL, 1, '2025-09-29 06:46:24');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (243, 11, 'out', 5, 'sale', 136, NULL, 1, '2025-09-29 07:31:15');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (244, 11, 'out', 12, 'sale', 136, NULL, 1, '2025-09-29 07:31:15');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (245, 22, 'out', 1, 'sale', 137, NULL, 1, '2025-09-29 08:03:45');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (246, 10, 'out', 1, 'sale', 138, NULL, 1, '2025-09-29 08:22:35');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (247, 10, 'in', 1, 'return', 138, 'Sale cancellation', 1, '2025-09-29 08:23:24');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (248, 10, 'out', 5, 'sale', 139, NULL, 1, '2025-09-29 08:23:50');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (249, 11, 'out', 5, 'sale', 140, NULL, 1, '2025-09-29 08:26:28');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (250, 11, 'out', 10, 'sale', 141, NULL, 1, '2025-09-29 09:04:43');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (251, 10, 'out', 3, 'sale', 141, NULL, 1, '2025-09-29 09:04:43');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (252, 18, 'out', 3, 'sale', 142, NULL, 1, '2025-09-29 09:06:08');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (253, 17, 'out', 1, 'sale', 142, NULL, 1, '2025-09-29 09:06:08');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (254, 20, 'out', 4, 'sale', 143, NULL, 1, '2025-09-29 09:08:24');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (255, 11, 'out', 12, 'sale', 144, NULL, 1, '2025-09-29 09:16:34');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (256, 11, 'in', 10, 'return', 141, 'Sale cancellation', 1, '2025-09-29 09:21:54');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (257, 10, 'in', 3, 'return', 141, 'Sale cancellation', 1, '2025-09-29 09:21:54');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (258, 11, 'out', 10, 'sale', 145, NULL, 1, '2025-09-29 09:24:49');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (259, 18, 'out', 3, 'sale', 146, NULL, 1, '2025-09-29 09:27:25');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (260, 11, 'out', 8, 'sale', 146, NULL, 1, '2025-09-29 09:27:25');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (261, 15, 'out', 1, 'sale', 147, NULL, 1, '2025-09-29 09:31:11');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (262, 7, 'out', 1, 'sale', 148, NULL, 1, '2025-09-29 10:08:48');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (263, 11, 'out', 6, 'sale', 149, NULL, 1, '2025-09-29 10:26:09');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (264, 11, 'out', 5, 'sale', 150, NULL, 1, '2025-09-29 12:45:19');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (265, 11, 'out', 5, 'sale', 151, NULL, 1, '2025-09-29 12:45:53');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (266, 11, 'out', 2, 'sale', 152, NULL, 1, '2025-09-29 13:59:24');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (267, 16, 'out', 5, 'sale', 153, NULL, 1, '2025-09-29 14:03:18');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (268, 7, 'out', 3, 'sale', 154, NULL, 1, '2025-09-29 14:14:42');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (269, 16, 'out', 2, 'sale', 155, NULL, 1, '2025-09-29 15:23:19');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (270, 10, 'out', 7, 'sale', 156, NULL, 1, '2025-09-29 15:48:09');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (271, 11, 'out', 1, 'sale', 156, NULL, 1, '2025-09-29 15:48:09');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (272, 17, 'out', 1, 'sale', 156, NULL, 1, '2025-09-29 15:48:09');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (273, 7, 'out', 1, 'sale', 157, NULL, 1, '2025-09-29 16:30:34');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (274, 16, 'out', 1, 'sale', 158, NULL, 1, '2025-09-29 16:54:41');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (275, 10, 'out', 1, 'sale', 159, NULL, 1, '2025-09-29 18:08:39');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (276, 11, 'out', 18, 'sale', 160, NULL, 1, '2025-09-30 05:33:17');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (277, 9, 'out', 1, 'sale', 161, NULL, 1, '2025-09-30 05:49:23');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (278, 7, 'out', 1, 'sale', 161, NULL, 1, '2025-09-30 05:49:23');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (279, 18, 'out', 8, 'sale', 162, NULL, 1, '2025-09-30 05:50:02');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (280, 17, 'out', 2, 'sale', 163, NULL, 1, '2025-09-30 07:23:39');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (281, 11, 'out', 2, 'sale', 163, NULL, 1, '2025-09-30 07:23:39');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (282, 9, 'out', 3, 'sale', 163, NULL, 1, '2025-09-30 07:23:39');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (283, 10, 'out', 2, 'sale', 163, NULL, 1, '2025-09-30 07:23:39');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (284, 8, 'out', 2, 'sale', 163, NULL, 1, '2025-09-30 07:23:39');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (285, 10, 'out', 10, 'sale', 164, NULL, 1, '2025-09-30 07:24:31');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (286, 11, 'out', 10, 'sale', 164, NULL, 1, '2025-09-30 07:24:31');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (287, 17, 'out', 1, 'sale', 165, NULL, 1, '2025-09-30 07:24:56');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (288, 11, 'out', 6, 'sale', 166, NULL, 1, '2025-09-30 09:31:51');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (289, 7, 'out', 3, 'sale', 166, NULL, 1, '2025-09-30 09:31:51');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (290, 13, 'out', 12, 'sale', 167, NULL, 1, '2025-09-30 10:26:27');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (291, 17, 'out', 1, 'sale', 168, NULL, 1, '2025-09-30 10:34:44');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (292, 7, 'out', 1, 'sale', 168, NULL, 1, '2025-09-30 10:34:44');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (293, 16, 'out', 2, 'sale', 168, NULL, 1, '2025-09-30 10:34:44');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (294, 10, 'out', 1, 'sale', 168, NULL, 1, '2025-09-30 10:34:44');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (295, 11, 'out', 5, 'sale', 169, NULL, 1, '2025-09-30 10:35:28');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (296, 10, 'out', 5, 'sale', 170, NULL, 1, '2025-09-30 14:17:37');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (297, 11, 'out', 10, 'sale', 170, NULL, 1, '2025-09-30 14:17:37');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (298, 11, 'out', 8, 'sale', 171, NULL, 1, '2025-10-01 08:54:46');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (299, 10, 'out', 11, 'sale', 172, NULL, 1, '2025-10-01 08:57:35');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (300, 11, 'out', 4, 'sale', 172, NULL, 1, '2025-10-01 08:57:35');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (301, 14, 'out', 1, 'sale', 173, NULL, 1, '2025-10-01 11:31:28');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (302, 7, 'out', 1, 'sale', 173, NULL, 1, '2025-10-01 11:31:28');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (303, 24, 'in', 20, 'adjustment', NULL, 'Initial stock', 1, '2025-10-01 11:45:41');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (304, 14, 'out', 1, 'sale', 174, NULL, 1, '2025-10-01 12:01:58');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (305, 21, 'in', 15, 'adjustment', NULL, 'Stock adjustment', 1, '2025-10-01 13:07:18');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (306, 11, 'out', 2, 'sale', 175, NULL, 1, '2025-10-01 15:53:29');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (307, 10, 'out', 1, 'sale', 175, NULL, 1, '2025-10-01 15:53:29');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (308, 16, 'out', 2, 'sale', 176, NULL, 1, '2025-10-01 17:24:31');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (309, 16, 'out', 18, 'sale', 177, NULL, 1, '2025-10-01 17:46:48');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (310, 15, 'in', 137, 'adjustment', NULL, 'Stock adjustment', 1, '2025-10-05 11:39:19');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (311, 11, 'out', 1539, 'adjustment', NULL, 'Stock adjustment', 1, '2025-10-05 11:40:22');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (312, 7, 'in', 250, 'adjustment', NULL, 'Stock adjustment', 1, '2025-10-05 11:41:12');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (313, 16, 'out', 221, 'adjustment', NULL, 'Stock adjustment', 1, '2025-10-05 11:42:19');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (314, 8, 'in', 230, 'purchase', 3, NULL, 1, '2025-10-05 11:49:24');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (315, 15, 'in', 225, 'purchase', 4, NULL, 1, '2025-10-05 11:51:15');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (316, 7, 'in', 200, 'purchase', 5, NULL, 1, '2025-10-05 11:56:19');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (317, 11, 'in', 450, 'purchase', 5, NULL, 1, '2025-10-05 11:56:19');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (318, 9, 'in', 180, 'purchase', 6, NULL, 1, '2025-10-05 11:58:43');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (319, 13, 'out', 9, 'sale', 178, NULL, 1, '2025-10-06 08:42:22');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (320, 11, 'out', 6, 'sale', 178, NULL, 1, '2025-10-06 08:42:22');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (321, 10, 'out', 5, 'sale', 178, NULL, 1, '2025-10-06 08:42:22');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (322, 11, 'out', 4, 'sale', 178, NULL, 1, '2025-10-06 08:42:22');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (323, 10, 'out', 8, 'sale', 179, NULL, 1, '2025-10-07 09:47:57');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (324, 11, 'out', 14, 'sale', 180, NULL, 1, '2025-10-07 09:51:31');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (325, 7, 'out', 2, 'sale', 180, NULL, 1, '2025-10-07 09:51:31');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (326, 11, 'out', 1, 'sale', 180, NULL, 1, '2025-10-07 09:51:31');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (327, 9, 'out', 2, 'sale', 180, NULL, 1, '2025-10-07 09:51:31');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (328, 11, 'out', 2, 'sale', 180, NULL, 1, '2025-10-07 09:51:31');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (329, 15, 'out', 3, 'sale', 180, NULL, 1, '2025-10-07 09:51:31');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (330, 7, 'out', 1, 'sale', 180, NULL, 1, '2025-10-07 09:51:31');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (331, 11, 'out', 4, 'sale', 181, NULL, 1, '2025-10-07 09:52:01');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (332, 8, 'out', 204, 'adjustment', NULL, 'Stock adjustment', 1, '2025-10-10 16:17:12');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (333, 7, 'out', 8, 'sale', 182, NULL, 1, '2025-10-22 12:56:52');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (334, 10, 'out', 100, 'sale', 182, NULL, 1, '2025-10-22 12:56:52');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (335, 25, 'in', 200, 'adjustment', NULL, 'Initial stock', 1, '2025-10-22 12:59:25');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (336, 25, 'out', 8, 'sale', 183, NULL, 1, '2025-10-22 12:59:57');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (337, 9, 'out', 5, 'sale', 184, NULL, 1, '2025-10-22 13:00:50');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (338, 11, 'out', 30, 'sale', 184, NULL, 1, '2025-10-22 13:00:50');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (339, 18, 'out', 5, 'sale', 185, NULL, 1, '2025-10-22 13:02:33');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (340, 17, 'out', 5, 'sale', 185, NULL, 1, '2025-10-22 13:02:33');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (341, 16, 'out', 2, 'sale', 185, NULL, 1, '2025-10-22 13:02:33');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (342, 7, 'out', 1, 'sale', 185, NULL, 1, '2025-10-22 13:02:33');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (343, 11, 'in', 100, 'adjustment', NULL, '', 1, '2025-10-22 13:27:56');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (344, 11, 'out', 9, 'sale', 186, NULL, 1, '2025-10-22 13:51:41');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (345, 9, 'out', 2, 'sale', 186, NULL, 1, '2025-10-22 13:51:41');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (346, 11, 'out', 6, 'sale', 187, NULL, 1, '2025-10-27 13:31:29');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (347, 15, 'out', 4, 'sale', 187, NULL, 1, '2025-10-27 13:31:29');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (348, 7, 'out', 5, 'sale', 187, NULL, 1, '2025-10-27 13:31:29');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (349, 25, 'out', 4, 'sale', 187, NULL, 1, '2025-10-27 13:31:29');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (350, 7, 'in', 100, 'purchase', 7, NULL, 1, '2025-11-07 16:03:25');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (351, 8, 'in', 100, 'purchase', 7, NULL, 1, '2025-11-07 16:03:25');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (352, 10, 'in', 300, 'purchase', 7, NULL, 1, '2025-11-07 16:03:25');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (353, 26, 'in', 300, 'adjustment', NULL, 'Initial stock', 1, '2025-11-08 16:02:22');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (354, 7, 'out', 4, 'sale', 188, NULL, 1, '2025-11-16 17:32:54');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (355, 8, 'out', 2, 'sale', 188, NULL, 1, '2025-11-16 17:32:54');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (356, 25, 'out', 6, 'sale', 188, NULL, 1, '2025-11-16 17:32:54');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (357, 25, 'out', 15, 'sale', 189, NULL, 1, '2025-11-16 17:55:06');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (358, 25, 'out', 20, 'sale', 190, NULL, 1, '2025-11-20 18:36:01');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (359, 10, 'out', 15, 'sale', 190, NULL, 1, '2025-11-20 18:36:01');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (360, 26, 'out', 7, 'sale', 191, NULL, 1, '2025-11-25 09:40:12');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (361, 15, 'out', 2, 'sale', 191, NULL, 1, '2025-11-25 09:40:12');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (362, 26, 'out', 1, 'sale', 191, NULL, 1, '2025-11-25 09:40:12');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (363, 11, 'out', 6, 'sale', 191, NULL, 1, '2025-11-25 09:40:12');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (364, 25, 'out', 4, 'sale', 192, NULL, 1, '2025-11-25 10:50:43');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (365, 10, 'out', 3, 'sale', 192, NULL, 1, '2025-11-25 10:50:43');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (366, 11, 'out', 3, 'sale', 192, NULL, 1, '2025-11-25 10:50:43');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (367, 10, 'out', 25, 'sale', 193, NULL, 1, '2025-11-28 14:20:56');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (368, 25, 'out', 29, 'sale', 193, NULL, 1, '2025-11-28 14:20:56');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (369, 10, 'out', 25, 'sale', 194, NULL, 1, '2025-11-28 14:22:03');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (370, 25, 'out', 29, 'sale', 194, NULL, 1, '2025-11-28 14:22:03');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (371, 25, 'out', 47, 'sale', 195, NULL, 1, '2025-12-01 08:40:00');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (372, 10, 'out', 13, 'sale', 195, NULL, 1, '2025-12-01 08:40:00');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (373, 10, 'out', 17, 'sale', 195, NULL, 1, '2025-12-01 08:40:00');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (374, 10, 'out', 15, 'sale', 195, NULL, 1, '2025-12-01 08:40:00');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (375, 11, 'out', 15, 'sale', 195, NULL, 1, '2025-12-01 08:40:00');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (376, 11, 'out', 3, 'sale', 195, NULL, 1, '2025-12-01 08:40:00');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (377, 11, 'out', 5, 'sale', 195, NULL, 1, '2025-12-01 08:40:00');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (378, 15, 'out', 1, 'sale', 195, NULL, 1, '2025-12-01 08:40:00');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (379, 26, 'out', 5, 'sale', 195, NULL, 1, '2025-12-01 08:40:00');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (380, 11, 'out', 7, 'sale', 195, NULL, 1, '2025-12-01 08:40:00');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (381, 10, 'out', 10, 'sale', 196, NULL, 1, '2025-12-01 10:55:51');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (382, 25, 'out', 10, 'sale', 196, NULL, 1, '2025-12-01 10:55:51');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (383, 8, 'out', 4, 'sale', 196, NULL, 1, '2025-12-01 10:55:51');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (384, 7, 'out', 6, 'sale', 196, NULL, 1, '2025-12-01 10:55:51');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (385, 10, 'out', 12, 'sale', 197, NULL, 1, '2025-12-12 09:06:25');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (386, 10, 'out', 4, 'sale', 197, NULL, 1, '2025-12-12 09:06:25');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (387, 13, 'out', 4, 'sale', 197, NULL, 1, '2025-12-12 09:06:25');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (388, 11, 'out', 5, 'sale', 197, NULL, 1, '2025-12-12 09:06:25');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (389, 15, 'out', 1, 'sale', 197, NULL, 1, '2025-12-12 09:06:25');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (390, 26, 'out', 6, 'sale', 197, NULL, 1, '2025-12-12 09:06:25');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (391, 11, 'out', 4, 'sale', 198, NULL, 1, '2025-12-12 09:20:46');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (392, 25, 'out', 1, 'sale', 199, NULL, 1, '2025-12-12 13:02:54');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (393, 11, 'out', 8, 'sale', 199, NULL, 1, '2025-12-12 13:02:54');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (394, 9, 'out', 5, 'sale', 199, NULL, 1, '2025-12-12 13:02:54');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (395, 7, 'out', 7, 'sale', 200, NULL, 1, '2025-12-12 15:26:50');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (396, 7, 'out', 2, 'sale', 201, NULL, 1, '2025-12-13 03:24:36');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (397, 7, 'out', 2, 'sale', 202, NULL, 1, '2025-12-13 03:28:10');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (398, 7, 'out', 1, 'sale', 203, NULL, 1, '2025-12-13 03:29:02');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (399, 25, 'out', 3, 'sale', 204, NULL, 1, '2025-12-13 10:25:07');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (400, 10, 'out', 2, 'sale', 204, NULL, 1, '2025-12-13 10:25:07');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (401, 9, 'out', 1, 'sale', 204, NULL, 1, '2025-12-13 10:25:07');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (402, 11, 'out', 10, 'sale', 204, NULL, 1, '2025-12-13 10:25:07');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (403, 7, 'out', 5, 'sale', 204, NULL, 1, '2025-12-13 10:25:07');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (404, 8, 'out', 3, 'sale', 204, NULL, 1, '2025-12-13 10:25:07');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (405, 27, 'in', 240, 'adjustment', NULL, 'Initial stock', 1, '2026-01-02 09:10:41');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (406, 29, 'in', 240, 'adjustment', NULL, 'Initial stock', 1, '2026-01-02 09:12:09');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (407, 16, 'out', 10, 'sale', 205, NULL, 1, '2026-01-02 09:14:03');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (408, 27, 'out', 5, 'sale', 205, NULL, 1, '2026-01-02 09:14:03');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (409, 20, 'out', 10, 'sale', 205, NULL, 1, '2026-01-02 09:14:03');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (410, 16, 'out', 15, 'sale', 206, NULL, 1, '2026-02-28 09:16:34');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (411, 13, 'out', 1, 'sale', 206, NULL, 1, '2026-02-28 09:16:34');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (412, 7, 'out', 2, 'sale', 207, NULL, 1, '2026-02-28 09:37:06');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (413, 16, 'out', 2, 'sale', 207, NULL, 1, '2026-02-28 09:37:06');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (414, 16, 'in', 15, 'return', 206, 'Sale cancellation', 1, '2026-02-28 09:39:33');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (415, 13, 'in', 1, 'return', 206, 'Sale cancellation', 1, '2026-02-28 09:39:33');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (416, 19, 'out', 10, 'sale', 208, NULL, 1, '2026-03-29 14:30:01');
+INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_type, reference_id, notes, created_by, created_at) VALUES (417, 19, 'out', 10, 'sale', 209, NULL, 1, '2026-03-29 14:30:05');
 
