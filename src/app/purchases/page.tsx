@@ -35,8 +35,8 @@ export default async function PurchasesPage({ searchParams }: { searchParams: Pr
       <Card>
         <div className="table-scroll">
           <table className="w-full min-w-[640px] text-left text-sm">
-            <thead className="text-xs uppercase tracking-wide text-slate-500"><tr><th className="py-3">Date</th><th>Supplier</th><th>Amount</th><th>Status</th></tr></thead>
-            <tbody className="divide-y divide-slate-100">
+            <thead className="text-xs uppercase tracking-wide text-muted-foreground"><tr><th className="py-3">Date</th><th>Supplier</th><th>Amount</th><th>Status</th></tr></thead>
+            <tbody className="divide-y divide-border">
               {purchases.map((p) => <tr key={p.id}><td className="py-3">{p.purchase_date}</td><td>{p.supplier_name || "No supplier"}</td><td className="font-bold">{money(p.total_amount)}</td><td className="capitalize">{p.status}</td></tr>)}
             </tbody>
           </table>

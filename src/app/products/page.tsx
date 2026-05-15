@@ -62,15 +62,15 @@ export default async function ProductsPage({ searchParams }: { searchParams: Pro
         </form>
         <div className="table-scroll">
           <table className="w-full min-w-[900px] text-left text-sm">
-            <thead className="text-xs uppercase tracking-wide text-slate-500">
+            <thead className="text-xs uppercase tracking-wide text-muted-foreground">
               <tr><th className="py-3">Product</th><th>Category</th><th>Stock</th><th>Cost</th><th>Sell</th><th>Margin</th><th>Status</th></tr>
             </thead>
-            <tbody className="divide-y divide-slate-100">
+            <tbody className="divide-y divide-border">
               {products.map((p) => (
                 <tr key={p.id}>
-                  <td className="py-3"><p className="font-bold text-slate-900">{p.name}</p><p className="text-xs text-slate-500">{p.sku || "No SKU"}</p></td>
+                  <td className="py-3"><p className="font-bold text-foreground">{p.name}</p><p className="text-xs text-muted-foreground">{p.sku || "No SKU"}</p></td>
                   <td>{p.category_name || "Uncategorized"}</td>
-                  <td><span className={p.stock_quantity <= p.min_stock_level ? "font-black text-clay" : "font-bold text-slate-900"}>{p.stock_quantity}</span><span className="text-slate-400"> / {p.min_stock_level}</span></td>
+                  <td><span className={p.stock_quantity <= p.min_stock_level ? "font-semibold text-destructive" : "font-medium text-foreground"}>{p.stock_quantity}</span><span className="text-muted-foreground"> / {p.min_stock_level}</span></td>
                   <td>{money(p.cost_price)}</td>
                   <td>{money(p.selling_price)}</td>
                   <td>{percent(p.profit_margin)}</td>

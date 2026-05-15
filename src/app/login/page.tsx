@@ -8,16 +8,16 @@ export default async function LoginPage() {
 
   return (
     <main className="grid min-h-screen place-items-center px-4 py-10">
-      <section className="w-full max-w-md rounded-lg border border-white bg-white/90 p-6 shadow-panel">
+      <section className="w-full max-w-md rounded-lg border bg-card p-6 shadow-sm">
         <div className="mb-8 text-center">
-          <div className="mx-auto mb-4 grid h-14 w-14 place-items-center rounded-md bg-canopy text-white">
-            <Boxes />
+          <div className="mx-auto mb-4 grid h-12 w-12 place-items-center rounded-md bg-primary text-primary-foreground">
+            <Boxes size={20} />
           </div>
-          <h1 className="text-3xl font-black text-canopy">Jungle</h1>
-          <p className="mt-2 text-sm text-slate-500">Sign in to manage stock, sales, and purchasing.</p>
+          <h1 className="text-2xl font-semibold tracking-tight text-foreground">StockManager</h1>
+          <p className="mt-2 text-sm text-muted-foreground">Sign in to manage stock, sales, and purchasing.</p>
         </div>
         <LoginForm />
-        <p className="mt-6 rounded-md bg-slate-50 p-3 text-center text-sm text-slate-500">
+        <p className="mt-6 rounded-md bg-muted/50 p-3 text-center text-sm text-muted-foreground">
           Demo login: <strong>admin</strong> / <strong>admin123</strong>
         </p>
       </section>

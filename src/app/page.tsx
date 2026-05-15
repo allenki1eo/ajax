@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { AppShell } from "@/components/app-shell";
 import { SalesChart } from "@/components/sales-chart";
-import { Card, PageHeader, Stat, ghostButtonClass } from "@/components/ui";
+import { Card, PageHeader, Stat } from "@/components/ui";
 import { money } from "@/lib/format";
 import { row, rows } from "@/lib/db";
 import { Badge } from "@/components/ui/badge";
@@ -32,71 +32,72 @@ export default async function DashboardPage() {
 
   return (
     <AppShell>
-      <PageHeader title="Command Center" eyebrow="Overview">
-        <Button asChild variant="outline" className={ghostButtonClass}>
+      <PageHeader title="Dashboard" eyebrow="Overview">
+        <Button asChild>
           <Link href="/sales">Record sale</Link>
         </Button>
       </PageHeader>
-      <Card className="mb-6 overflow-hidden bg-[linear-gradient(135deg,#14352c_0%,#2f7d5c_55%,#b8623b_140%)] text-white">
-        <div className="grid gap-5 lg:grid-cols-[1.35fr_0.65fr] lg:items-center">
-          <div>
-            <Badge className="mb-4 bg-white/15 text-white hover:bg-white/20">Jungle signal</Badge>
-            <h2 className="text-2xl font-black tracking-tight sm:text-3xl">Stock, cash, and margin in one living view.</h2>
-            <p className="mt-3 max-w-2xl text-sm leading-6 text-white/75">
-              The dashboard now reads the shop floor like a canopy map: fast-moving products rise, low-stock items surface, and daily revenue stays visible.
-            </p>
-          </div>
-          <div className="grid grid-cols-2 gap-3 text-sm">
-            <div className="rounded-lg border border-white/15 bg-white/10 p-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.14)]">
-              <p className="text-white/65">This month</p>
-              <p className="mt-2 text-xl font-black">{money(stats?.month_sales)}</p>
-            </div>
-            <div className="rounded-lg border border-white/15 bg-white/10 p-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.14)]">
-              <p className="text-white/65">Low alerts</p>
-              <p className="mt-2 text-xl font-black">{stats?.low_stock || 0}</p>
-            </div>
-          </div>
-        </div>
-      </Card>
+
       <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
         <Stat label="Active products" value={stats?.products || 0} />
-        <Stat label="Low stock alerts" value={stats?.low_stock || 0} tone="ember" />
-        <Stat label="Today sales" value={money(stats?.today_sales)} tone="mint" />
-        <Stat label="Inventory value" value={money(stats?.stock_value)} tone="sky" />
+        <Stat label="Low stock alerts" value={stats?.low_stock || 0} tone="destructive" />
+        <Stat label="Today's sales" value={money(stats?.today_sales)} tone="success" />
+        <Stat label="Inventory value" value={money(stats?.stock_value)} tone="info" />
       </div>
+
       <div className="mt-6 grid gap-6 xl:grid-cols-[1.4fr_1fr]">
         <Card>
           <div className="mb-4 flex items-center justify-between">
-            <h2 className="text-lg font-black text-canopy">Monthly sales</h2>
-            <span className="text-sm font-semibold text-slate-500">{money(stats?.month_sales)} this month</span>
+            <h2 className="text-base font-semibold text-foreground">Monthly Sales</h2>
+            <span className="text-sm text-muted-foreground">{money(stats?.month_sales)} this month</span>
           </div>
           <SalesChart data={chart.map((item) => ({ month: item.month, total: Number(item.total) }))} />
         </Card>
         <Card>
-          <h2 className="mb-4 text-lg font-black text-canopy">Top products</h2>
-          <div className="space-y-3">
+          <h2 className="mb-4 text-base font-semibold text-foreground">Top Products</h2>
+          <div className="space-y-2">
             {topProducts.map((product) => (
-              <div key={product.name} className="flex items-center justify-between gap-3 rounded-md bg-slate-50 p-3">
+              <div key={product.name} className="flex items-center justify-between gap-3 rounded-md bg-muted/50 p-3">
                 <div>
-                  <p className="font-bold text-slate-900">{product.name}</p>
-                  <p className="text-sm text-slate-500">{product.total_sold} sold</p>
+                  <p className="text-sm font-medium text-foreground">{product.name}</p>
+                  <p className="text-xs text-muted-foreground">{product.total_sold} sold</p>
                 </div>
-                <p className="text-sm font-black text-canopy">{money(product.revenue)}</p>
+                <p className="text-sm font-semibold text-foreground">{money(product.revenue)}</p>
               </div>
             ))}
           </div>
         </Card>
       </div>
+
       <Card className="mt-6">
-        <h2 className="mb-4 text-lg font-black text-canopy">Recent sales</h2>
+        <div className="mb-4 flex items-center justify-between">
+          <h2 className="text-base font-semibold text-foreground">Recent Sales</h2>
+          <Button asChild variant="ghost" size="sm">
+            <Link href="/sales">View all</Link>
+          </Button>
+        </div>
         <div className="table-scroll">
-          <table className="w-full min-w-[620px] text-left text-sm">
-            <thead className="text-xs uppercase tracking-wide text-slate-500">
-              <tr><th className="py-3">Date</th><th>Customer</th><th>Amount</th><th>Status</th></tr>
+          <table className="w-full min-w-[560px] text-left text-sm">
+            <thead>
+              <tr className="border-b text-xs font-medium uppercase tracking-wide text-muted-foreground">
+                <th className="pb-3 pr-4">Date</th>
+                <th className="pb-3 pr-4">Customer</th>
+                <th className="pb-3 pr-4">Amount</th>
+                <th className="pb-3">Status</th>
+              </tr>
             </thead>
-            <tbody className="divide-y divide-slate-100">
+            <tbody className="divide-y divide-border">
               {recentSales.map((sale) => (
-                <tr key={sale.id}><td className="py-3">{sale.sale_date}</td><td>{sale.customer_name || "Walk-in"}</td><td className="font-bold">{money(sale.total_amount)}</td><td className="capitalize">{sale.status}</td></tr>
+                <tr key={sale.id}>
+                  <td className="py-3 pr-4 text-muted-foreground">{sale.sale_date}</td>
+                  <td className="py-3 pr-4 font-medium">{sale.customer_name || "Walk-in"}</td>
+                  <td className="py-3 pr-4 font-semibold">{money(sale.total_amount)}</td>
+                  <td className="py-3">
+                    <Badge variant={sale.status === "completed" ? "default" : "secondary"} className="capitalize">
+                      {sale.status}
+                    </Badge>
+                  </td>
+                </tr>
               ))}
             </tbody>
           </table>

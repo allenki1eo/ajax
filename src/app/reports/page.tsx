@@ -44,18 +44,18 @@ export default async function ReportsPage({ searchParams }: { searchParams: Prom
     <AppShell>
       <PageHeader title="Reports" eyebrow="Profit and stock" />
       <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
-        <Stat label="Completed revenue" value={money(summary?.revenue)} tone="mint" />
+        <Stat label="Completed revenue" value={money(summary?.revenue)} tone="success" />
         <Stat label="Gross profit" value={money(summary?.profit)} />
-        <Stat label="Profit margin" value={percent(summary?.margin)} tone="sky" />
-        <Stat label="Completed sales" value={summary?.sales_count || 0} tone="ember" />
+        <Stat label="Profit margin" value={percent(summary?.margin)} tone="info" />
+        <Stat label="Completed sales" value={summary?.sales_count || 0} tone="primary" />
       </div>
       <div className="mt-6 grid gap-6 xl:grid-cols-[1.25fr_0.75fr]">
         <Card>
-          <h2 className="mb-4 text-lg font-black text-canopy">Product performance</h2>
+          <h2 className="mb-4 text-base font-semibold text-foreground">Product performance</h2>
           <div className="table-scroll">
             <table className="w-full min-w-[680px] text-left text-sm">
-              <thead className="text-xs uppercase tracking-wide text-slate-500"><tr><th className="py-3">Product</th><th>Sold</th><th>Revenue</th><th>Profit</th></tr></thead>
-              <tbody className="divide-y divide-slate-100">
+              <thead className="text-xs uppercase tracking-wide text-muted-foreground"><tr><th className="py-3">Product</th><th>Sold</th><th>Revenue</th><th>Profit</th></tr></thead>
+              <tbody className="divide-y divide-border">
                 {productPerformance.map((p) => <tr key={p.name}><td className="py-3 font-bold">{p.name}</td><td>{p.qty}</td><td>{money(p.revenue)}</td><td className="font-bold">{money(p.profit)}</td></tr>)}
               </tbody>
             </table>
@@ -64,12 +64,12 @@ export default async function ReportsPage({ searchParams }: { searchParams: Prom
           <Pagination basePath="/reports" page={page} pageSize={pageSize} total={Number(performanceTotal?.total || 0)} />
         </Card>
         <Card>
-          <h2 className="mb-4 text-lg font-black text-canopy">Low stock</h2>
+          <h2 className="mb-4 text-base font-semibold text-foreground">Low stock</h2>
           <div className="space-y-3">
-            {lowStock.length === 0 ? <p className="text-sm text-slate-500">No low stock items.</p> : null}
+            {lowStock.length === 0 ? <p className="text-sm text-muted-foreground">No low stock items.</p> : null}
             {lowStock.map((p) => (
               <div key={p.name} className="rounded-md bg-orange-50 p-3">
-                <p className="font-bold text-slate-900">{p.name}</p>
+                <p className="font-bold text-foreground">{p.name}</p>
                 <p className="text-sm text-orange-700">{p.stock_quantity} available, minimum {p.min_stock_level}</p>
               </div>
             ))}

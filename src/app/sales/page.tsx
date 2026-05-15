@@ -33,8 +33,8 @@ export default async function SalesPage({ searchParams }: { searchParams: Promis
       <Card>
         <div className="table-scroll">
           <table className="w-full min-w-[740px] text-left text-sm">
-            <thead className="text-xs uppercase tracking-wide text-slate-500"><tr><th className="py-3">Date</th><th>Customer</th><th>Amount</th><th>Payment</th><th>Status</th></tr></thead>
-            <tbody className="divide-y divide-slate-100">
+            <thead className="text-xs uppercase tracking-wide text-muted-foreground"><tr><th className="py-3">Date</th><th>Customer</th><th>Amount</th><th>Payment</th><th>Status</th></tr></thead>
+            <tbody className="divide-y divide-border">
               {sales.map((s) => <tr key={s.id}><td className="py-3">{s.sale_date}</td><td>{s.customer_name || "Walk-in"}</td><td className="font-bold">{money(s.total_amount)}</td><td className="capitalize">{s.payment_method.replace("_", " ")}</td><td className="capitalize">{s.status}</td></tr>)}
             </tbody>
           </table>
