@@ -11,3 +11,14 @@ Thumbs.db
 
 # Logs
 *.log
+
+# Next.js / Node
+node_modules/
+.next/
+out/
+
+# Local env and SQLite files
+.env
+.env*.local
+local.db
+local.db-*
