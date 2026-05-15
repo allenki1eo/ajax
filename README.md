@@ -19,10 +19,6 @@ npm run db:seed
 npm run dev
 ```
 
-Default login remains:
-
-- Username: `admin`
-- Password: `admin123`
 
 ## Turso setup
 
