@@ -1,0 +1,13 @@
+# Database configuration (contains sensitive credentials)
+config/database.php
+
+# IDE files
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
