@@ -1,9 +1,6 @@
 -- SQLite seed data (converted from MySQL dump)
 -- Run after migrations/0001_turso_schema.sql
 
-PRAGMA foreign_keys = OFF;
-BEGIN;
-
 -- categories
 INSERT INTO categories (id, name, description, created_at) VALUES
 (2, 'Clothing', 'Apparel and fashion items', '2025-09-21 08:04:47'),
@@ -1049,5 +1046,3 @@ INSERT INTO stock_movements (id, product_id, movement_type, quantity, reference_
 (416, 19, 'out', 10, 'sale', 208, NULL, 1, '2026-03-29 14:30:01'),
 (417, 19, 'out', 10, 'sale', 209, NULL, 1, '2026-03-29 14:30:05');
 
-COMMIT;
-PRAGMA foreign_keys = ON;
