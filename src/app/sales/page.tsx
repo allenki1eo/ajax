@@ -1,11 +1,11 @@
 import { cancelSale, recordSale } from "@/app/actions";
 import { AppShell } from "@/components/app-shell";
-import { Card, EmptyState, Field, PageHeader, Pagination, StatusBadge, buttonClass, deleteBtnClass, ghostButtonClass, inputClass } from "@/components/ui";
+import { Card, EmptyState, Field, PageHeader, Pagination, StatusBadge, buttonClass, deleteBtnClass, editBtnClass, ghostButtonClass, inputClass } from "@/components/ui";
 import { FlashToast } from "@/components/flash-toast";
 import { SaleCartForm } from "@/components/sale-cart-form";
 import { money } from "@/lib/format";
 import { row, rows } from "@/lib/db";
-import { XCircle } from "lucide-react";
+import { Eye, XCircle } from "lucide-react";
 import { Suspense } from "react";
 
 export default async function SalesPage({ searchParams }: { searchParams: Promise<Record<string, string | undefined>> }) {
@@ -131,15 +131,21 @@ export default async function SalesPage({ searchParams }: { searchParams: Promis
                   <td className="pr-4 capitalize text-muted-foreground">{s.payment_method.replace(/_/g, " ")}</td>
                   <td className="pr-4"><StatusBadge status={s.status} /></td>
                   <td>
-                    {s.status !== "cancelled" && (
-                      <form action={cancelSale} data-confirm={`Cancel sale #${String(s.id).padStart(4, "0")}? Stock will be restored.`}>
-                        <input type="hidden" name="id" value={s.id} />
-                        <button type="submit" className={deleteBtnClass}>
-                          <XCircle size={11} />
-                          Cancel
-                        </button>
-                      </form>
-                    )}
+                    <div className="flex items-center gap-1.5">
+                      <a href={`/sales/${s.id}`} className={editBtnClass}>
+                        <Eye size={11} />
+                        View
+                      </a>
+                      {s.status !== "cancelled" && (
+                        <form action={cancelSale} data-confirm={`Cancel sale #${String(s.id).padStart(4, "0")}? Stock will be restored.`}>
+                          <input type="hidden" name="id" value={s.id} />
+                          <button type="submit" className={deleteBtnClass}>
+                            <XCircle size={11} />
+                            Cancel
+                          </button>
+                        </form>
+                      )}
+                    </div>
                   </td>
                 </tr>
               ))}
