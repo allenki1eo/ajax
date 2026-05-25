@@ -1,5 +1,6 @@
 import { AppShell } from "@/components/app-shell";
-import { Card, EmptyState, PageHeader, Stat, buttonClass, ghostButtonClass, inputClass } from "@/components/ui";
+import { Card, EmptyState, PageHeader, Stat, buttonClass, editBtnClass, ghostButtonClass, inputClass } from "@/components/ui";
+import { BarChart2 } from "lucide-react";
 import { money, percent } from "@/lib/format";
 import { row, rows } from "@/lib/db";
 
@@ -51,8 +52,8 @@ export default async function ReportsPage({ searchParams }: { searchParams: Prom
 
   // ─── Products report data ─────────────────────────────────────────
   const productPerformance = reportType === "products"
-    ? await rows<{ name: string; sku: string | null; total_sold: number; total_revenue: number; total_profit: number; stock_quantity: number }>(
-        `SELECT p.name, p.sku,
+    ? await rows<{ id: number; name: string; sku: string | null; total_sold: number; total_revenue: number; total_profit: number; stock_quantity: number }>(
+        `SELECT p.id, p.name, p.sku,
                 COALESCE(SUM(si.quantity),0) total_sold,
                 COALESCE(SUM(si.total_price),0) total_revenue,
                 COALESCE(SUM(si.total_price) - SUM(si.quantity * p.cost_price),0) total_profit,
@@ -225,7 +226,8 @@ export default async function ReportsPage({ searchParams }: { searchParams: Prom
                       <th className="pr-4">Sold</th>
                       <th className="pr-4">Revenue</th>
                       <th className="pr-4">Profit</th>
-                      <th>Stock</th>
+                      <th className="pr-4">Stock</th>
+                      <th>Chart</th>
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-border">
@@ -238,8 +240,14 @@ export default async function ReportsPage({ searchParams }: { searchParams: Prom
                         <td className={`pr-4 font-semibold ${p.total_profit < 0 ? "text-rose-600" : "text-emerald-600"}`}>
                           {money(p.total_profit)}
                         </td>
-                        <td>
+                        <td className="pr-4">
                           <span className="font-medium">{p.stock_quantity}</span>
+                        </td>
+                        <td>
+                          <a href={`/reports/product/${p.id}`} className={editBtnClass}>
+                            <BarChart2 size={11} />
+                            View
+                          </a>
                         </td>
                       </tr>
                     ))}

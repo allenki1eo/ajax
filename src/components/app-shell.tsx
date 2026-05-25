@@ -1,14 +1,44 @@
 import Link from "next/link";
 import { logoutAction } from "@/app/actions";
 import { requireUser } from "@/lib/auth";
+import { rows } from "@/lib/db";
 import { Boxes, LogOut, Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { Badge } from "@/components/ui/badge";
 import { NavLinks } from "@/components/nav-links";
+import { NotificationBell, type NotificationAlert } from "@/components/notification-bell";
 
 export async function AppShell({ children }: { children: React.ReactNode }) {
   const user = await requireUser();
+
+  const lowStockItems = await rows<{ name: string; stock_quantity: number }>(
+    "SELECT name, stock_quantity FROM products WHERE status = 'active' AND stock_quantity <= min_stock_level ORDER BY stock_quantity ASC LIMIT 15",
+  );
+  const pendingSales = await rows<{ id: number }>(
+    "SELECT id FROM sales WHERE status = 'pending' ORDER BY created_at DESC LIMIT 5",
+  );
+  const pendingPurchases = await rows<{ id: number }>(
+    "SELECT id FROM purchases WHERE status = 'pending' ORDER BY created_at DESC LIMIT 5",
+  );
+
+  const alerts: NotificationAlert[] = [
+    ...lowStockItems.map((p) => ({
+      type: "low_stock" as const,
+      message: `${p.name} — only ${p.stock_quantity} unit${p.stock_quantity !== 1 ? "s" : ""} left`,
+      href: "/inventory",
+    })),
+    ...pendingSales.map((s) => ({
+      type: "pending_sale" as const,
+      message: `Sale #${String(s.id).padStart(4, "0")} is still pending`,
+      href: "/sales",
+    })),
+    ...pendingPurchases.map((p) => ({
+      type: "pending_purchase" as const,
+      message: `Purchase #${String(p.id).padStart(4, "0")} is still pending`,
+      href: "/purchases",
+    })),
+  ];
 
   return (
     <div className="min-h-screen bg-background">
@@ -54,6 +84,7 @@ export async function AppShell({ children }: { children: React.ReactNode }) {
           </div>
 
           <div className="flex items-center gap-3">
+            <NotificationBell alerts={alerts} />
             <div className="hidden text-right sm:block">
               <p className="text-sm font-medium text-foreground">{user.full_name}</p>
               <Badge variant="secondary" className="mt-0.5 capitalize text-xs">{user.role}</Badge>
