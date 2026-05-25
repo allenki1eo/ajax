@@ -28,16 +28,21 @@ export function Stat({ label, value, tone = "default" }: { label: string; value:
   const tones = {
     default: "bg-card text-card-foreground border",
     primary: "bg-primary text-primary-foreground border-primary",
-    destructive: "bg-destructive text-destructive-foreground border-destructive",
+    destructive: "bg-rose-600 text-white border-rose-600",
     success: "bg-emerald-600 text-white border-emerald-600",
-    info: "bg-blue-600 text-white border-blue-600",
+    info: "bg-indigo-600 text-white border-indigo-600",
   };
   const isColored = tone !== "default";
   return (
     <ShadCard className={clsx("relative min-h-32 overflow-hidden border p-5 shadow-sm", tones[tone])}>
-      {isColored && <span className="pointer-events-none absolute -right-6 -top-6 h-24 w-24 rounded-full bg-white/10" />}
+      {isColored && (
+        <>
+          <span className="pointer-events-none absolute -right-6 -top-6 h-24 w-24 rounded-full bg-white/10" />
+          <span className="pointer-events-none absolute -right-2 bottom-2 h-16 w-16 rounded-full bg-white/5" />
+        </>
+      )}
       <p className={clsx("text-sm font-medium", isColored ? "opacity-80" : "text-muted-foreground")}>{label}</p>
-      <p className="mt-3 break-words text-2xl font-semibold tracking-tight">{value}</p>
+      <p className="mt-3 break-words text-2xl font-bold tracking-tight">{value}</p>
     </ShadCard>
   );
 }
@@ -140,3 +145,9 @@ export function StatusBadge({ status }: { status: string }) {
 
 export const ghostButtonClass =
   "inline-flex h-9 items-center justify-center rounded-md border border-input bg-background px-4 text-sm font-medium shadow-sm transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50";
+
+export const editBtnClass =
+  "inline-flex h-7 items-center justify-center gap-1 rounded-md border border-input bg-background px-2.5 text-xs font-medium shadow-sm transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50";
+
+export const deleteBtnClass =
+  "inline-flex h-7 items-center justify-center gap-1 rounded-md border border-red-200 bg-red-50 px-2.5 text-xs font-medium text-red-700 shadow-sm transition-colors hover:bg-red-100 hover:border-red-300 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50";

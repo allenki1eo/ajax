@@ -171,6 +171,57 @@ export async function recordSale(formData: FormData) {
   revalidatePath("/");
 }
 
+export async function deleteProduct(formData: FormData) {
+  await requireUser();
+  const id = num(formData, "id");
+  const hasRefs = await row<{ count: number }>(
+    `SELECT (SELECT COUNT(*) FROM sale_items WHERE product_id = ?) + (SELECT COUNT(*) FROM purchase_items WHERE product_id = ?) count`,
+    [id, id],
+  );
+  if (Number(hasRefs?.count || 0) > 0) {
+    await exec("UPDATE products SET status = 'inactive', updated_at = CURRENT_TIMESTAMP WHERE id = ?", [id]);
+  } else {
+    await exec("DELETE FROM products WHERE id = ?", [id]);
+  }
+  revalidatePath("/products");
+  revalidatePath("/");
+  redirect("/products");
+}
+
+export async function deleteSale(formData: FormData) {
+  await requireUser();
+  const id = num(formData, "id");
+  await exec("DELETE FROM sales WHERE id = ?", [id]);
+  revalidatePath("/sales");
+  revalidatePath("/");
+  redirect("/sales");
+}
+
+export async function deleteCategory(formData: FormData) {
+  await requireUser();
+  const id = num(formData, "id");
+  await exec("DELETE FROM categories WHERE id = ?", [id]);
+  revalidatePath("/settings");
+  redirect("/settings");
+}
+
+export async function deleteSupplier(formData: FormData) {
+  await requireUser();
+  const id = num(formData, "id");
+  await exec("DELETE FROM suppliers WHERE id = ?", [id]);
+  revalidatePath("/settings");
+  redirect("/settings");
+}
+
+export async function deletePurchase(formData: FormData) {
+  await requireUser();
+  const id = num(formData, "id");
+  await exec("DELETE FROM purchases WHERE id = ?", [id]);
+  revalidatePath("/purchases");
+  revalidatePath("/inventory");
+  redirect("/purchases");
+}
+
 export async function recordPurchase(formData: FormData) {
   const user = await requireUser();
   const productId = num(formData, "product_id");
