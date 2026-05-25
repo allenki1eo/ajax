@@ -1,10 +1,12 @@
 import { saveProduct, deleteProduct } from "@/app/actions";
 import { AppShell } from "@/components/app-shell";
 import { Card, EmptyState, Field, PageHeader, Pagination, StatusBadge, buttonClass, deleteBtnClass, editBtnClass, ghostButtonClass, inputClass } from "@/components/ui";
+import { FlashToast } from "@/components/flash-toast";
 import { money, percent } from "@/lib/format";
 import { row, rows } from "@/lib/db";
 import type { Category, Product, Supplier } from "@/lib/types";
 import { Pencil, Plus, Trash2 } from "lucide-react";
+import { Suspense } from "react";
 
 type ProductRow = {
   id: number;
@@ -24,7 +26,7 @@ export default async function ProductsPage({ searchParams }: { searchParams: Pro
   const params = await searchParams;
   const search = params.search || "";
   const categoryFilter = params.category || "";
-  const statusFilter = params.status || "";
+  const statusFilter = params.status ?? "active";
   const pageSize = 20;
   const page = Math.max(1, Number(params.page || 1));
   const offset = (page - 1) * pageSize;
@@ -60,6 +62,7 @@ export default async function ProductsPage({ searchParams }: { searchParams: Pro
 
   return (
     <AppShell>
+      <Suspense><FlashToast /></Suspense>
       <PageHeader title="Products" eyebrow="Catalog" />
 
       <Card className="mb-6">

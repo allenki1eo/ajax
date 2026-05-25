@@ -1,9 +1,11 @@
 import { saveCategory, saveSupplier, deleteCategory, deleteSupplier } from "@/app/actions";
 import { AppShell } from "@/components/app-shell";
 import { Card, Field, PageHeader, buttonClass, deleteBtnClass, editBtnClass, ghostButtonClass, inputClass } from "@/components/ui";
+import { FlashToast } from "@/components/flash-toast";
 import { rows, row } from "@/lib/db";
 import type { Category, Supplier } from "@/lib/types";
 import { Pencil, Plus, Trash2 } from "lucide-react";
+import { Suspense } from "react";
 
 export default async function SettingsPage({ searchParams }: { searchParams: Promise<Record<string, string | undefined>> }) {
   const params = await searchParams;
@@ -18,6 +20,7 @@ export default async function SettingsPage({ searchParams }: { searchParams: Pro
 
   return (
     <AppShell>
+      <Suspense><FlashToast /></Suspense>
       <PageHeader title="Settings" eyebrow="Reference data" />
       <div className="grid gap-6 xl:grid-cols-2">
 

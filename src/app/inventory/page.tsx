@@ -1,8 +1,10 @@
-import { adjustStock } from "@/app/actions";
 import { AppShell } from "@/components/app-shell";
-import { Card, EmptyState, Field, PageHeader, Pagination, buttonClass, inputClass } from "@/components/ui";
+import { Card, EmptyState, PageHeader, Pagination } from "@/components/ui";
+import { FlashToast } from "@/components/flash-toast";
+import { StockAdjustForm } from "@/components/stock-adjust-form";
 import { dateLabel } from "@/lib/format";
 import { row, rows } from "@/lib/db";
+import { Suspense } from "react";
 
 export default async function InventoryPage({ searchParams }: { searchParams: Promise<Record<string, string | undefined>> }) {
   const params = await searchParams;
@@ -20,21 +22,12 @@ export default async function InventoryPage({ searchParams }: { searchParams: Pr
 
   return (
     <AppShell>
+      <Suspense><FlashToast /></Suspense>
       <PageHeader title="Inventory" eyebrow="Stock control" />
       <div className="grid gap-6 xl:grid-cols-[0.8fr_1.2fr]">
         <Card>
           <h2 className="mb-4 text-base font-semibold text-foreground">Adjust stock</h2>
-          <form action={adjustStock} className="space-y-4">
-            <Field label="Product">
-              <select className={inputClass} name="product_id">{products.map((p) => <option key={p.id} value={p.id}>{p.name} ({p.stock_quantity})</option>)}</select>
-            </Field>
-            <Field label="Movement">
-              <select className={inputClass} name="movement_type"><option value="in">Stock in</option><option value="out">Stock out</option></select>
-            </Field>
-            <Field label="Quantity"><input className={inputClass} name="quantity" type="number" min="1" required /></Field>
-            <Field label="Notes"><input className={inputClass} name="notes" /></Field>
-            <button className={buttonClass + " w-full"}>Save adjustment</button>
-          </form>
+          <StockAdjustForm products={products} />
         </Card>
         <Card>
           <h2 className="mb-4 text-base font-semibold text-foreground">Stock positions</h2>
@@ -53,13 +46,24 @@ export default async function InventoryPage({ searchParams }: { searchParams: Pr
         <h2 className="mb-4 text-base font-semibold text-foreground">Recent movements</h2>
         <div className="table-scroll">
           <table className="w-full min-w-[760px] text-left text-sm">
-            <thead className="text-xs uppercase tracking-wide text-muted-foreground"><tr><th className="py-3">Date</th><th>Product</th><th>Type</th><th>Qty</th><th>Reference</th><th>Notes</th></tr></thead>
+            <thead className="border-b text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+              <tr><th className="py-3 pr-4">Date</th><th className="pr-4">Product</th><th className="pr-4">Type</th><th className="pr-4">Qty</th><th className="pr-4">Reference</th><th>Notes</th></tr>
+            </thead>
             <tbody className="divide-y divide-border">
-              {movements.map((m) => <tr key={m.id}><td className="py-3">{dateLabel(m.created_at)}</td><td>{m.product_name}</td><td className="capitalize">{m.movement_type}</td><td className="font-bold">{m.quantity}</td><td className="capitalize">{m.reference_type}</td><td>{m.notes || "-"}</td></tr>)}
+              {movements.map((m) => (
+                <tr key={m.id}>
+                  <td className="py-3 pr-4 text-muted-foreground">{dateLabel(m.created_at)}</td>
+                  <td className="pr-4 font-medium">{m.product_name}</td>
+                  <td className={`pr-4 font-semibold capitalize ${m.movement_type === "in" ? "text-emerald-600" : "text-rose-600"}`}>{m.movement_type}</td>
+                  <td className="pr-4 font-bold">{m.quantity}</td>
+                  <td className="pr-4 capitalize text-muted-foreground">{m.reference_type}</td>
+                  <td className="text-muted-foreground">{m.notes || "—"}</td>
+                </tr>
+              ))}
             </tbody>
           </table>
         </div>
-        {movements.length === 0 ? <EmptyState title="No movements yet" body="Stock adjustments, sales, and purchases will appear here as an audit trail." /> : null}
+        {movements.length === 0 && <EmptyState title="No movements yet" body="Stock adjustments, sales, and purchases will appear here as an audit trail." />}
         <Pagination basePath="/inventory" page={page} pageSize={pageSize} total={Number(total?.total || 0)} />
       </Card>
     </AppShell>

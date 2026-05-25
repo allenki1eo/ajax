@@ -3,7 +3,7 @@
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { createSession, clearSession, requireUser, verifyPassword } from "@/lib/auth";
-import { exec, getDb, row } from "@/lib/db";
+import { exec, getDb, row, rows } from "@/lib/db";
 
 function str(formData: FormData, key: string) {
   return String(formData.get(key) || "").trim();
@@ -85,7 +85,8 @@ export async function saveProduct(formData: FormData) {
 
   revalidatePath("/products");
   revalidatePath("/");
-  redirect("/products");
+  const msg = id ? "Product+updated" : "Product+added";
+  redirect(`/products?success=${msg}`);
 }
 
 export async function saveCategory(formData: FormData) {
@@ -97,6 +98,7 @@ export async function saveCategory(formData: FormData) {
     await exec("INSERT INTO categories (name, description) VALUES (?, ?)", [str(formData, "name"), str(formData, "description")]);
   }
   revalidatePath("/settings");
+  redirect("/settings?success=Category+saved");
 }
 
 export async function saveSupplier(formData: FormData) {
@@ -109,18 +111,19 @@ export async function saveSupplier(formData: FormData) {
     await exec("INSERT INTO suppliers (name, contact_person, email, phone, address) VALUES (?, ?, ?, ?, ?)", payload);
   }
   revalidatePath("/settings");
+  redirect("/settings?success=Supplier+saved");
 }
 
-export async function adjustStock(formData: FormData) {
+export async function adjustStock(_: unknown, formData: FormData): Promise<{ error: string } | void> {
   const user = await requireUser();
   const productId = num(formData, "product_id");
   const quantity = num(formData, "quantity");
-  if (quantity < 1) throw new Error("Quantity must be at least 1.");
+  if (quantity < 1) return { error: "Quantity must be at least 1." };
   const direction = str(formData, "movement_type") as "in" | "out";
   if (direction === "out") {
     const current = await row<{ stock_quantity: number }>("SELECT stock_quantity FROM products WHERE id = ?", [productId]);
     if ((current?.stock_quantity ?? 0) < quantity) {
-      throw new Error(`Insufficient stock. Only ${current?.stock_quantity ?? 0} unit(s) available.`);
+      return { error: `Insufficient stock. Only ${current?.stock_quantity ?? 0} unit(s) available.` };
     }
   }
   const signed = direction === "out" ? -quantity : quantity;
@@ -139,87 +142,110 @@ export async function adjustStock(formData: FormData) {
   revalidatePath("/products");
 }
 
-export async function recordSale(formData: FormData) {
+export async function recordSale(_: unknown, formData: FormData): Promise<{ error: string } | null> {
   const user = await requireUser();
-  const productId = num(formData, "product_id");
-  const quantity = num(formData, "quantity");
-  if (quantity < 1) throw new Error("Quantity must be at least 1.");
-  const product = await row<{ selling_price: number; stock_quantity: number }>(
-    "SELECT selling_price, stock_quantity FROM products WHERE id = ?",
-    [productId],
+
+  const productIds = formData.getAll("product_id").map(Number);
+  const quantities = formData.getAll("quantity").map(Number);
+  const unitPrices = formData.getAll("unit_price").map(Number);
+
+  if (productIds.length === 0) return { error: "Cart is empty." };
+  if (quantities.some((q) => q < 1)) return { error: "All quantities must be at least 1." };
+
+  // Fetch all products in one query
+  const placeholders = productIds.map(() => "?").join(", ");
+  const products = await rows<{ id: number; selling_price: number; stock_quantity: number }>(
+    `SELECT id, selling_price, stock_quantity FROM products WHERE id IN (${placeholders})`,
+    productIds,
   );
-  if (!product) throw new Error("Product not found.");
-  if (product.stock_quantity < quantity) {
-    throw new Error(`Insufficient stock. Only ${product.stock_quantity} unit(s) available.`);
+  const productMap = new Map(products.map((p) => [p.id, p]));
+
+  // Validate stock for all items before any write
+  for (let i = 0; i < productIds.length; i++) {
+    const product = productMap.get(productIds[i]);
+    if (!product) return { error: `Product not found (ID ${productIds[i]}).` };
+    if (product.stock_quantity < quantities[i]) {
+      return { error: `Insufficient stock for "${productIds[i]}". Only ${product.stock_quantity} available.` };
+    }
   }
-  const total = quantity * product.selling_price;
+
+  const lineItems = productIds.map((pid, i) => ({
+    productId: pid,
+    quantity: quantities[i],
+    // Use submitted price if provided, otherwise fall back to DB selling price
+    unitPrice: unitPrices[i] > 0 ? unitPrices[i] : (productMap.get(pid)?.selling_price ?? 0),
+    lineTotal: quantities[i] * (unitPrices[i] > 0 ? unitPrices[i] : (productMap.get(pid)?.selling_price ?? 0)),
+  }));
+
+  const grandTotal = lineItems.reduce((sum, li) => sum + li.lineTotal, 0);
 
   const sale = await exec(
-    "INSERT INTO sales (sale_date, customer_name, total_amount, payment_method, status, notes, created_by) VALUES (?, ?, ?, ?, 'completed', ?, ?)",
-    [str(formData, "sale_date"), str(formData, "customer_name"), total, str(formData, "payment_method") || "cash", str(formData, "notes"), user.id],
+    "INSERT INTO sales (sale_date, customer_name, customer_phone, total_amount, payment_method, status, notes, created_by) VALUES (?, ?, ?, ?, ?, 'completed', ?, ?)",
+    [
+      str(formData, "sale_date"),
+      str(formData, "customer_name") || null,
+      str(formData, "customer_phone") || null,
+      grandTotal,
+      str(formData, "payment_method") || "cash",
+      str(formData, "notes") || null,
+      user.id,
+    ],
   );
   const saleId = Number(sale.lastInsertRowid);
-  await getDb().batch(
-    [
-      { sql: "INSERT INTO sale_items (sale_id, product_id, quantity, unit_price, total_price) VALUES (?, ?, ?, ?, ?)", args: [saleId, productId, quantity, product?.selling_price || 0, total] },
-      { sql: "UPDATE products SET stock_quantity = stock_quantity - ?, updated_at = CURRENT_TIMESTAMP WHERE id = ?", args: [quantity, productId] },
-      { sql: "INSERT INTO stock_movements (product_id, movement_type, quantity, reference_type, reference_id, created_by) VALUES (?, 'out', ?, 'sale', ?, ?)", args: [productId, quantity, saleId, user.id] },
-    ],
-    "write",
-  );
+
+  const batchStatements = lineItems.flatMap((li) => [
+    {
+      sql: "INSERT INTO sale_items (sale_id, product_id, quantity, unit_price, total_price) VALUES (?, ?, ?, ?, ?)",
+      args: [saleId, li.productId, li.quantity, li.unitPrice, li.lineTotal],
+    },
+    {
+      sql: "UPDATE products SET stock_quantity = stock_quantity - ?, updated_at = CURRENT_TIMESTAMP WHERE id = ?",
+      args: [li.quantity, li.productId],
+    },
+    {
+      sql: "INSERT INTO stock_movements (product_id, movement_type, quantity, reference_type, reference_id, created_by) VALUES (?, 'out', ?, 'sale', ?, ?)",
+      args: [li.productId, li.quantity, saleId, user.id],
+    },
+  ]);
+
+  await getDb().batch(batchStatements, "write");
   revalidatePath("/sales");
   revalidatePath("/");
+  return null;
 }
 
-export async function deleteProduct(formData: FormData) {
-  await requireUser();
+export async function cancelSale(formData: FormData) {
+  const user = await requireUser();
   const id = num(formData, "id");
-  const hasRefs = await row<{ count: number }>(
-    `SELECT (SELECT COUNT(*) FROM sale_items WHERE product_id = ?) + (SELECT COUNT(*) FROM purchase_items WHERE product_id = ?) count`,
-    [id, id],
+
+  // Get sale items to restore stock
+  const saleItems = await rows<{ product_id: number; quantity: number }>(
+    "SELECT product_id, quantity FROM sale_items WHERE sale_id = ?",
+    [id],
   );
-  if (Number(hasRefs?.count || 0) > 0) {
-    await exec("UPDATE products SET status = 'inactive', updated_at = CURRENT_TIMESTAMP WHERE id = ?", [id]);
-  } else {
-    await exec("DELETE FROM products WHERE id = ?", [id]);
-  }
-  revalidatePath("/products");
-  revalidatePath("/");
-  redirect("/products");
-}
 
-export async function deleteSale(formData: FormData) {
-  await requireUser();
-  const id = num(formData, "id");
-  await exec("DELETE FROM sales WHERE id = ?", [id]);
+  const batchStatements = [
+    // Mark as cancelled
+    { sql: "UPDATE sales SET status = 'cancelled' WHERE id = ?", args: [id] },
+    // Restore stock and record return movements for each item
+    ...saleItems.flatMap((item) => [
+      {
+        sql: "UPDATE products SET stock_quantity = stock_quantity + ?, updated_at = CURRENT_TIMESTAMP WHERE id = ?",
+        args: [item.quantity, item.product_id],
+      },
+      {
+        sql: "INSERT INTO stock_movements (product_id, movement_type, quantity, reference_type, reference_id, notes, created_by) VALUES (?, 'in', ?, 'return', ?, 'Sale cancellation', ?)",
+        args: [item.product_id, item.quantity, id, user.id],
+      },
+    ]),
+  ];
+
+  await getDb().batch(batchStatements, "write");
   revalidatePath("/sales");
   revalidatePath("/");
-  redirect("/sales");
-}
-
-export async function deleteCategory(formData: FormData) {
-  await requireUser();
-  const id = num(formData, "id");
-  await exec("DELETE FROM categories WHERE id = ?", [id]);
-  revalidatePath("/settings");
-  redirect("/settings");
-}
-
-export async function deleteSupplier(formData: FormData) {
-  await requireUser();
-  const id = num(formData, "id");
-  await exec("DELETE FROM suppliers WHERE id = ?", [id]);
-  revalidatePath("/settings");
-  redirect("/settings");
-}
-
-export async function deletePurchase(formData: FormData) {
-  await requireUser();
-  const id = num(formData, "id");
-  await exec("DELETE FROM purchases WHERE id = ?", [id]);
-  revalidatePath("/purchases");
   revalidatePath("/inventory");
-  redirect("/purchases");
+  revalidatePath("/products");
+  redirect("/sales?success=Sale+cancelled+and+stock+restored");
 }
 
 export async function recordPurchase(formData: FormData) {
@@ -243,4 +269,47 @@ export async function recordPurchase(formData: FormData) {
   );
   revalidatePath("/purchases");
   revalidatePath("/inventory");
+  redirect("/purchases?success=Purchase+recorded");
+}
+
+export async function deleteProduct(formData: FormData) {
+  await requireUser();
+  const id = num(formData, "id");
+  const hasRefs = await row<{ count: number }>(
+    `SELECT (SELECT COUNT(*) FROM sale_items WHERE product_id = ?) + (SELECT COUNT(*) FROM purchase_items WHERE product_id = ?) count`,
+    [id, id],
+  );
+  if (Number(hasRefs?.count || 0) > 0) {
+    await exec("UPDATE products SET status = 'inactive', updated_at = CURRENT_TIMESTAMP WHERE id = ?", [id]);
+  } else {
+    await exec("DELETE FROM products WHERE id = ?", [id]);
+  }
+  revalidatePath("/products");
+  revalidatePath("/");
+  redirect("/products?success=Product+removed");
+}
+
+export async function deleteCategory(formData: FormData) {
+  await requireUser();
+  const id = num(formData, "id");
+  await exec("DELETE FROM categories WHERE id = ?", [id]);
+  revalidatePath("/settings");
+  redirect("/settings?success=Category+deleted");
+}
+
+export async function deleteSupplier(formData: FormData) {
+  await requireUser();
+  const id = num(formData, "id");
+  await exec("DELETE FROM suppliers WHERE id = ?", [id]);
+  revalidatePath("/settings");
+  redirect("/settings?success=Supplier+deleted");
+}
+
+export async function deletePurchase(formData: FormData) {
+  await requireUser();
+  const id = num(formData, "id");
+  await exec("DELETE FROM purchases WHERE id = ?", [id]);
+  revalidatePath("/purchases");
+  revalidatePath("/inventory");
+  redirect("/purchases?success=Purchase+deleted");
 }

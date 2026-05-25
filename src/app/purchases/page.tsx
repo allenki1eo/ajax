@@ -1,9 +1,11 @@
 import { recordPurchase, deletePurchase } from "@/app/actions";
 import { AppShell } from "@/components/app-shell";
+import { FlashToast } from "@/components/flash-toast";
 import { Card, EmptyState, Field, PageHeader, Pagination, StatusBadge, buttonClass, deleteBtnClass, ghostButtonClass, inputClass } from "@/components/ui";
 import { money } from "@/lib/format";
 import { row, rows } from "@/lib/db";
 import { Trash2 } from "lucide-react";
+import { Suspense } from "react";
 
 export default async function PurchasesPage({ searchParams }: { searchParams: Promise<Record<string, string | undefined>> }) {
   const params = await searchParams;
@@ -44,6 +46,7 @@ export default async function PurchasesPage({ searchParams }: { searchParams: Pr
 
   return (
     <AppShell>
+      <Suspense><FlashToast /></Suspense>
       <PageHeader title="Purchases" eyebrow="Receiving" />
       <Card className="mb-6">
         <h2 className="mb-4 text-base font-semibold text-foreground">Record a purchase</h2>
