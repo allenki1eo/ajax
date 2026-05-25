@@ -1,9 +1,12 @@
-import { recordSale, deleteSale } from "@/app/actions";
+import { cancelSale, recordSale } from "@/app/actions";
 import { AppShell } from "@/components/app-shell";
 import { Card, EmptyState, Field, PageHeader, Pagination, StatusBadge, buttonClass, deleteBtnClass, ghostButtonClass, inputClass } from "@/components/ui";
+import { FlashToast } from "@/components/flash-toast";
+import { SaleCartForm } from "@/components/sale-cart-form";
 import { money } from "@/lib/format";
 import { row, rows } from "@/lib/db";
-import { Trash2 } from "lucide-react";
+import { XCircle } from "lucide-react";
+import { Suspense } from "react";
 
 export default async function SalesPage({ searchParams }: { searchParams: Promise<Record<string, string | undefined>> }) {
   const params = await searchParams;
@@ -16,66 +19,53 @@ export default async function SalesPage({ searchParams }: { searchParams: Promis
   const offset = (page - 1) * pageSize;
 
   const products = await rows<{ id: number; name: string; selling_price: number; stock_quantity: number }>(
-    "SELECT id, name, selling_price, stock_quantity FROM products WHERE status = 'active' ORDER BY name",
+    "SELECT id, name, selling_price, stock_quantity FROM products WHERE status = 'active' AND stock_quantity > 0 ORDER BY name",
   );
   const total = await row<{ total: number }>(
-    `SELECT COUNT(*) total FROM sales
-     WHERE (? = '' OR customer_name LIKE ?)
-     AND (? = '' OR status = ?)
-     AND (? = '' OR sale_date >= ?)
-     AND (? = '' OR sale_date <= ?)`,
-    [search, `%${search}%`, status, status, dateFrom, dateFrom, dateTo, dateTo],
+    `SELECT COUNT(DISTINCT s.id) total FROM sales s
+     WHERE (? = '' OR s.customer_name LIKE ? OR s.customer_phone LIKE ?)
+     AND (? = '' OR s.status = ?)
+     AND (? = '' OR s.sale_date >= ?)
+     AND (? = '' OR s.sale_date <= ?)`,
+    [search, `%${search}%`, `%${search}%`, status, status, dateFrom, dateFrom, dateTo, dateTo],
   );
-  const sales = await rows<{ id: number; sale_date: string; customer_name: string | null; total_amount: number; payment_method: string; status: string }>(
-    `SELECT id, sale_date, customer_name, total_amount, payment_method, status
-     FROM sales
-     WHERE (? = '' OR customer_name LIKE ?)
-     AND (? = '' OR status = ?)
-     AND (? = '' OR sale_date >= ?)
-     AND (? = '' OR sale_date <= ?)
-     ORDER BY created_at DESC LIMIT ? OFFSET ?`,
-    [search, `%${search}%`, status, status, dateFrom, dateFrom, dateTo, dateTo, pageSize, offset],
+  const sales = await rows<{
+    id: number;
+    sale_date: string;
+    customer_name: string | null;
+    customer_phone: string | null;
+    total_amount: number;
+    payment_method: string;
+    status: string;
+    item_count: number;
+  }>(
+    `SELECT s.id, s.sale_date, s.customer_name, s.customer_phone, s.total_amount, s.payment_method, s.status,
+            COUNT(si.id) item_count
+     FROM sales s
+     LEFT JOIN sale_items si ON si.sale_id = s.id
+     WHERE (? = '' OR s.customer_name LIKE ? OR s.customer_phone LIKE ?)
+     AND (? = '' OR s.status = ?)
+     AND (? = '' OR s.sale_date >= ?)
+     AND (? = '' OR s.sale_date <= ?)
+     GROUP BY s.id
+     ORDER BY s.created_at DESC LIMIT ? OFFSET ?`,
+    [search, `%${search}%`, `%${search}%`, status, status, dateFrom, dateFrom, dateTo, dateTo, pageSize, offset],
   );
 
   const hasFilter = search || status || dateFrom || dateTo;
 
   return (
     <AppShell>
+      <Suspense><FlashToast /></Suspense>
       <PageHeader title="Sales" eyebrow="Checkout" />
+
       <Card className="mb-6">
-        <h2 className="mb-4 text-base font-semibold text-foreground">Record a sale</h2>
-        <form action={recordSale} className="grid gap-4 md:grid-cols-2 xl:grid-cols-5">
-          <Field label="Product">
-            <select className={inputClass} name="product_id">
-              {products.map((p) => (
-                <option key={p.id} value={p.id}>
-                  {p.name} — {money(p.selling_price)} ({p.stock_quantity} in stock)
-                </option>
-              ))}
-            </select>
-          </Field>
-          <Field label="Quantity">
-            <input className={inputClass} name="quantity" type="number" min="1" defaultValue="1" />
-          </Field>
-          <Field label="Date">
-            <input className={inputClass} name="sale_date" type="date" defaultValue={new Date().toISOString().slice(0, 10)} />
-          </Field>
-          <Field label="Payment">
-            <select className={inputClass} name="payment_method">
-              <option value="cash">Cash</option>
-              <option value="card">Card</option>
-              <option value="bank_transfer">Bank transfer</option>
-              <option value="other">Other</option>
-            </select>
-          </Field>
-          <Field label="Customer">
-            <input className={inputClass} name="customer_name" placeholder="Walk-in" />
-          </Field>
-          <div className="md:col-span-2 xl:col-span-5">
-            <Field label="Notes"><input className={inputClass} name="notes" /></Field>
-          </div>
-          <button className={buttonClass + " md:col-span-2 xl:col-span-5"}>Record sale</button>
-        </form>
+        <h2 className="mb-4 text-base font-semibold text-foreground">New sale</h2>
+        {products.length === 0 ? (
+          <p className="text-sm text-muted-foreground">No active products with stock available. Add stock via Inventory first.</p>
+        ) : (
+          <SaleCartForm products={products} action={recordSale} />
+        )}
       </Card>
 
       <Card>
@@ -83,7 +73,7 @@ export default async function SalesPage({ searchParams }: { searchParams: Promis
           <input
             className={inputClass + " min-w-44 flex-1"}
             name="search"
-            placeholder="Search by customer name…"
+            placeholder="Search by customer name or phone…"
             defaultValue={search}
           />
           <select className={inputClass + " w-40"} name="status" defaultValue={status}>
@@ -94,7 +84,7 @@ export default async function SalesPage({ searchParams }: { searchParams: Promis
           </select>
           <div className="flex items-center gap-2">
             <input className={inputClass + " w-36"} name="from" type="date" defaultValue={dateFrom} title="From date" />
-            <span className="text-muted-foreground text-xs">to</span>
+            <span className="text-xs text-muted-foreground">to</span>
             <input className={inputClass + " w-36"} name="to" type="date" defaultValue={dateTo} title="To date" />
           </div>
           <button className={buttonClass} type="submit">Filter</button>
@@ -108,11 +98,13 @@ export default async function SalesPage({ searchParams }: { searchParams: Promis
         )}
 
         <div className="table-scroll">
-          <table className="w-full min-w-[760px] text-left text-sm">
+          <table className="w-full min-w-[820px] text-left text-sm">
             <thead className="border-b text-xs font-semibold uppercase tracking-wide text-muted-foreground">
               <tr>
-                <th className="py-3 pr-4">Date</th>
+                <th className="py-3 pr-4">ID</th>
+                <th className="pr-4">Date</th>
                 <th className="pr-4">Customer</th>
+                <th className="pr-4">Items</th>
                 <th className="pr-4">Amount</th>
                 <th className="pr-4">Payment</th>
                 <th className="pr-4">Status</th>
@@ -122,19 +114,32 @@ export default async function SalesPage({ searchParams }: { searchParams: Promis
             <tbody className="divide-y divide-border">
               {sales.map((s) => (
                 <tr key={s.id}>
-                  <td className="py-3 pr-4 text-muted-foreground">{s.sale_date}</td>
-                  <td className="pr-4 font-medium">{s.customer_name || "Walk-in"}</td>
+                  <td className="py-3 pr-4 font-mono text-xs text-muted-foreground">
+                    #{String(s.id).padStart(4, "0")}
+                  </td>
+                  <td className="pr-4 text-muted-foreground">{s.sale_date}</td>
+                  <td className="pr-4">
+                    <p className="font-medium">{s.customer_name || "Walk-in"}</p>
+                    {s.customer_phone && <p className="text-xs text-muted-foreground">{s.customer_phone}</p>}
+                  </td>
+                  <td className="pr-4">
+                    <span className="inline-flex items-center rounded-full bg-primary/10 px-2 py-0.5 text-xs font-medium text-primary">
+                      {s.item_count} item{s.item_count !== 1 ? "s" : ""}
+                    </span>
+                  </td>
                   <td className="pr-4 font-bold text-foreground">{money(s.total_amount)}</td>
                   <td className="pr-4 capitalize text-muted-foreground">{s.payment_method.replace(/_/g, " ")}</td>
                   <td className="pr-4"><StatusBadge status={s.status} /></td>
                   <td>
-                    <form action={deleteSale} data-confirm={`Delete this sale of ${money(s.total_amount)}? This cannot be undone.`}>
-                      <input type="hidden" name="id" value={s.id} />
-                      <button type="submit" className={deleteBtnClass}>
-                        <Trash2 size={11} />
-                        Delete
-                      </button>
-                    </form>
+                    {s.status !== "cancelled" && (
+                      <form action={cancelSale} data-confirm={`Cancel sale #${String(s.id).padStart(4, "0")}? Stock will be restored.`}>
+                        <input type="hidden" name="id" value={s.id} />
+                        <button type="submit" className={deleteBtnClass}>
+                          <XCircle size={11} />
+                          Cancel
+                        </button>
+                      </form>
+                    )}
                   </td>
                 </tr>
               ))}
