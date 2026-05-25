@@ -36,8 +36,8 @@ export function NavLinks({ mobile = false }: { mobile?: boolean }) {
               "flex items-center rounded-md px-3 py-2 text-sm font-medium transition-colors",
               mobile ? "mb-0.5 gap-3" : "mb-0.5 gap-2.5",
               isActive
-                ? "bg-primary text-primary-foreground"
-                : "text-foreground/70 hover:bg-accent hover:text-accent-foreground",
+                ? "bg-sidebar-primary/20 text-sidebar-primary font-semibold"
+                : "text-sidebar-foreground/70 hover:bg-sidebar-accent hover:text-sidebar-accent-foreground",
             )}
           >
             <item.icon size={mobile ? 16 : 15} />
