@@ -23,33 +23,34 @@ export default async function SalesPage({ searchParams }: { searchParams: Promis
   );
   const total = await row<{ total: number }>(
     `SELECT COUNT(DISTINCT s.id) total FROM sales s
-     WHERE (? = '' OR s.customer_name LIKE ? OR s.customer_phone LIKE ?)
+     WHERE (? = '' OR s.customer_name LIKE ? OR s.customer_email LIKE ? OR s.customer_phone LIKE ?)
      AND (? = '' OR s.status = ?)
      AND (? = '' OR s.sale_date >= ?)
      AND (? = '' OR s.sale_date <= ?)`,
-    [search, `%${search}%`, `%${search}%`, status, status, dateFrom, dateFrom, dateTo, dateTo],
+    [search, `%${search}%`, `%${search}%`, `%${search}%`, status, status, dateFrom, dateFrom, dateTo, dateTo],
   );
   const sales = await rows<{
     id: number;
     sale_date: string;
     customer_name: string | null;
+    customer_email: string | null;
     customer_phone: string | null;
     total_amount: number;
     payment_method: string;
     status: string;
     item_count: number;
   }>(
-    `SELECT s.id, s.sale_date, s.customer_name, s.customer_phone, s.total_amount, s.payment_method, s.status,
+    `SELECT s.id, s.sale_date, s.customer_name, s.customer_email, s.customer_phone, s.total_amount, s.payment_method, s.status,
             COUNT(si.id) item_count
      FROM sales s
      LEFT JOIN sale_items si ON si.sale_id = s.id
-     WHERE (? = '' OR s.customer_name LIKE ? OR s.customer_phone LIKE ?)
+     WHERE (? = '' OR s.customer_name LIKE ? OR s.customer_email LIKE ? OR s.customer_phone LIKE ?)
      AND (? = '' OR s.status = ?)
      AND (? = '' OR s.sale_date >= ?)
      AND (? = '' OR s.sale_date <= ?)
      GROUP BY s.id
      ORDER BY s.created_at DESC LIMIT ? OFFSET ?`,
-    [search, `%${search}%`, `%${search}%`, status, status, dateFrom, dateFrom, dateTo, dateTo, pageSize, offset],
+    [search, `%${search}%`, `%${search}%`, `%${search}%`, status, status, dateFrom, dateFrom, dateTo, dateTo, pageSize, offset],
   );
 
   const hasFilter = search || status || dateFrom || dateTo;
@@ -73,7 +74,7 @@ export default async function SalesPage({ searchParams }: { searchParams: Promis
           <input
             className={inputClass + " min-w-44 flex-1"}
             name="search"
-            placeholder="Search by customer name or phone…"
+            placeholder="Search by customer name, email or phone…"
             defaultValue={search}
           />
           <select className={inputClass + " w-40"} name="status" defaultValue={status}>
@@ -119,7 +120,8 @@ export default async function SalesPage({ searchParams }: { searchParams: Promis
                   </td>
                   <td className="pr-4 text-muted-foreground">{s.sale_date}</td>
                   <td className="pr-4">
-                    <p className="font-medium">{s.customer_name || "Walk-in"}</p>
+                    <p className="font-medium">{s.customer_name || "Walk-in Customer"}</p>
+                    {s.customer_email && <p className="text-xs text-muted-foreground">{s.customer_email}</p>}
                     {s.customer_phone && <p className="text-xs text-muted-foreground">{s.customer_phone}</p>}
                   </td>
                   <td className="pr-4">
@@ -128,7 +130,11 @@ export default async function SalesPage({ searchParams }: { searchParams: Promis
                     </span>
                   </td>
                   <td className="pr-4 font-bold text-foreground">{money(s.total_amount)}</td>
-                  <td className="pr-4 capitalize text-muted-foreground">{s.payment_method.replace(/_/g, " ")}</td>
+                  <td className="pr-4">
+                    <span className="inline-flex items-center rounded-full bg-muted px-2.5 py-0.5 text-xs font-medium capitalize text-muted-foreground">
+                      {s.payment_method.replace(/_/g, " ")}
+                    </span>
+                  </td>
                   <td className="pr-4"><StatusBadge status={s.status} /></td>
                   <td>
                     <div className="flex items-center gap-1.5">

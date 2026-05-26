@@ -1,6 +1,6 @@
 "use client";
 
-import { useActionState, useEffect, useState } from "react";
+import { useActionState, useEffect, useRef, useState } from "react";
 import { toast } from "sonner";
 import { Trash2, Plus } from "lucide-react";
 import { buttonClass, deleteBtnClass, ghostButtonClass, inputClass, Field } from "@/components/ui";
@@ -41,13 +41,21 @@ export function SaleCartForm({
 }) {
   const [state, formAction, pending] = useActionState(action, null);
   const [items, setItems] = useState<CartItem[]>(() => [makeRow(products)]);
+  const formRef = useRef<HTMLFormElement>(null);
+  const didSubmit = useRef(false);
 
-  // Reset cart on success (state goes back to null after redirect-less success)
   useEffect(() => {
+    if (pending) { didSubmit.current = true; return; }
+    if (!didSubmit.current) return;
     if (state && "error" in state) {
       toast.error(state.error);
+    } else if (state === null) {
+      toast.success("Sale recorded successfully!", { description: "Stock has been updated." });
+      setItems([makeRow(products)]);
+      formRef.current?.reset();
+      didSubmit.current = false;
     }
-  }, [state]);
+  }, [state, pending]);
 
   function addRow() {
     setItems((prev) => [...prev, makeRow(products)]);
@@ -70,7 +78,7 @@ export function SaleCartForm({
   const today = new Date().toISOString().slice(0, 10);
 
   return (
-    <form action={formAction}>
+    <form action={formAction} ref={formRef}>
       {/* Hidden cart payload — index-aligned arrays */}
       {items.map((item) => (
         <span key={item.key}>
