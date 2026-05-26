@@ -9,6 +9,7 @@ export type Product = {
   stock_quantity: number;
   min_stock_level: number;
   status: "active" | "inactive";
+  description: string | null;
   profit: number;
   profit_margin: number;
 };

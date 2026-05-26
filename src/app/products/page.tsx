@@ -39,10 +39,10 @@ export default async function ProductsPage({ searchParams }: { searchParams: Pro
   const total = await row<{ total: number }>(
     `SELECT COUNT(*) total
      FROM products p
-     WHERE (? = '' OR p.name LIKE ? OR p.sku LIKE ?)
+     WHERE (? = '' OR p.name LIKE ? OR p.sku LIKE ? OR p.description LIKE ?)
      AND (? = '' OR p.category_id = ?)
      AND (? = '' OR p.status = ?)`,
-    [search, `%${search}%`, `%${search}%`, categoryFilter, categoryFilter, statusFilter, statusFilter],
+    [search, `%${search}%`, `%${search}%`, `%${search}%`, categoryFilter, categoryFilter, statusFilter, statusFilter],
   );
   const products = await rows<Product>(
     `SELECT p.*, c.name category_name, s.name supplier_name,
@@ -51,11 +51,11 @@ export default async function ProductsPage({ searchParams }: { searchParams: Pro
      FROM products p
      LEFT JOIN categories c ON c.id = p.category_id
      LEFT JOIN suppliers s ON s.id = p.supplier_id
-     WHERE (? = '' OR p.name LIKE ? OR p.sku LIKE ?)
+     WHERE (? = '' OR p.name LIKE ? OR p.sku LIKE ? OR p.description LIKE ?)
      AND (? = '' OR p.category_id = ?)
      AND (? = '' OR p.status = ?)
      ORDER BY p.status, p.name LIMIT ? OFFSET ?`,
-    [search, `%${search}%`, `%${search}%`, categoryFilter, categoryFilter, statusFilter, statusFilter, pageSize, offset],
+    [search, `%${search}%`, `%${search}%`, `%${search}%`, categoryFilter, categoryFilter, statusFilter, statusFilter, pageSize, offset],
   );
   const categories = await rows<Category>("SELECT id, name, description FROM categories ORDER BY name");
   const suppliers = await rows<Supplier>("SELECT id, name, contact_person, phone, email, address FROM suppliers ORDER BY name");
@@ -69,6 +69,23 @@ export default async function ProductsPage({ searchParams }: { searchParams: Pro
         <h2 className="mb-4 flex items-center gap-2 text-base font-semibold text-foreground">
           {isEditing ? <><Pencil size={15} className="text-primary" /> Edit Product</> : <><Plus size={15} className="text-primary" /> Add Product</>}
         </h2>
+        <script dangerouslySetInnerHTML={{ __html: `
+          function calcMargin() {
+            var cost = parseFloat(document.getElementById('cost_price_input')?.value) || 0;
+            var sell = parseFloat(document.getElementById('selling_price_input')?.value) || 0;
+            var el = document.getElementById('margin-display');
+            if (!el) return;
+            if (cost > 0) {
+              var m = (sell - cost) / cost * 100;
+              el.textContent = m.toFixed(1) + '%';
+              el.style.color = m < 0 ? 'hsl(var(--destructive))' : m < 20 ? '#d97706' : '#059669';
+            } else { el.textContent = '—'; el.style.color = ''; }
+          }
+          document.addEventListener('input', function(e) {
+            if (e.target.id === 'cost_price_input' || e.target.id === 'selling_price_input') calcMargin();
+          });
+          document.addEventListener('DOMContentLoaded', calcMargin);
+        ` }} />
         <form action={saveProduct} className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
           {editProduct && <input type="hidden" name="id" value={editProduct.id} />}
           <Field label="Name">
@@ -90,10 +107,13 @@ export default async function ProductsPage({ searchParams }: { searchParams: Pro
             </select>
           </Field>
           <Field label="Cost price">
-            <input className={inputClass} name="cost_price" type="number" step="0.01" min="0" required defaultValue={editProduct?.cost_price ?? ""} placeholder="0.00" />
+            <input className={inputClass} id="cost_price_input" name="cost_price" type="number" step="0.01" min="0" required defaultValue={editProduct?.cost_price ?? ""} placeholder="0.00" />
           </Field>
           <Field label="Selling price">
-            <input className={inputClass} name="selling_price" type="number" step="0.01" min="0" required defaultValue={editProduct?.selling_price ?? ""} placeholder="0.00" />
+            <input className={inputClass} id="selling_price_input" name="selling_price" type="number" step="0.01" min="0" required defaultValue={editProduct?.selling_price ?? ""} placeholder="0.00" />
+          </Field>
+          <Field label="Profit margin">
+            <div id="margin-display" className={inputClass + " flex items-center bg-muted/30 font-semibold text-muted-foreground"}>—</div>
           </Field>
           <Field label="Stock quantity">
             <input className={inputClass} name="stock_quantity" type="number" min="0" defaultValue={editProduct?.stock_quantity ?? 0} />
@@ -132,7 +152,7 @@ export default async function ProductsPage({ searchParams }: { searchParams: Pro
             <input
               className={inputClass + " min-w-44 flex-1"}
               name="search"
-              placeholder="Search name or SKU…"
+              placeholder="Search name, SKU or description…"
               defaultValue={search}
             />
             <select className={inputClass + " w-44"} name="category" defaultValue={categoryFilter}>
@@ -177,6 +197,11 @@ export default async function ProductsPage({ searchParams }: { searchParams: Pro
                   <td className="py-3 pr-4">
                     <p className="font-semibold text-foreground">{p.name}</p>
                     <p className="text-xs text-muted-foreground">{p.sku || "No SKU"}</p>
+                    {p.description && (
+                      <p className="mt-0.5 max-w-[180px] truncate text-xs text-muted-foreground/70">
+                        {p.description.length > 50 ? p.description.slice(0, 50) + "…" : p.description}
+                      </p>
+                    )}
                   </td>
                   <td className="pr-4 text-muted-foreground">{p.category_name || "—"}</td>
                   <td className="pr-4">
@@ -187,7 +212,17 @@ export default async function ProductsPage({ searchParams }: { searchParams: Pro
                   </td>
                   <td className="pr-4 text-muted-foreground">{money(p.cost_price)}</td>
                   <td className="pr-4 font-medium">{money(p.selling_price)}</td>
-                  <td className="pr-4">{percent(p.profit_margin)}</td>
+                  <td className="pr-4">
+                    <span className={`inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium ${
+                      Number(p.profit_margin) < 0
+                        ? "bg-red-100 text-red-800"
+                        : Number(p.profit_margin) < 20
+                        ? "bg-amber-100 text-amber-800"
+                        : "bg-emerald-100 text-emerald-800"
+                    }`}>
+                      {percent(p.profit_margin)}
+                    </span>
+                  </td>
                   <td className="pr-4"><StatusBadge status={p.status} /></td>
                   <td>
                     <div className="flex items-center gap-1.5">
