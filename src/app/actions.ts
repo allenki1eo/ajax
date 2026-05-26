@@ -2,6 +2,7 @@
 
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
+import bcrypt from "bcryptjs";
 import { createSession, clearSession, requireUser, verifyPassword } from "@/lib/auth";
 import { exec, getDb, row, rows } from "@/lib/db";
 
@@ -312,4 +313,69 @@ export async function deletePurchase(formData: FormData) {
   revalidatePath("/purchases");
   revalidatePath("/inventory");
   redirect("/purchases?success=Purchase+deleted");
+}
+
+export async function saveUser(formData: FormData) {
+  const user = await requireUser();
+  if (user.role !== "admin") redirect("/settings?error=Unauthorized");
+  const id = num(formData, "id");
+  const username = str(formData, "username");
+  const email = str(formData, "email");
+  const fullName = str(formData, "full_name");
+  const role = str(formData, "role") || "user";
+  const password = str(formData, "password");
+  try {
+    if (id) {
+      if (password) {
+        const hashed = await bcrypt.hash(password, 10);
+        await exec(
+          "UPDATE users SET username = ?, email = ?, full_name = ?, role = ?, password = ?, updated_at = CURRENT_TIMESTAMP WHERE id = ?",
+          [username, email, fullName, role, hashed, id],
+        );
+      } else {
+        await exec(
+          "UPDATE users SET username = ?, email = ?, full_name = ?, role = ?, updated_at = CURRENT_TIMESTAMP WHERE id = ?",
+          [username, email, fullName, role, id],
+        );
+      }
+    } else {
+      if (!password) redirect("/settings?error=Password+is+required+for+new+users");
+      const hashed = await bcrypt.hash(password, 10);
+      await exec(
+        "INSERT INTO users (username, email, password, full_name, role) VALUES (?, ?, ?, ?, ?)",
+        [username, email, hashed, fullName, role],
+      );
+    }
+  } catch {
+    redirect("/settings?error=Username+or+email+already+in+use");
+  }
+  revalidatePath("/settings");
+  redirect("/settings?success=User+saved");
+}
+
+export async function deleteUser(formData: FormData) {
+  const user = await requireUser();
+  if (user.role !== "admin") redirect("/settings?error=Unauthorized");
+  const id = num(formData, "id");
+  if (id === user.id) redirect("/settings?error=Cannot+delete+your+own+account");
+  await exec("DELETE FROM users WHERE id = ?", [id]);
+  revalidatePath("/settings");
+  redirect("/settings?success=User+deleted");
+}
+
+export async function changePassword(_: unknown, formData: FormData): Promise<{ error: string } | null> {
+  const user = await requireUser();
+  const currentPassword = str(formData, "current_password");
+  const newPassword = str(formData, "new_password");
+  const confirmPassword = str(formData, "confirm_password");
+  if (!currentPassword || !newPassword || !confirmPassword) return { error: "All fields are required." };
+  if (newPassword !== confirmPassword) return { error: "New passwords do not match." };
+  if (newPassword.length < 6) return { error: "New password must be at least 6 characters." };
+  const stored = await row<{ password: string }>("SELECT password FROM users WHERE id = ?", [user.id]);
+  if (!stored || !(await verifyPassword(currentPassword, stored.password))) {
+    return { error: "Current password is incorrect." };
+  }
+  const hashed = await bcrypt.hash(newPassword, 10);
+  await exec("UPDATE users SET password = ?, updated_at = CURRENT_TIMESTAMP WHERE id = ?", [hashed, user.id]);
+  return null;
 }
